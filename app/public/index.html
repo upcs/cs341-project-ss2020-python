@@ -9,12 +9,7 @@
 	// gab12sadfs
 </script>
 <style>
-	div {
-		width: 35px;
-		height: 5px;
-		background-color: black;
-		margin: 6px 0;
-	}
+
 </style>
 
 
@@ -23,14 +18,41 @@
 	<h1>Portland Python Pollution</h1>
 	<!-- insert image here -->
 	<br>
-	<div></div>
-	<div></div>
-	<div></div>
+	<table id="nav">
+		<tr>
+			<th>
+				<div id="hamburger"></div>
+				<div id="hamburger"></div>
+				<div id="hamburger"></div>
+			</th>
+			<th>
+				<input type="text" placeholder="Search..." id="search-text-input"/>
+				<div id="button-holder">
+					<img src="mag_glass.png"/>
+				</div>
+			</th>
+
+			<th>
+				<button id="nav_button" onclick="process_demo()">Demo</button>
+			</th>
+			<th>
+				<button id="nav_button" onclick="process_demo()">About Us</button>
+			</th>
+			<th>
+				<button id="nav_button" onclick="process_demo()">Contact Us</button>
+			</th>
+
+	</table>
+		
+	<!--<textarea rows="1" cols="100" placeholder="Search..."></textarea>-->
+	<!-- https://www.codeofaninja.com/2014/03/textbox-with-search-icon-in-html-css.html -->
+		
+	<br>
 	<h2>Current News</h2>
 	<p1>Current news will go here</p1>
 	<h3>About Us</h3>
 	<p2>About us will go here</p2>
 	<h3>Our Vision</h3>
 	<p3>Our vision will go here</p3>
-	<button id="demoButton" onclick="process_demo()">Demo</button>
+	
 </body>
