@@ -89,35 +89,51 @@ Software Engineering
 #comparemaps {
   text-align: center;
   color: white;
-  font-size: 40px;
+  font-size: 30px;
 }
 #logo {
-  color: green;
+  color: #20AE2E;
 }
+/*
+.container {
+  width: 600px;
+  height: 300px;
+  background-color: grey;
+  padding: 35px 15px 5px;
+}
+.container:before, 
+.container:after {
+  content:"";
+  display:table;
+  clear:both;
+}
+*/
 .container div{
   float:left; 
-  width:700px; 
-  height:425px;
+  width:40%; 
+  height:350px;
 }
 /*Position of*/
 #left{
     background-color: #000000;  
-    margin-left:125px;
+    margin-left:100px;
     margin-right:40px;
+  
 }
 #right{
+  
     background-color: #000000;  
     margin-left:40px; 
     /*margin-right:30px;*/
-}
-.mapSelectDropdowns div{
 
 }
+.mapSelectDropdowns div{
+}
 #mapSelect1{
-  margin-left: 123px;
+  margin-left: 7%;
 }
 #mapSelect2{
-  margin-left: 720px
+  margin-left: 40%;
 }
 
  /* https://www.w3docs.com/tools/code-editor/5908
