@@ -1,0 +1,123 @@
+/**
+css for home page
+**/
+#nav{
+	width: auto;
+	height: 100px;
+	background-color: beige;
+	overflow: hidden;
+}
+#hamburger{
+	width: 35px;
+	height: 5px;
+	background-color: black;
+	margin: 6px;
+}
+#th{
+	padding: 8px;
+	text-align: left;
+}
+#topnav{
+	overflow: hidden;
+	background-color: #333;
+}
+body{
+  background-color: #89cff0;
+  color: #ffffff;
+  padding: 20px;
+}
+h1{
+	color: #20AE2E;
+	font-family: "Arial Black", Gadget, sans-serif;
+	text-align: center;
+	padding: 10px;
+	font-size: 35px;
+}
+h2{
+	color: white;
+	font-family: "Arial", Helvetica, sans-serif;
+}
+h3{
+	color: white;
+}
+#nav_button{
+	padding: 16px;
+  	font-size: 16px;
+  	font-family: sans-serif;
+  	border: none;
+  	color: white;
+  	background-color: green;
+  	font-family: "Arial", Helvetica, sans-serif;
+}
+#search-text-input{
+	border-top:thin solid  #e5e5e5;
+    border-right:thin solid #e5e5e5;
+    border-bottom:0;
+    border-left:thin solid  #e5e5e5;
+    box-shadow:0px 1px 1px 1px #e5e5e5;
+    float:left;
+    height:20px;
+    margin:auto; 
+    outline:0;
+    padding:.4em 0 .4em .6em; 
+    width:183px;
+}
+#button-holder{
+    background-color:#f1f1f1;
+    border-top:thin solid #e5e5e5;
+    box-shadow:1px 1px 1px 1px #e5e5e5;
+    cursor:pointer;
+    float:left;
+    height:27.5px;
+    margin: auto;
+    text-align:center;
+    width:50px;
+}
+#button-holder img{
+    margin:4px;
+    width:20px; 
+}
+
+
+/*Gabe Marcial
+PPP
+heapMap.css 
+Software Engineering
+8 February 2020
+*/
+
+#comparemaps {
+  text-align: center;
+  color: white;
+  font-size: 40px;
+}
+#logo {
+  color: green;
+}
+.container div{
+  float:left; 
+  width:700px; 
+  height:425px;
+}
+/*Position of*/
+#left{
+    background-color: #000000;  
+    margin-left:125px;
+    margin-right:40px;
+}
+#right{
+    background-color: #000000;  
+    margin-left:40px; 
+    /*margin-right:30px;*/
+}
+.mapSelectDropdowns div{
+
+}
+#mapSelect1{
+  margin-left: 123px;
+}
+#mapSelect2{
+  margin-left: 720px
+}
+
+ /* https://www.w3docs.com/tools/code-editor/5908
