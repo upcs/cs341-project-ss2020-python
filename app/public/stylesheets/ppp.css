@@ -22,14 +22,15 @@ css for home page
 	background-color: #333;
 }
 body{
-	background-color: #89cff0;
-
+  background-color: #89cff0;
+  color: #ffffff;
+  padding: 20px;
 }
 h1{
 	color: #20AE2E;
 	font-family: "Arial Black", Gadget, sans-serif;
 	text-align: center;
-	padding: 30px;
+	padding: 10px;
 	font-size: 35px;
 }
 h2{
@@ -76,3 +77,47 @@ h3{
     margin:4px;
     width:20px; 
 }
+
+
+/*Gabe Marcial
+PPP
+heapMap.css 
+Software Engineering
+8 February 2020
+*/
+
+#comparemaps {
+  text-align: center;
+  color: white;
+  font-size: 40px;
+}
+#logo {
+  color: green;
+}
+.container div{
+  float:left; 
+  width:700px; 
+  height:425px;
+}
+/*Position of*/
+#left{
+    background-color: #000000;  
+    margin-left:125px;
+    margin-right:40px;
+}
+#right{
+    background-color: #000000;  
+    margin-left:40px; 
+    /*margin-right:30px;*/
+}
+.mapSelectDropdowns div{
+
+}
+#mapSelect1{
+  margin-left: 123px;
+}
+#mapSelect2{
+  margin-left: 720px
+}
+
+ /* https://www.w3docs.com/tools/code-editor/5908
