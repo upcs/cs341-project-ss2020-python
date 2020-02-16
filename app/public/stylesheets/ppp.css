@@ -6,6 +6,7 @@ css for home page
 	height: 100px;
 	background-color: beige;
 	overflow: hidden;
+
 }
 #hamburger{
 	width: 35px;
@@ -20,20 +21,23 @@ css for home page
 #topnav{
 	overflow: hidden;
 	background-color: #333;
+
 }
 body{
   background-color: #89cff0;
   color: #ffffff;
-  padding: 20px;
+  
 }
 h1{
 	color: #20AE2E;
 	font-family: "Arial Black", Gadget, sans-serif;
-	text-align: center;
+  font-style: italic; 
+	text-align: left;
 	padding: 10px;
 	font-size: 35px;
 }
 h2{
+  text-align: left; 
 	color: white;
 	font-family: "Arial", Helvetica, sans-serif;
 }
@@ -41,6 +45,7 @@ h3{
 	color: white;
 }
 #nav_button{
+  float:right;
 	padding: 16px;
   	font-size: 16px;
   	font-family: sans-serif;
@@ -55,7 +60,7 @@ h3{
     border-bottom:0;
     border-left:thin solid  #e5e5e5;
     box-shadow:0px 1px 1px 1px #e5e5e5;
-    float:left;
+    float:right;
     height:20px;
     margin:auto; 
     outline:0;
@@ -67,7 +72,7 @@ h3{
     border-top:thin solid #e5e5e5;
     box-shadow:1px 1px 1px 1px #e5e5e5;
     cursor:pointer;
-    float:left;
+    float:right;
     height:27.5px;
     margin: auto;
     text-align:center;
