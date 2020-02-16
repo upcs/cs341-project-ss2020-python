@@ -1,0 +1,52 @@
+<template>
+    <div>
+        <h1>Portland Python Pollution</h1>
+        <!-- insert image here -->
+        <br>
+        <table id="nav">
+            <tr>
+                <th>
+                    <div id="hamburger"></div>
+                    <div id="hamburger"></div>
+                    <div id="hamburger"></div>
+                </th>
+                <th>
+                    <input type="text" placeholder="Search..." id="search-text-input"/>
+                    <div id="button-holder">
+                        <img src="@/assets/images/mag_glass.png"/>
+                    </div>
+                </th>
+
+                <th>
+                    <button id="nav_button" onclick="process_demo()">Demo</button>
+                </th>
+                <th>
+                    <button id="nav_button" onclick="process_demo()">About Us</button>
+                </th>
+                <th>
+                    <button id="nav_button" onclick="process_demo()">Contact Us</button>
+                </th>
+            </tr>
+        </table>
+            
+        <!--<textarea rows="1" cols="100" placeholder="Search..."></textarea>-->
+        <!-- https://www.codeofaninja.com/2014/03/textbox-with-search-icon-in-html-css.html -->
+            
+        <br>
+        <h2>Current News</h2>
+        <p1>Current news will go here</p1>
+        <h3>About Us</h3>
+        <p2>This web application was designed by a group of software engineers that have a vision of a world that uses clean methods of energy production. As we acknowledge the state of the world we live in, it is important to pursue change as quickly as possible. Pollution, climate change, and greenhouse gases are just a few negative effects that old school energy production methods have. These include burning fossil fuels, solar panels, hydroelectric energy, nuclear energy and many more. As a group of software engineers our goal is to be able to collect current data on the status of energy production and their impact on the environment via different cities. We hope to make this web application that may educate people on the importance of the environment and gain support for using clean methods of energy production in order to undo the damage to our planet. Join us and pursue this future with us!</p2>
+        <h3>Our Vision</h3>
+        <p3>The City of Portland currently gathers energy to provide its citizens through coal, natural gas, as well as hydroelectric power. With the rapid increase of new residents, the Portland City Council is seeking out new ways to accommodate the increase in demand for energy. Several University of Portland students are developing the Python Portland Pollution web application which is a visualization tool that compares different cities and their methods of energy production. In addition to this, the web application tracks the impact on the environment such as air quality, greenhouse gas emissions, and water quality. Unlike the epa.gov and airvisual.com, the Python Portland Pollution web application will deliver current data and display insightful visualizations between cities in the United States. However, the goal of this application is not only to provide more information about energy use, but also to promote the creation of a nuclear powerplant in Portland to supply the demand for more power. The Portland City Council is on the fence about investing in a nuclear powerplant and this web application aims to persuade them to do so.</p3>
+    </div>
+</template>
+
+<script>
+  export default {
+    name: 'Home',
+  }
+</script>
+
+<style scoped src="@/assets/style/ppp.css">
+</style>
