@@ -15,44 +15,31 @@
 
 
 <body>
-	<h1>Portland Python Pollution</h1>
+	<div class="topnav">
+		<a href="cs341-project-ss2020-python/app/public/index.html">
+			<img border="0" alt="Home Page" src="./images/logo_button.jpeg" width="250" height="50">
+		</a>
+		<a href="#demo" id="sec_button">Demo</a>
+		<a href="#news" id="sec_button">News</a>
+		<a href="#about" id="sec_button">About Us</a>
+  		<a href="#contact" id="sec_button">Contact Us</a>
+  		<div class="searchbar">
+  			<input type="text" placeholder="Search..." id="search-text-input"/>
+			<div id="button-holder">
+				<img src="./images/mag_glass.png"/>
+			</div>
+		</div>
+	</div>
+
 	<!-- insert image here -->
-	<br>
-	<table id="nav">
-		<tr>
-			<th>
-				<div id="hamburger"></div>
-				<div id="hamburger"></div>
-				<div id="hamburger"></div>
-			</th>
-			<th>
-				<input type="text" placeholder="Search..." id="search-text-input"/>
-				<div id="button-holder">
-					<img src="mag_glass.png"/>
-				</div>
-			</th>
-
-			<th>
-				<button id="nav_button" onclick="process_demo()">Demo</button>
-			</th>
-			<th>
-				<button id="nav_button" onclick="process_demo()">About Us</button>
-			</th>
-			<th>
-				<button id="nav_button" onclick="process_demo()">Contact Us</button>
-			</th>
-
-	</table>
 		
 	<!--<textarea rows="1" cols="100" placeholder="Search..."></textarea>-->
 	<!-- https://www.codeofaninja.com/2014/03/textbox-with-search-icon-in-html-css.html -->
 		
-	<br>
-	<h2>Current News</h2>
-	<p1>Current news will go here</p1>
-	<h3>About Us</h3>
-	<p2>About us will go here</p2>
-	<h3>Our Vision</h3>
-	<p3>Our vision will go here</p3>
+	<div class="container">
+		<img id="bg" src="./images/background.jpeg">
+		<img id="logo" src="./images/logo.png" width="500" height="100">
+	</div>
+	
 	
 </body>
