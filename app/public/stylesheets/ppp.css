@@ -1,30 +1,44 @@
 /**
 css for home page
 **/
-#nav{
-	width: auto;
-	height: 100px;
-	background-color: beige;
-	overflow: hidden;
-}
-#hamburger{
-	width: 35px;
-	height: 5px;
-	background-color: black;
-	margin: 6px;
-}
 #th{
 	padding: 8px;
 	text-align: left;
 }
-#topnav{
+.topnav{
 	overflow: hidden;
 	background-color: #333;
 }
+.topnav a{
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  font-family: "Arial", Helvetica, sans-serif;
+  position: relative;
+}
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+.searchbar {
+  position: relative;
+  top: 20px;
+  left: 5px;
+}
 body{
-  background-color: #89cff0;
-  color: #ffffff;
-  padding: 20px;
+  background-color: #333;
+  text-align: center;
+  margin: 0;
+  height: 100%;
+  width: auto;
+  background-repeat: no-repeat;
 }
 h1{
 	color: #20AE2E;
@@ -39,6 +53,23 @@ h2{
 }
 h3{
 	color: white;
+}
+#sec_button{
+  position: relative;
+  top: 15px;
+}
+#bg{
+  height: 100%;
+  width: 100%;
+  background-position: center;
+  margin: 0;
+  position: relative;
+}
+#logo{
+  position: relative;
+  align-items: center;
+  top: -650px;
+
 }
 #nav_button{
 	padding: 16px;
@@ -77,63 +108,6 @@ h3{
     margin:4px;
     width:20px; 
 }
-
-
-/*Gabe Marcial
-PPP
-heapMap.css 
-Software Engineering
-8 February 2020
-*/
-
-#comparemaps {
-  text-align: center;
-  color: white;
-  font-size: 30px;
+.container{
+  position: relative;
 }
-#logo {
-  color: #20AE2E;
-}
-/*
-.container {
-  width: 600px;
-  height: 300px;
-  background-color: grey;
-  padding: 35px 15px 5px;
-}
-.container:before, 
-.container:after {
-  content:"";
-  display:table;
-  clear:both;
-}
-*/
-.container div{
-  float:left; 
-  width:40%; 
-  height:350px;
-}
-/*Position of*/
-#left{
-    background-color: #000000;  
-    margin-left:100px;
-    margin-right:40px;
-  
-}
-#right{
-  
-    background-color: #000000;  
-    margin-left:40px; 
-    /*margin-right:30px;*/
-
-}
-.mapSelectDropdowns div{
-}
-#mapSelect1{
-  margin-left: 7%;
-}
-#mapSelect2{
-  margin-left: 40%;
-}
-
- /* https://www.w3docs.com/tools/code-editor/5908
