@@ -92,32 +92,55 @@ Software Engineering
   font-size: 40px;
 }
 #logo {
+  width: 100%;
   color: green;
 }
-.container div{
-  float:left; 
-  width:700px; 
-  height:425px;
-}
-/*Position of*/
-#left{
-    background-color: #000000;  
-    margin-left:125px;
-    margin-right:40px;
-}
-#right{
-    background-color: #000000;  
-    margin-left:40px; 
-    /*margin-right:30px;*/
-}
-.mapSelectDropdowns div{
 
+
+/*Position of*/
+@media (orientation:landscape) {/*Combined .container .div */
+	#left{
+	    background-color: #000000;  
+	    width: 44%;
+	    margin-left:1%;
+		float: left;
+  		height:425px;
+	}
+	#right{
+	    background-color: #000000;  
+	    width:44%;
+	    margin-right:1%;
+		float: right;
+  		height:425px;
+	}
+}
+
+@media (orientation:portrait) {/*Combined .container .div */
+	#left{
+	    background-color: #000000;  
+	    width: 96%;
+	    margin:2%;
+		float: left;
+  		height:425px;
+	}
+	#right{
+	    background-color: #000000;  
+	    width:96%;
+	    margin:2%;
+		float: right;
+  		height:425px;
+	}
+}
+
+.mapSelectDropdowns div{
+	width: 100%;
 }
 #mapSelect1{
-  margin-left: 123px;
+	margin-left: 21%;
+	width: 54.5%;
 }
 #mapSelect2{
-  margin-left: 720px
+	width: 24.5%;
 }
 
  /* https://www.w3docs.com/tools/code-editor/5908 */
