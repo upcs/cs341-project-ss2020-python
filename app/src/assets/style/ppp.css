@@ -108,6 +108,73 @@ h3{
     margin:4px;
     width:20px; 
 }
+
+
+/*Gabe Marcial
+PPP
+heapMap.css 
+Software Engineering
+8 February 2020
+*/
+
+#comparemaps {
+  text-align: center;
+  color: white;
+  font-size: 40px;
+}
+#logo {
+  width: 100%;
+  color: green;
+}
+
+
+/*Position of*/
+@media (orientation:landscape) {/*Combined .container .div */
+	#left{
+	    background-color: #000000;  
+	    width: 44%;
+	    margin-left:1%;
+		float: left;
+  		height:425px;
+	}
+	#right{
+	    background-color: #000000;  
+	    width:44%;
+	    margin-right:1%;
+		float: right;
+  		height:425px;
+	}
+}
+
+@media (orientation:portrait) {/*Combined .container .div */
+	#left{
+	    background-color: #000000;  
+	    width: 96%;
+	    margin:2%;
+		float: left;
+  		height:425px;
+	}
+	#right{
+	    background-color: #000000;  
+	    width:96%;
+	    margin:2%;
+		float: right;
+  		height:425px;
+	}
+}
+
+.mapSelectDropdowns div{
+	width: 100%;
+}
+#mapSelect1{
+	margin-left: 21%;
+	width: 54.5%;
+}
+#mapSelect2{
+	width: 24.5%;
+}
+
+ /* https://www.w3docs.com/tools/code-editor/5908 */
 .container{
   position: relative;
 }
