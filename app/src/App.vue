@@ -4,6 +4,7 @@
       <ul id="navBar">
         <li><router-link to="/">Home</router-link></li>
         <li><router-link to="/map">Map</router-link></li>
+        <li><router-link to="/info">Info</router-link></li>
         <li><a href="#news">News</a></li>
         <li><a href="#contact">Contact</a></li>
         <li><a href="#about">About</a></li>
