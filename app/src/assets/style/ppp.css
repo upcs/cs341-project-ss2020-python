@@ -178,3 +178,15 @@ Software Engineering
 .container{
   position: relative;
 }
+
+
+/*
+CSS for AboutUs.vue
+*/
+
+#aboutUs{
+  font-size: 100px;
+}
+div.parag{
+  align-content: center;
+}
