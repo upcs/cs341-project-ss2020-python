@@ -11,8 +11,10 @@
     "express:run": "vue-cli-service express:run"
   },
   "dependencies": {
+    "chart.js": "^2.9.3",
     "core-js": "^2.6.5",
     "vue": "^2.6.10",
+    "vue-chartjs": "^3.5.0",
     "vue-router": "^3.1.5",
     "vuetify": "^2.2.11"
   },
