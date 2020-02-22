@@ -11,7 +11,10 @@
     "express:run": "vue-cli-service express:run"
   },
   "dependencies": {
+    "cookie-parser": "^1.4.4",
     "core-js": "^2.6.5",
+    "jquery": "^3.4.1",
+    "morgan": "^1.9.1",
     "vue": "^2.6.10",
     "vue-router": "^3.1.5",
     "vuetify": "^2.2.11"

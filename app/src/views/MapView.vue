@@ -16,13 +16,13 @@
         </th>
 
         <th>
-          <button id="nav_button" onclick="process_demo()">Demo</button>
+          <button id="nav_button1" v-on:click="test ()">Demo</button>
         </th>
         <th>
-          <button id="nav_button" onclick="process_demo()">About Us</button>
+          <button id="nav_button">About Us</button>
         </th>
         <th>
-          <button id="nav_button" onclick="process_demo()">Contact Us</button>
+          <button id="nav_button">Contact Us</button>
         </th>
       </tr>
     </table>
@@ -57,9 +57,21 @@
 </template>
 
 <script>
+const $ = require('jquery');
+
 export default {
-  name: "MapView"
+        name: "MapView",
+        methods: {
+            test () {
+                $.get('localhost:3000/bruh', function (responseData) {
+
+                    console.log("" + responseData[0]);
+
+                });
+            }
+        }
 };
+
 </script>
 
 <style scoped src="@/assets/style/ppp.css">
