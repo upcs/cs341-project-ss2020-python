@@ -16,7 +16,7 @@
         </th>
 
         <th>
-          <button id="nav_button1" v-on:click="test ()">Demo</button>
+          <button id="nav_button1">Demo</button>
         </th>
         <th>
           <button id="nav_button">About Us</button>
@@ -57,20 +57,20 @@
 </template>
 
 <script>
-const $ = require('jquery');
+
+    const $ = require('jquery'); 
+    //$("#nav_button1").click(function () {
+    console.log("test text");
+    $.get('http://localhost:3000/bruh', function (response) {
+        console.log(response);
+    });
+    //});
 
 export default {
-        name: "MapView",
-        methods: {
-            test () {
-                $.get('localhost:3000/bruh', function (responseData) {
+        name: "MapView"
+    };
 
-                    console.log("" + responseData[0]);
 
-                });
-            }
-        }
-};
 
 </script>
 

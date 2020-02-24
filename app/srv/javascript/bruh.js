@@ -1,18 +1,16 @@
 
 var express = require('express');
 var router = express.Router();
-//var dbms = require('./dbms');
+var dbms = require('./dbms');
 
 //default get for HW4
 router.get('/', function (req, res) {
 
-    var orderList = [
-        { TOPPING: "cherry", QUANTITY: "2" },
-        { TOPPING: "chocolate", QUANTITY: "6" },
-        { TOPPING: "plain", QUANTITY: "3" }
-    ];
+    dbms.dbquery('select * from PlantEmissions2018 where PLPRMFL=\'NUC\';', function (error, result) {
 
-    res.send(orderList);
+        res.send(result);
+
+    });
 });
 
 module.exports = router;
