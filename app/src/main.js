@@ -2,6 +2,13 @@ import Vue from 'vue'
 import App from './App.vue'
 import vuetify from './plugins/vuetify';
 import router from './router'
+import axios from 'axios'
+
+const instance = axios.create({
+  baseURL: 'http://localhost:3000/'
+});
+
+Vue.prototype.$http = instance;
 
 Vue.config.productionTip = false
 

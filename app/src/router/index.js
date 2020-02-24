@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '@/views/Home'
 import MapView from '@/views/MapView'
 import MapInfo from '@/views/MapInfo'
+import Test from '@/views/Test'
 
 Vue.use(VueRouter)
 
@@ -21,6 +22,11 @@ const routes = [
     path: '/info',
     name: 'MapInfo',
     component: MapInfo
+  },
+  {
+    path: '/test',
+    name: 'Test',
+    component: Test
   }
 ]
 
