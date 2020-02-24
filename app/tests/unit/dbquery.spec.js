@@ -7,12 +7,15 @@
 
 const $ = require('jquery');
 
+function getDefaultData() {
+	$.get('http://localhost:3000/sqlMidWare', function (response) {
+		console.log(response[0].BACODE)
+		return response[0].BACODE;
+	};
+}
+
 test('test GET for /sqlMidWare', () => {
-
-
-    $.get('http://localhost:3000/sqlMidWare', function (response) {
-        var testText = response[0].BACODE;
-        expect(testText).toBe("TVA");
-    });
-
+	return getDefaultData().then(data => {
+		expect(data).toBe('TVA');
+	});
 });
