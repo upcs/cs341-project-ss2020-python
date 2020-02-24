@@ -16,7 +16,7 @@
         </th>
 
         <th>
-          <button id="nav_button1">Demo</button>
+          <button id="nav_button">Demo</button>
         </th>
         <th>
           <button id="nav_button">About Us</button>
@@ -57,16 +57,15 @@
 </template>
 
 <script>
-
-    const $ = require('jquery'); 
-    //$("#nav_button1").click(function () {
+    //this demonstrates example functionality of a get
+    
     console.log("test text");
-    $.get('http://localhost:3000/bruh', function (response) {
+    window.$.get('http://localhost:3000/sqlMidWare', function (response) {
         console.log(response);
     });
-    //});
+    
 
-export default {
+    export default {
         name: "MapView"
     };
 

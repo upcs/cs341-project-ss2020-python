@@ -13,7 +13,7 @@ var mysql = require('mysql'),
     async = require('async');
 
 var host = "35.230.25.247";    //from GCloud instance 
-var database = "TEST";  //database name
+var database = "PYTHON_DATA";  //database name
 var user = "root";         //username (change to match your db)
 var password = "chicken";  //password (change to match your db, yes this is very poor practice)
 

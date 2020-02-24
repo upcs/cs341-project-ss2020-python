@@ -5,6 +5,7 @@ import router from './router'
 
 Vue.config.productionTip = false;
 window.$ = require('jquery');
+window.JQuery = require('jquery');
 
 new Vue({
   vuetify,
