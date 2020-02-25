@@ -15,4 +15,10 @@ router.get('/', function (req, res) {
     });
 });
 
+
+router.post('/', function (req, res) {
+    //testing how the form data looks when sent in a post
+    console.log(req);
+});
+
 module.exports = router;
