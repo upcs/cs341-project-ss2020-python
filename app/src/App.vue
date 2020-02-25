@@ -11,19 +11,19 @@
 
           <v-col cols="4">
             <router-link to="/demo">
-              <v-btn text>Demo</v-btn>
+              <v-btn text id="header">Demo</v-btn>
             </router-link>
 
             <router-link to="/news">
-              <v-btn text>News</v-btn>
+              <v-btn text id="header">News</v-btn>
             </router-link>
 
             <router-link to="/info">
-              <v-btn text>About Us</v-btn>
+              <v-btn text id="header">About Us</v-btn>
             </router-link>
 
             <router-link to="/contact">
-              <v-btn text>Contant Us</v-btn>
+              <v-btn text id="header">Contact Us</v-btn>
             </router-link>
           </v-col>
 
@@ -51,4 +51,7 @@
 </template>
 
 <style>
+  #header{
+    color: white;
+  }
 </style>
