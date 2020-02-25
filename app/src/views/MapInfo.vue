@@ -7,14 +7,19 @@
             
         </div>
         <div class="main">
-            
+            <Chart/>
         </div>
     </div>    
 </template>
 
 <script>
+  import Chart from "@/components/Chart.vue"
+
   export default {
     name: 'MapView',
+    components: {
+        Chart
+    }
   }
 </script>
 
@@ -38,7 +43,7 @@
 .main {
     height: 100vh;
     width: 75%;
-    background: blue;
+    background: white;
     float: left;
 }
 
