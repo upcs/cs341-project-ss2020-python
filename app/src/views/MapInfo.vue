@@ -6,7 +6,7 @@
             City Energy Info Visualizer
         </div>
         <v-col cols="3" class="options">
-            <form>
+            <form ref="theForm">
                 <div class="optTitle">Visualization Options</div>
 
                 <v-row class="optBorderTop">
@@ -55,13 +55,14 @@
                 <br>
                 <v-row>
                     <div class="my-2">
-                        <!--<input type="submit">-->
-                        <button v-on:click="formPost">submit</button>
+                        <!-- <input type="submit">-->
                     </div>
                 </v-row>
 
             </form>
+            <button v-on:click="formPost">submit</button>
         </v-col>
+        
         <v-col cols="9" class="main">
             <div class="main">
                 <Chart />
@@ -97,8 +98,11 @@
             return document.getElementByID('#plantType').innerHtml;
         },*/
         formPost: function () {
-            var x = { form: window.$("form") };
-            window.$.post('http://localhost:3000/sqlMidWare', x, function () { });
+            console.log("click function got called");
+            var x = {form: this.$refs.theForm};
+            console.log(x.form);
+            console.log(JSON.stringify(x));
+            window.$.post('http://localhost:3000/sqlMidWare', {text: JSON.stringify(x)});
         } 
     }
   }
