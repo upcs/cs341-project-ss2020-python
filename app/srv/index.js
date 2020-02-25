@@ -1,24 +1,20 @@
 import express from 'express';
-// import socketIO from "socket.io";
+
+//router that handles get/post requests for database queries
+var dataRouter = require('./javascript/sqlMidWare');
 
 export default (app, http) => {
-  // app.use(express.json());
-  //
-  // app.get('/foo', (req, res) => {
-  //   res.json({msg: 'foo'});
-  // });
-  //
-  // app.post('/bar', (req, res) => {
-  //   res.json(req.body);
-  // });
-  // 
-  // optional support for socket.io
-  // 
-  // let io = socketIO(http);
-  // io.on("connection", client => {
-  //   client.on("message", function(data) {
-  //     // do something
-  //   });
-  //   client.emit("message", "Welcome");
-  // });
+
+    app.use(express.json());
+
+    //this tells the express server to allow requests from localhost:8080 (our vue app)
+    app.use(function (req, res, next) {
+        res.header("Access-Control-Allow-Origin", "http://localhost:8080"); 
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        next();
+    });
+
+    app.use('/sqlMidWare', dataRouter);
+  
+    app.listen(process.env.PORT);
 }
