@@ -1,5 +1,5 @@
 <template>
-    
+    <div>
         <div class="title">
             City Energy Info Visualizer
         </div>
@@ -74,7 +74,7 @@
                 </div>
             </v-col>
         </v-row>
-        
+    </div>
 </template>
 
 <script>
