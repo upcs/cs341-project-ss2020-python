@@ -18,7 +18,9 @@ router.get('/', function (req, res) {
 
 router.post('/', function (req, res) {
     //testing how the form data looks when sent in a post
-    console.log(req);
+    //console.log(req);
+    console.log("post sent");
+    res.send({});
 });
 
 module.exports = router;

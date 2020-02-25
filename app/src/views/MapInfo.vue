@@ -1,79 +1,73 @@
 <template>
     
+        
+    <v-row>
         <div class="title">
             City Energy Info Visualizer
         </div>
-        <v-row>
-            <v-col cols="3" class="options">
-                <form action="/graphGenerator.php">
-                    <div class="optTitle">Visualization Options</div>
-                    
-                    <v-row class="optBorderTop">
-                        <h1 class="optTitle"> Location: </h1>
-                        <v-row class="slideContainer">
-                            <label style="float:left;margin-left: 10px;"> Distance (mi): </label>
-                            <v-slider
-                             v-model="slider"
-                             class="align-center"
-                             :max="max"
-                             :min="min"
-                              hide-details
-                            >
-                              <template v-slot:append>
-                                <v-text-field
-                                  v-model="slider"
-                                  class="mt-0 pt-0"
-                                  hide-details
-                                  single-line
-                                  type="number"
-                                  style="width: 60px;padding-right:5px;"
-                                ></v-text-field>
-                              </template>
-                            </v-slider>
-                        </v-row>
+        <v-col cols="3" class="options">
+            <form>
+                <div class="optTitle">Visualization Options</div>
 
-                        <v-row>
-                            <v-text-field
-                                label="City"
-                                placeholder="Portland"
-                                ></v-text-field>
-                        </v-row>
+                <v-row class="optBorderTop">
+                    <h1 class="optTitle"> Location: </h1>
+                    <v-row class="slideContainer">
+                        <label style="float:left;margin-left: 10px;"> Distance (mi): </label>
+                        <v-slider v-model="slider"
+                                  class="align-center"
+                                  :max="max"
+                                  :min="min"
+                                  hide-details>
+                            <template v-slot:append>
+                                <v-text-field v-model="slider"
+                                              class="mt-0 pt-0"
+                                              hide-details
+                                              single-line
+                                              type="number"
+                                              style="width: 60px;padding-right:5px;"></v-text-field>
+                            </template>
+                        </v-slider>
+                    </v-row>
 
-                        <v-row>
-                            <v-select
-                              id="plantType"
-                              :items="items"
-                              label="Plant Type"
-                            ></v-select>
-                        </v-row>
-                    </v-row>
-                    <br>
-                    <v-row class="optBorderTop">
-                        <h1 class="optTitle"> Metrics: </h1>
-                        <v-row>
-                            <label> Longitude: </label>
-                            <input class="roundedBorder" type="number" min="-180" max="180"/>
-                        </v-row>
-                        <v-row>
-                            <label> Latitude: </label>
-                            <input class="roundedBorder" type="number" min="-180" max="180"/>
-                        </v-row>
-                    </v-row>
-                    <br>
                     <v-row>
-                        <div class="my-2">
-                            <input type="submit">   
-                        </div>                    
+                        <v-text-field label="City"
+                                      placeholder="Portland"></v-text-field>
                     </v-row>
 
-                </form>
-            </v-col>
-            <v-col cols="9" class="main">
-                <div class="main">
-                    <Chart/>
-                </div>
-            </v-col>
-        </v-row>
+                    <v-row>
+                        <v-select id="plantType"
+                                  :items="items"
+                                  label="Plant Type"></v-select>
+                    </v-row>
+                </v-row>
+                <br>
+                <v-row class="optBorderTop">
+                    <h1 class="optTitle"> Metrics: </h1>
+                    <v-row>
+                        <label> Longitude: </label>
+                        <input class="roundedBorder" type="number" min="-180" max="180" />
+                    </v-row>
+                    <v-row>
+                        <label> Latitude: </label>
+                        <input class="roundedBorder" type="number" min="-180" max="180" />
+                    </v-row>
+                </v-row>
+                <br>
+                <v-row>
+                    <div class="my-2">
+                        <!--<input type="submit">-->
+                        <button v-on:click="formPost">submit</button>
+                    </div>
+                </v-row>
+
+            </form>
+        </v-col>
+        <v-col cols="9" class="main">
+            <div class="main">
+                <Chart />
+            </div>
+        </v-col>
+    </v-row>
         
 </template>
 
@@ -99,9 +93,13 @@
         }
     },
     methods: {
-        getPlantType() {
+        /*getPlantType() {
             return document.getElementByID('#plantType').innerHtml;
-        }
+        },*/
+        formPost: function () {
+            var x = { form: window.$("form") };
+            window.$.post('http://localhost:3000/sqlMidWare', x, function () { });
+        } 
     }
   }
 
