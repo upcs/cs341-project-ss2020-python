@@ -37,8 +37,12 @@
                     <v-row>
                         <v-select id="plantType"
                                   :items="items"
+                                  v-model="plant"
                                   label="Plant Type"></v-select>
+                                    <!--<:multiple="true">--->
+
                     </v-row>
+                    
                 </v-row>
                 <br>
                 <v-row class="optBorderTop">
@@ -73,17 +77,17 @@
 
 <script>
   import Chart from "@/components/Chart.vue"
-
   export default {
     name: 'MapInfo', 
     components: {
-        Chart
+        Chart,
     },
     data () {
         return {
             min: 0,
             max: 100,
-            slider: sliderVal,
+            slider: 50,
+            plant: null,
             items: [
                 'Nuclear',
                 'Coal',
@@ -98,13 +102,23 @@
         },*/
         formPost: function () {
             var x = { form: window.$("form") };
-            window.$.post('http://localhost:3000/sqlMidWare', x, function () { });
+            let dist = x.form[0].elements[0].value;
+            let city = x.form[0].elements[2].value;
+            let plant = window.document.getElementsByClassName('v-select__selection')[0].innerHTML;
+
+
+            window.$.post('http://localhost:3000/sqlMidWare', {
+                'distance': dist,
+                'city': city,
+                'plant': plant
+            }, function () { 
+                let i =0;
+                if(i)
+                    i=1;
+            });
         } 
     }
   }
-
-
-      let sliderVal = 50;
 
     
 </script>
