@@ -16,13 +16,13 @@
         </th>
 
         <th>
-          <button id="nav_button" onclick="process_demo()">Demo</button>
+          <button id="nav_button">Demo</button>
         </th>
         <th>
-          <button id="nav_button" onclick="process_demo()">About Us</button>
+          <button id="nav_button">About Us</button>
         </th>
         <th>
-          <button id="nav_button" onclick="process_demo()">Contact Us</button>
+          <button id="nav_button">Contact Us</button>
         </th>
       </tr>
     </table>
@@ -57,9 +57,20 @@
 </template>
 
 <script>
-export default {
-  name: "MapView"
-};
+    //this demonstrates example functionality of a get
+    
+    console.log("test text");
+    window.$.get('http://localhost:3000/sqlMidWare', function (response) {
+        console.log(response);
+    });
+    
+
+    export default {
+        name: "MapView"
+    };
+
+
+
 </script>
 
 <style scoped src="@/assets/style/ppp.css">
