@@ -69,14 +69,22 @@
                 </form>
             </v-col>
             <v-col cols="9" class="main">
+                <div class="main">
+                    <Chart/>
+                </div>
             </v-col>
         </v-row>
     </v-app>    
 </template>
 
 <script>
+  import Chart from "@/components/Chart.vue"
+
   export default {
     name: 'MapInfo', 
+    components: {
+        Chart
+    },
     data () {
         return {
             min: 0,
@@ -96,6 +104,8 @@
         }
     }
   }
+
+
       let sliderVal = 50;
 
     

@@ -31,7 +31,8 @@
 <script>
 export default {
   name: "Home"
-};
+    };
+
 </script>
 
 <style scoped src="@/assets/style/ppp.css">
