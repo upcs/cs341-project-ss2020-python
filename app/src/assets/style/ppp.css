@@ -32,6 +32,7 @@ css for home page
   top: 20px;
   left: 5px;
 }
+
 body{
   background-color: #333;
   text-align: center;
@@ -40,6 +41,7 @@ body{
   width: auto;
   background-repeat: no-repeat;
 }
+
 h1{
 	color: #20AE2E;
 	font-family: "Arial Black", Gadget, sans-serif;
@@ -168,10 +170,12 @@ Software Engineering
 }
 #mapSelect1{
 	margin-left: 21%;
-	width: 54.5%;
+	width: 14.5%;
+	margin-right: 40%
 }
 #mapSelect2{
-	width: 24.5%;
+	width: 14.5%;
+	margin-right: 10%;
 }
 
  /* https://www.w3docs.com/tools/code-editor/5908 */
