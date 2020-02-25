@@ -184,8 +184,9 @@ Software Engineering
 CSS for AboutUs.vue
 */
 
-#aboutUs{
-  font-size: 100px;
+.v-card__subtitle, .v-card__text{
+  font-size: .839em; 
+  letter-spacing: .02345;
 }
 div.parag{
   align-content: center;
