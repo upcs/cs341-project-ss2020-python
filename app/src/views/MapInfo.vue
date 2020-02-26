@@ -39,10 +39,10 @@
                                   :items="items"
                                   v-model="plant"
                                   label="Plant Type"></v-select>
-                                    <!--<:multiple="true">--->
+                        <!--<:multiple="true">--->
 
                     </v-row>
-                    
+
                 </v-row>
                 <br>
                 <v-row class="optBorderTop">
@@ -60,11 +60,12 @@
                 <v-row>
                     <div class="my-2">
                         <!--<input type="submit">-->
-                        <button v-on:click="formPost">submit</button>
+
                     </div>
                 </v-row>
 
             </form>
+        <button v-on:click="formPost">submit</button>
         </v-col>
         <v-col cols="9" class="main">
             <div class="main">
@@ -103,18 +104,15 @@
         formPost: function () {
             var x = { form: window.$("form") };
             let dist = x.form[0].elements[0].value;
+            console.log(dist);
             let city = x.form[0].elements[2].value;
-            let plant = window.document.getElementsByClassName('v-select__selection')[0].innerHTML;
+            //let plant = window.document.getElementsByClassName('v-select__selection')[0].innerHTML;
 
 
             window.$.post('http://localhost:3000/sqlMidWare', {
-                'distance': dist,
-                'city': city,
-                'plant': plant
-            }, function () { 
-                let i =0;
-                if(i)
-                    i=1;
+                distance: dist,
+                'city': city
+                //'plant': plant
             });
         } 
     }
