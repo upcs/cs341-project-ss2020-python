@@ -102,18 +102,17 @@
             return document.getElementByID('#plantType').innerHtml;
         },*/
         formPost: function () {
-            var x = { form: window.$("form") };
-            let dist = x.form[0].elements[0].value;
-            var obj = { distance: dist }
-            console.log(obj.distance);
-            let city = x.form[0].elements[2].value;
-            //let plant = window.document.getElementsByClassName('v-select__selection')[0].innerHTML;
+            var form = window.$("form");
+            let dist = form[0].elements[0].value;
+            console.log(form[0].elements);
+            let city = form[0].elements[2].value;
+            let plant = form[0].elements[4].value;
 
 
             window.$.post('http://localhost:3000/sqlMidWare', {
                 distance: dist,
-                'city': city
-                //'plant': plant
+                'city': city,
+                'plant': plant
             });
         } 
     }

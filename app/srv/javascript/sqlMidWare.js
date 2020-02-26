@@ -20,7 +20,13 @@ router.post('/', function (req, res) {
     //testing how the form data looks when sent in a post
     console.log(req.body);
     console.log("post sent");
-    //res.send(req.body);
+    
+    /*dbms.dbquery('select * from PlantEmissions2018 where PLPRMFL=\'NUC\';', function (error, result) {
+
+        console.log("database got queried");
+        res.send(result);
+
+    });*/
 });
 
 module.exports = router;
