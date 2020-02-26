@@ -104,7 +104,8 @@
         formPost: function () {
             var x = { form: window.$("form") };
             let dist = x.form[0].elements[0].value;
-            console.log(dist);
+            var obj = { distance: dist }
+            console.log(obj.distance);
             let city = x.form[0].elements[2].value;
             //let plant = window.document.getElementsByClassName('v-select__selection')[0].innerHTML;
 
