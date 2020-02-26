@@ -37,8 +37,12 @@
                     <v-row>
                         <v-select id="plantType"
                                   :items="items"
+                                  v-model="plant"
                                   label="Plant Type"></v-select>
+                        <!--<:multiple="true">--->
+
                     </v-row>
+
                 </v-row>
                 <br>
                 <v-row class="optBorderTop">
@@ -55,12 +59,13 @@
                 <br>
                 <v-row>
                     <div class="my-2">
-                        <!-- <input type="submit">-->
+                        <!--<input type="submit">-->
+
                     </div>
                 </v-row>
 
             </form>
-            <button v-on:click="formPost">submit</button>
+        <button v-on:click="formPost">submit</button>
         </v-col>
         
         <v-col cols="9" class="main">
@@ -74,17 +79,17 @@
 
 <script>
   import Chart from "@/components/Chart.vue"
-
   export default {
     name: 'MapInfo', 
     components: {
-        Chart
+        Chart,
     },
     data () {
         return {
             min: 0,
             max: 100,
-            slider: sliderVal,
+            slider: 50,
+            plant: null,
             items: [
                 'Nuclear',
                 'Coal',
@@ -98,17 +103,21 @@
             return document.getElementByID('#plantType').innerHtml;
         },*/
         formPost: function () {
-            console.log("click function got called");
-            var x = {form: this.$refs.theForm};
-            console.log(x.form);
-            console.log(JSON.stringify(x));
-            window.$.post('http://localhost:3000/sqlMidWare', {text: JSON.stringify(x)});
+            var form = window.$("form");
+            let dist = form[0].elements[0].value;
+            console.log(form[0].elements);
+            let city = form[0].elements[2].value;
+            let plant = form[0].elements[4].value;
+
+
+            window.$.post('http://localhost:3000/sqlMidWare', {
+                distance: dist,
+                'city': city,
+                'plant': plant
+            });
         } 
     }
   }
-
-
-      let sliderVal = 50;
 
     
 </script>
