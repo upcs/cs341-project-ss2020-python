@@ -104,16 +104,20 @@
         },*/
         formPost: function () {
             var form = window.$("form");
-            let dist = form[0].elements[0].value;
+            let dist = form[0].elements[1].valueAsNumber;
             console.log(form[0].elements);
             let city = form[0].elements[2].value;
             let plant = form[0].elements[4].value;
+            let long = form[0].elements[5].valueAsNumber;
+            let lat = form[0].elements[6].valueAsNumber;
 
 
             window.$.post('http://localhost:3000/sqlMidWare', {
                 distance: dist,
                 'city': city,
-                'plant': plant
+                'plant': plant,
+                longitude: long,
+                latitude: lat
             });
         } 
     }
