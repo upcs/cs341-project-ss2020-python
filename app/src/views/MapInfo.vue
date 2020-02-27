@@ -99,26 +99,47 @@
         }
     },
     methods: {
-        /*getPlantType() {
-            return document.getElementByID('#plantType').innerHtml;
-        },*/
+
+        /**
+         * method: formPost
+         * 
+         * gets called when the submit button is clicked. Extracts information from the form and sends it through a post
+         * to be handled by our express server
+         * */
         formPost: function () {
             var form = window.$("form");
             let dist = form[0].elements[1].valueAsNumber;
             console.log(form[0].elements);
             let city = form[0].elements[2].value;
             let plant = form[0].elements[4].value;
-            let long = form[0].elements[5].valueAsNumber;
-            let lat = form[0].elements[6].valueAsNumber;
 
+            //first, use this resource to find out the lat and lon of the input city
+            window.$.get('https://nominatim.openstreetmap.org/search?q=' + city + '&format=json', function (cityData) {
 
-            window.$.post('http://localhost:3000/sqlMidWare', {
-                distance: dist,
-                'city': city,
-                'plant': plant,
-                longitude: long,
-                latitude: lat
+                //console.log(cityData);
+
+                //if no cities were returned, don't go further. The user probably misspelled something
+                if (cityData.length > 0) { 
+
+                    var lat = cityData[0].lat;
+                    var long = cityData[0].lon;
+
+                    window.$.post('http://localhost:3000/sqlMidWare', {
+                        distance: dist,
+                        'city': city,
+                        'plant': plant,
+                        longitude: long,
+                        latitude: lat
+                    }, function (responseData) {
+
+                        console.log(responseData);
+
+                    }
+                    );
+                }
             });
+
+            
         } 
     }
   }
