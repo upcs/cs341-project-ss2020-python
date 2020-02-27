@@ -72,7 +72,7 @@
             <div class="main">
                 <Chart 
                     v-if="loadChart"
-                    :chartdata="chartData"
+                    :chartdata="chartdata"
                     :options="chartOptions"/>
             </div>
         </v-col>
@@ -100,7 +100,22 @@
                 'Hydroelectric'
             ],
             loadChart: false,
-            chartData: null,
+            chartdata: {
+                labels: ["Nuclear", "Coal", "Wind", "Hydro", "Natural Gas", "Solar"],
+                datasets: [
+                    {
+
+                        label: "Portland",
+                        backgroundColor: "",
+                        data: [43, 65, 23, 10, 20, 5],
+                    },
+                    {
+                        label: "Seattle",
+                        backgroundColor: "#f87979",
+                        data: [38, 92, 32, 99, 23, 2]
+                    }
+                ]
+            },
             chartOptions: {
                 title: "Energy Produced in a Year by Source",
                 responsive: true,
@@ -117,6 +132,9 @@
          * to be handled by our express server
          * */
         formPost: function () {
+
+            this.loadChart = true;
+
             var form = window.$("form");
             let dist = form[0].elements[1].valueAsNumber;
             console.log(form[0].elements);
@@ -143,11 +161,20 @@
                     }, function (responseData) {
 
                         console.log(responseData[0].avgCO2);
-                        /*this.chartData = {
+                        var testData = parseFloat(responseData[0].avgCO2);
+                        this.chartdata = {
 
-                            labels = []
+                            labels: [plant],
 
-                        };*/
+                            datasets: [{
+                                label: plant,
+                                data: [testData]
+                            }]
+
+                        };
+                        console.log(this.chartdata);
+                        this.loadChart = true;
+                     
 
                     }
                     );
