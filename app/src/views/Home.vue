@@ -27,18 +27,24 @@ export default {
 // .container{
 //   position: relative;
 // }
-// #bg{
-//   height: 100%;
-//   width: 100%;
-//   background-position: center;
-//   margin: 0;
-//   position: relative;
-// }
-// #logo{
-//   position: relative;
-//   align-items: center;
-//   margin-top: var(-650px);
-//   width: var(500px);
-//   height: var(50px);
-// }
+body {
+  margin: 0;
+  padding: 0;
+}
+ #bg{
+   height: 93.4vh;
+   width: 100%;
+   background-position: center;
+   margin: 0;
+   position: absolute;
+  left: 0;
+  top: 0;
+  }
+ #logo{
+   position: absolute;
+   margin-top: var(-650px);
+   left: 42%;
+   width: var(500px);
+   height: var(50px);
+ }
 </style>
