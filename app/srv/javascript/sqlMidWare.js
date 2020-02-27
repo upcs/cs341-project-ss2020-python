@@ -23,10 +23,38 @@ router.post('/', function (req, res) {
 
     //switch(req.body.plant)
 
+
     var milesToDegreesLat = req.body.distance / 69;
     var milesToDegreesLong = req.body.distance / 53;
 
-    
+    var plant = '';
+
+    switch (req.body.plant.toLowerCase()) {
+
+        case "nuclear":
+            plant = 'NUCLEAR';
+            break;
+
+        case "coal":
+            plant = 'COAL';
+            break;
+
+        case "natural gas":
+            plant = 'GAS';
+            break;
+
+        case "oil":
+            plant = 'OIL';
+            break;
+
+        case "solar":
+            plant = 'SOLAR';
+            break; 
+
+        case "hydroelectric":
+            plant = 'HYDRO';
+            break;
+    }
 
     var latMin = req.body.latitude - milesToDegreesLat;
     var latMax = parseFloat(req.body.latitude) + parseFloat(milesToDegreesLat);
@@ -36,18 +64,21 @@ router.post('/', function (req, res) {
     console.log(req.body.distance + ", " + milesToDegreesLat + ", " + req.body.latitude + ", " + latMax);
     console.log(req.body.latitude + ", " + milesToDegreesLat + ", " + (req.body.latitude + milesToDegreesLat));
 
-    var queryString = "select * from PlantEmissions 2018 ";
-    queryString += "where LAT between " + latMin + " and " + latMax + " ";
+    var queryString = "select avg(PLCO2RTA) as avgCO2 from PlantEmissions2018 ";
+    queryString += "where PLFUELCT='" + plant + "' and ";
+    queryString += "LAT between " + latMin + " and " + latMax + " ";
     queryString += "and LON between " + longMin + " and " + longMax + ";";
 
     console.log(queryString);
 
-    /*dbms.dbquery('select * from PlantEmissions2018 where PLPRMFL=\'NUC\';', function (error, result) {
+    //sample legal working query: select avg(PLCO2RTA) as avgCO2 from PlantEmissions2018 where LAT between 50 and 60 and LON between -150 and -130;
+
+    dbms.dbquery(queryString, function (error, result) {
 
         console.log("database got queried");
         res.send(result);
 
-    });*/ 
+    }); 
 });
 
 module.exports = router;
