@@ -2,7 +2,7 @@
 import { Bar } from "vue-chartjs";
 
 export default {
-  name: "Chart",
+  name: "ChartDummy",
   extends: Bar,
   data: () => ({
     chartdata: {
