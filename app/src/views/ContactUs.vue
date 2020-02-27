@@ -123,6 +123,23 @@
     </div>
 </template>
 
+<style scoped>
+  .flex.xs12{
+  flex-basis: 100%;
+  -webkit-box-flex: 0;
+  flex-grow: 0;
+  max-width: 100%;
+}
+element.style {
+    margin-bottom: 24px;
+    margin-top: 48px;
+}
+:after, :before {
+  -webkit-box-sizing: inherit;
+    /* box-sizing: inherit; */
+}
+</style>
+
 <script>
   export default {
     name: 'ContactUs',
