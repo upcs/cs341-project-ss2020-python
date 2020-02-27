@@ -27,7 +27,34 @@ router.post('/', function (req, res) {
     var milesToDegreesLat = req.body.distance / 69;
     var milesToDegreesLong = req.body.distance / 53;
 
-    
+    var plant = '';
+
+    switch (req.body.plant.toLowerCase()) {
+
+        case "nuclear":
+            plant = 'NUCLEAR';
+            break;
+
+        case "coal":
+            plant = 'COAL';
+            break;
+
+        case "natural gas":
+            plant = 'GAS';
+            break;
+
+        case "oil":
+            plant = 'OIL';
+            break;
+
+        case "solar":
+            plant = 'SOLAR';
+            break; 
+
+        case "hydroelectric":
+            plant = 'HYDRO';
+            break;
+    }
 
     var latMin = req.body.latitude - milesToDegreesLat;
     var latMax = parseFloat(req.body.latitude) + parseFloat(milesToDegreesLat);
@@ -38,7 +65,8 @@ router.post('/', function (req, res) {
     console.log(req.body.latitude + ", " + milesToDegreesLat + ", " + (req.body.latitude + milesToDegreesLat));
 
     var queryString = "select avg(PLCO2RTA) as avgCO2 from PlantEmissions2018 ";
-    queryString += "where LAT between " + latMin + " and " + latMax + " ";
+    queryString += "where PLFUELCT='" + plant + "' and ";
+    queryString += "LAT between " + latMin + " and " + latMax + " ";
     queryString += "and LON between " + longMin + " and " + longMax + ";";
 
     console.log(queryString);

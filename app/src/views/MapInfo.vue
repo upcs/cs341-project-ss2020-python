@@ -142,7 +142,12 @@
                         latitude: lat
                     }, function (responseData) {
 
-                        console.log(responseData);
+                        console.log(responseData[0].avgCO2);
+                        /*this.chartData = {
+
+                            labels = []
+
+                        };*/
 
                     }
                     );
