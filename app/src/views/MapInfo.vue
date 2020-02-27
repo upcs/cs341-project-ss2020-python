@@ -193,15 +193,14 @@
     text-align: center;
     font-size: 36px;
     padding: 20px;
-    border-top: 3px solid #E1C699;
-    background-color: beige;    
+    border-bottom: 2px solid black;
 }
 
 .options {
     height: 86.3vh;
     width: 25%;
-    background-color: #aaa;
     float: left;
+    border-right: 2px solid black;
  
 }
 
@@ -213,7 +212,6 @@
 .main {
     height: 86.3vh;
     width: 75%;
-    background: #333;
     float: right;
 }
 
