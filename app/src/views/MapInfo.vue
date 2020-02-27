@@ -72,7 +72,7 @@
             <div class="main">
                 <Chart 
                     v-if="loadChart"
-                    :chartdata="chartdata"
+                    :chartData="chart_data"
                     :options="chartOptions"/>
             </div>
         </v-col>
@@ -100,22 +100,7 @@
                 'Hydroelectric'
             ],
             loadChart: false,
-            chartdata: {
-                labels: ["Nuclear", "Coal", "Wind", "Hydro", "Natural Gas", "Solar"],
-                datasets: [
-                    {
-
-                        label: "Portland",
-                        backgroundColor: "",
-                        data: [43, 65, 23, 10, 20, 5],
-                    },
-                    {
-                        label: "Seattle",
-                        backgroundColor: "#f87979",
-                        data: [38, 92, 32, 99, 23, 2]
-                    }
-                ]
-            },
+            chart_data: null,
             chartOptions: {
                 title: "Energy Produced in a Year by Source",
                 responsive: true,
@@ -133,7 +118,9 @@
          * */
         formPost: function () {
 
-            this.loadChart = true;
+            this.loadChart = false;
+            
+            var chart = this;
 
             var form = window.$("form");
             let dist = form[0].elements[1].valueAsNumber;
@@ -160,20 +147,23 @@
                         latitude: lat
                     }, function (responseData) {
 
+                        
                         console.log(responseData[0].avgCO2);
-                        var testData = parseFloat(responseData[0].avgCO2);
-                        this.chartdata = {
+                        var resData = parseFloat(responseData[0].avgCO2);
+                        chart.chart_data = {
 
                             labels: [plant],
 
                             datasets: [{
                                 label: plant,
-                                data: [testData]
+                                backgroundColor: "#f87979",
+                                data: [resData]
                             }]
 
                         };
-                        console.log(this.chartdata);
-                        this.loadChart = true;
+                        console.log(chart.chart_data);
+                        chart.loadChart = true;
+                        
                      
 
                     }
@@ -181,7 +171,7 @@
                 }
             });
 
-            
+            console.log(this.chart_data);
         } 
     }
   }
