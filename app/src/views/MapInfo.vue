@@ -13,21 +13,24 @@
                 <v-row class="optBorderTop">
                     <h1 class="optTitle"> Location: </h1>
                     <v-row class="slideContainer">
-                        <label style="float:left;margin-left: 10px;"> Distance (mi): </label>
-                        <v-slider v-model="slider"
-                                  class="align-center"
-                                  :max="max"
-                                  :min="min"
-                                  hide-details>
-                            <template v-slot:append>
-                                <v-text-field v-model="slider"
-                                              class="mt-0 pt-0"
-                                              hide-details
-                                              single-line
-                                              type="number"
-                                              style="width: 60px;padding-right:5px;"></v-text-field>
-                            </template>
-                        </v-slider>
+
+                        <v-col justify="left" class="mx-0 px-0">
+                            <label style="float:left;margin-left: 10px;"> Distance (mi): </label>
+                            <v-slider v-model="slider"
+                                    class="align-center"
+                                    :max="max"
+                                    :min="min"
+                                    hide-details>
+                                <template v-slot:append>
+                                    <v-text-field v-model="slider"
+                                                class="mt-0 pt-0"
+                                                hide-details
+                                                single-line
+                                                type="number"
+                                                style="width: 75px;"></v-text-field>
+                                </template>
+                            </v-slider>
+                        </v-col>
                     </v-row>
 
                     <v-row>
@@ -49,12 +52,10 @@
                 <v-row class="optBorderTop">
                     <h1 class="optTitle"> Metrics: </h1>
                     <v-row>
-                        <label> Longitude: </label>
-                        <input class="roundedBorder" type="number" min="-180" max="180" />
-                    </v-row>
-                    <v-row>
-                        <label> Latitude: </label>
-                        <input class="roundedBorder" type="number" min="-180" max="180" />
+                        <v-select id="dataParameter"
+                                  :items="dataParameters"
+                                  v-model="selectedData"
+                                  label="Parameter 1"></v-select>
                     </v-row>
                 </v-row>
                 <br>
@@ -66,7 +67,9 @@
                 </v-row>
 
             </form>
-        <button v-on:click="formPost">submit</button>
+            <v-row justify="center" >
+                <v-btn v-on:click="formPost">Submit</v-btn>
+            </v-row>
         </v-col>
         
         <v-col cols="9" class="main">
@@ -91,8 +94,8 @@
     data () {
         return {
             min: 0,
-            max: 100,
-            slider: 50,
+            max: 1000,
+            slider: 100,
             plant: null,
             items: [
                 'Nuclear',
@@ -100,6 +103,10 @@
                 'Solar',
                 'Hydroelectric'
             ],
+            dataParameters: [
+                'C02 Emission Rate (lb/MWh)'
+            ],
+            selectedData: null,
             loadChart: false,
             chart_data: null,
             chartOptions: {
