@@ -70,7 +70,10 @@
         
         <v-col cols="9" class="main">
             <div class="main">
-                <Chart />
+                <Chart 
+                    v-if="loadChart"
+                    :chartdata="chartData"
+                    :options="chartOptions"/>
             </div>
         </v-col>
     </v-row>
@@ -96,6 +99,13 @@
                 'Solar',
                 'Hydroelectric'
             ],
+            loadChart: false,
+            chartData: null,
+            chartOptions: {
+                title: "Energy Produced in a Year by Source",
+                responsive: true,
+                maintainAspectRatio: false,
+            }
         }
     },
     methods: {
