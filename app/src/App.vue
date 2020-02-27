@@ -10,7 +10,7 @@
           </v-col>
 
           <v-col cols="4">
-            <router-link to="/demo">
+            <router-link to="/info">
               <v-btn text id="header">Demo</v-btn>
             </router-link>
 
@@ -18,7 +18,7 @@
               <v-btn text id="header">News</v-btn>
             </router-link>
 
-            <router-link to="/info">
+            <router-link to="/about">
               <v-btn text id="header">About Us</v-btn>
             </router-link>
 

@@ -182,3 +182,16 @@ Software Engineering
 .container{
   position: relative;
 }
+
+
+/*
+CSS for AboutUs.vue
+*/
+
+.v-card__subtitle, .v-card__text{
+  font-size: .839em; 
+  letter-spacing: .02345;
+}
+div.parag{
+  align-content: center;
+}
