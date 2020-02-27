@@ -13,21 +13,23 @@
                 <v-row class="optBorderTop">
                     <h1 class="optTitle"> Location: </h1>
                     <v-row class="slideContainer">
-                        <label style="float:left;margin-left: 10px;"> Distance (mi): </label>
-                        <v-slider v-model="slider"
-                                  class="align-center"
-                                  :max="max"
-                                  :min="min"
-                                  hide-details>
-                            <template v-slot:append>
-                                <v-text-field v-model="slider"
-                                              class="mt-0 pt-0"
-                                              hide-details
-                                              single-line
-                                              type="number"
-                                              style="width: 60px;padding-right:5px;"></v-text-field>
-                            </template>
-                        </v-slider>
+                        <v-col justify="left" class="mx-0 px-0">
+                            <label style="float:left;margin-left: 10px;"> Distance (mi): </label>
+                            <v-slider v-model="slider"
+                                    class="align-center"
+                                    :max="max"
+                                    :min="min"
+                                    hide-details>
+                                <template v-slot:append>
+                                    <v-text-field v-model="slider"
+                                                class="mt-0 pt-0"
+                                                hide-details
+                                                single-line
+                                                type="number"
+                                                style="width: 75px;"></v-text-field>
+                                </template>
+                            </v-slider>
+                        </v-col>
                     </v-row>
 
                     <v-row>
