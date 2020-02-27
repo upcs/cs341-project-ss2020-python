@@ -10,11 +10,11 @@
   >
   <div class="display-2">Latest News About Energy</div>
     </v-card>
-    <v-row justify="space-around">
+    <!-- <v-row justify="space-around">
       <v-icon @click="model--">mdi-minus</v-icon>
       {{ model }}
       <v-icon @click="model++">mdi-plus</v-icon>
-    </v-row>
+    </v-row> -->
     <v-carousel height=40em>
     <v-carousel-item
       v-for="(item,i) in items"
