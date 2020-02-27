@@ -1,61 +1,57 @@
 <template>
-   <div id="app">
-    <div id="nav">
-      <ul id="navBar">
-        <li><router-link to="/">Home</router-link></li>
-        <li><router-link to="/map">Map</router-link></li>
-        <li><router-link to="/info">Info</router-link></li>
-        <li><router-link to="/about">About</router-link></li>
-        <li><router-link to="/news">News</router-link></li>
-        <li><router-link to="/contact">Contact</router-link></li>
-      </ul>
-    </div>
-    <router-view/>
-  </div>
+  <v-app>
+    <v-app-bar app color="primary">
+      <v-container fluid>
+        <v-row justify="center" align="center">
+          <v-col cols="2">
+            <router-link to="/">
+              <v-img src="@/assets/images/logo_button.jpeg" max-width="250" max-height="50"></v-img>
+            </router-link>
+          </v-col>
+
+          <v-col cols="4">
+            <router-link to="/info">
+              <v-btn text id="header">Demo</v-btn>
+            </router-link>
+
+            <router-link to="/news">
+              <v-btn text id="header">News</v-btn>
+            </router-link>
+
+            <router-link to="/about">
+              <v-btn text id="header">About Us</v-btn>
+            </router-link>
+
+            <router-link to="/contact">
+              <v-btn text id="header">Contact Us</v-btn>
+            </router-link>
+          </v-col>
+
+          <v-col cols="2" class="pt-7">
+            <v-text-field
+              label="Search"
+              prepend-inner-icon="mdi-magnify"
+              background-color="accent"
+              rounded
+              dense
+            ></v-text-field>
+          </v-col>
+          
+          <v-spacer></v-spacer>
+        </v-row>
+      </v-container>
+    </v-app-bar>
+
+    <v-content>
+      <v-container fluid>
+        <router-view></router-view>
+      </v-container>
+    </v-content>
+  </v-app>
 </template>
 
-<style lang="scss">
-  #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+<style>
+  #header{
+    color: white;
   }
-}
-
-#navBar {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: beige;
-}
-
-li {
-  float: left;
-}
-
-li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-li a:hover {
-  background-color: #111;
-}
 </style>
