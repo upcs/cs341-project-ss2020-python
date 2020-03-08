@@ -1,35 +1,30 @@
 <template>
     <div class="v-content__wrap">
-      <div id="core-view">
+      <section class="container container--fluid" id="user-profile">
         <div class="container fill-height fluid grid-list-x1">
-          <div class="layout justify-center wrap">
-            <div class="flex xs12 md8">
-              <div class="v-card v-sheet theme--light elevation-2" style="margin-bottom: 24px; margin-top: 48px;">
-                <div class="v-offset" style="top: -24px; margin-bottom: -24px;">
-                  <div class="v-card--material__header v-card v-sheet theme--dark elevation-2 green elevation-10">
-                    <span>
-                      <h4 class="title font-weight-light mb-2">Contact Us</h4>
-                      <p class="category font-weight-thing">Fill Entries Below</p>
-                    </span>
+          <div class="row justify-center">
+            <div class="col-md-10 col-14">
+              <div class="v-card--material pa-3 v-card v-sheet theme--light v-card--material--has-heading">
+                <div class="d-flex grow flex-wrap">
+                  <div class="text-start v-card--material__heading my-n9 mb-n1 v-sheet theme--dark elevation-6 blue pa-7" style="width:100%;">
+                    
+                      <div class="font-weight-light" style="font-size: 30px;">Contact Us</div>
+                      <div class="subtitle-1 font-weight-light">Fill Entries Below</div>
+                    
                   </div>
                 </div>
                 <div class="v-card__text">
                   <form novalidate="novalidate" class="v-form">
                     <div class="container py-0">
                       <div class="layout wrap">
-
+                        
                         <div class="flex xs12 md4">
                           <div class="v-input purple-input v-text-field theme--light">
                             <div class="v-input__control">
-                              <div class="v-input__slot">
-                                ::before
-                                <div class="v-text-field__slot">
-                                  <label aria-hidden="true" class="v-label theme--light" style="left: 0px; right: auto; position: absolute;">
-                                    First Name</label>
-                                  <input aria-label="User Name" type="text">
-                                </div>
-                                ::after                  
-                              </div>
+                              
+                              <v-text-field label="First Name">
+                              </v-text-field>
+
                               <div class="v-text-field__details">
                                 <div class="v-messages theme--light">
                                   <div class="v-messages__wrapper"></div>
@@ -42,15 +37,8 @@
                         <div class="flex xs12 md4">
                           <div class="v-input purple-input v-text-field theme--light">
                             <div class="v-input__control">
-                              <div class="v-input__slot">
-                                ::before
-                                <div class="v-text-field__slot">
-                                  <label aria-hidden="true" class="v-label theme--light" style="left: 0px; right: auto; position: absolute;">
-                                    Last Name</label>
-                                  <input aria-label="User Name" type="text">
-                                </div>
-                                ::after                  
-                              </div>
+                              <v-text-field label="Last Name">
+                              </v-text-field>
                               <div class="v-text-field__details">
                                 <div class="v-messages theme--light">
                                   <div class="v-messages__wrapper"></div>
@@ -63,15 +51,8 @@
                         <div class="flex xs12 md4">
                           <div class="v-input purple-input v-text-field theme--light">
                             <div class="v-input__control">
-                              <div class="v-input__slot">
-                                ::before
-                                <div class="v-text-field__slot">
-                                  <label aria-hidden="true" class="v-label theme--light" style="left: 0px; right: auto; position: absolute;">
-                                    Email Address</label>
-                                  <input aria-label="User Name" type="text">
-                                </div>
-                                ::after                  
-                              </div>
+                              <v-text-field label="Email Address">
+                              </v-text-field>
                               <div class="v-text-field__details">
                                 <div class="v-messages theme--light">
                                   <div class="v-messages__wrapper"></div>
@@ -86,9 +67,7 @@
                             <div class="v-input__control">
                               <div class="v-input__slot">
                                 <div class="v-text-field__slot">
-                                  <label aria-hidden="true" class="v-label theme--light" style="left: 0px; right: auto; position: absolute;">
-                                    Message
-                                  </label>
+                                  <label for="input-222" class="v-label v-label--active theme--light" style="left: 0px; right: auto; position: absolute; font-size: 22px;">Message</label>
                                   <textarea aria-label="About Me" rows="5" style="margin-top: 0px; margin-bottom: 0px; height: 76px;">
                                   </textarea>
                                 </div>
@@ -103,11 +82,10 @@
                             </div>
                           </div>
 
-                        <div class="flex xs12 text-xs-right">
-                          <button type="button" class="mx-0 font-weight-light v-btn theme--dark success">
-                            ::before
-                            <div class="v-btn__content">
-                            Send Info</div>                   
+                        <div class="text-right col col-12">
+                          <button type="button" class="mr-0 v-btn v-btn--contained theme--dark v-size--default blue">
+                            <span class="v-btn__content">
+                            Send Info</span>                   
                           </button>
                         </div>
 
@@ -119,7 +97,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
 </template>
 
@@ -138,6 +116,19 @@ element.style {
   -webkit-box-sizing: inherit;
     /* box-sizing: inherit; */
 }
+
+/*
+.v-text-field>.v-input__control>.v-input__slot:after,
+.v-text-field>.v-input__control>.v-input__slot:before{
+  bottom: -1px;
+  content: "";
+  left: 0;
+  position: absolute;
+  transition: .3s
+    cubic-bezier(.25, .8, .5, 1);
+  width: 100%;
+}
+*/
 </style>
 
 <script>
