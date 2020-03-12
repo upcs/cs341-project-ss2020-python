@@ -1,6 +1,7 @@
 language: node_js
 cache:
   directories:
-    - app
+    - node_modules
 script:
+  - cd app
   - npm run test:unit
