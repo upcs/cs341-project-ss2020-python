@@ -109,7 +109,7 @@
             min: 0,
             max: 1000,
             slider: 100,
-            plant: null,
+            plant: [],
             city: null,
             city2: null,
             items: [
@@ -152,58 +152,62 @@
 
             var form = window.$("form");
             console.log(form[0].elements);
+            console.log(chart.city);
+            console.log(chart.city2);
+            console.log(chart.plant);
             
+            if (chart.city != null) {
+                //first, use this resource to find out the lat and lon of the input city
+                window.$.get('https://nominatim.openstreetmap.org/search?q=' + chart.city + '&format=json', function (cityData) {
 
-            //first, use this resource to find out the lat and lon of the input city
-            window.$.get('https://nominatim.openstreetmap.org/search?q=' + this.city + '&format=json', function (cityData) {
+                    //console.log(cityData);
 
-                //console.log(cityData);
-
-                //if no cities were returned, don't go further. The user probably misspelled something
-                if (cityData.length == 0) {
-                    //report error
-                    chart.loadChart = false;
-                }
-
-                else {
-
-                    var lat = cityData[0].lat;
-                    var long = cityData[0].lon;
-
-                    window.$.post('http://localhost:3000/sqlMidWare', {
-                        distance: this.slider,
-                        'city': this.city,
-                        //'city2': this.city2,
-                        'plant': this.plant,
-                        longitude: long,
-                        latitude: lat,
-                        //'emissions': this.selectedData,
-                        //'energy': this.selectedEnergy,
-                    }, function (responseData) {
-
-                        
-                        console.log(responseData[0].avgCO2);
-                        var resData = parseFloat(responseData[0].avgCO2);
-                        chart.chart_data = {
-
-                            labels: [this.plant],
-
-                            datasets: [{
-                                label: this.plant,
-                                backgroundColor: "#f87979",
-                                data: [resData]
-                            }]
-
-                        };
-                        console.log(chart.chart_data);
-                        chart.loadChart = true;
-                        
-                     
-
+                    //if no cities were returned, don't go further. The user probably misspelled something
+                    if (cityData.length == 0) {
+                        //TODO: report error
+                        chart.loadChart = false;
                     }
-                    );
-                }
-            });
+
+                    else {
+
+                        var lat = cityData[0].lat;
+                        var long = cityData[0].lon;
+
+                        window.$.post('http://localhost:3000/sqlMidWare', {
+                            distance: chart.slider,
+                            'city': chart.city,
+                            //'city2': this.city2,
+                            'plant': chart.plant[0],
+                            longitude: long,
+                            latitude: lat,
+                            //'emissions': this.selectedData,
+                            //'energy': this.selectedEnergy,
+                        }, function (responseData) {
+
+
+                            console.log(responseData[0].avgCO2);
+                            var resData = parseFloat(responseData[0].avgCO2);
+                            chart.chart_data = {
+
+                                labels: [this.plant],
+
+                                datasets: [{
+                                    label: this.plant,
+                                    backgroundColor: "#f87979",
+                                    data: [resData]
+                                }]
+
+                            };
+                            console.log(chart.chart_data);
+                            chart.loadChart = true;
+
+
+
+                        }
+                        );
+                    }
+                });
+            }
 
             console.log(this.chart_data);
         } 
