@@ -1,3 +1,6 @@
+//NOTES:
+//For power generation, query column named PLNGENAN
+
 
 var express = require('express');
 var router = express.Router();

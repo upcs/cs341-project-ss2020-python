@@ -142,7 +142,12 @@
                 //console.log(cityData);
 
                 //if no cities were returned, don't go further. The user probably misspelled something
-                if (cityData.length > 0) { 
+                if (cityData.length == 0) {
+                    //report error
+                    chart.loadChart = false;
+                }
+
+                else {
 
                     var lat = cityData[0].lat;
                     var long = cityData[0].lon;
