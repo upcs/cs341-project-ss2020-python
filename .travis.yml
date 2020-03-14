@@ -3,5 +3,5 @@ cache:
   directories:
     - node_modules
 script:
-  - cd app
+  - npm install @vue/cli^3
   - npm run test:unit
