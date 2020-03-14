@@ -5,5 +5,5 @@ cache:
   directories:
     - node_modules
 script:
-  - npm install @vue/cli@^3
+  - build.sh
   - npm run test:unit
