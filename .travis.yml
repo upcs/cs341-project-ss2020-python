@@ -6,5 +6,6 @@ cache:
     - node_modules
 before_script:
   - cd app  
+  - npm install
 script:
   - npm run test:unit
