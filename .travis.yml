@@ -10,4 +10,4 @@ before_script:
 script:
   - npm run test:unit
 after_success:
-  - codecov -t c87a5e6c-9f16-49e7-883b-75f4b8026ea0
+  - bash <(curl -s https://codecov.io/bash) -t c87a5e6c-9f16-49e7-883b-75f4b8026ea0
