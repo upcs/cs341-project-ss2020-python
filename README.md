@@ -8,6 +8,10 @@
 ### Contact Us page cleanup.
 - More HTML modification for the contact us page for visual austhetic. 
 
+### Codecov
+- Token: c87a5e6c-9f16-49e7-883b-75f4b8026ea0
+- Use this token when uploading reports to this repository. You can set it in your CI environment variables. CODECOV_TOKEN="c87a5e6c-9f16-49e7-883b-75f4b8026ea0"
+
 ## Sprint 2
 
 ### Vue
