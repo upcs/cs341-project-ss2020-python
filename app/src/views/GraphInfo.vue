@@ -243,7 +243,7 @@
 
 .main {
     height: 86.3vh;
-    width: 75%;
+    width: 100%;
     float: right;
 }
 

@@ -57,6 +57,13 @@
                                   v-model="selectedData"
                                   label="Parameter 1"></v-select>
                     </v-row>
+                    <v-row>
+                        <v-radio-group v-model="sortBy" :mandatory="true">
+                            Sort By
+                            <v-radio label="City" value="city"></v-radio>
+                            <v-radio label="Plant" value="plant"></v-radio>
+                        </v-radio-group>
+                    </v-row>
                 </v-row>
                 <br>
                 <v-row>
@@ -68,13 +75,14 @@
 
             </form>
             <v-row justify="center" >
-                <v-btn v-on:click="formPost">Submit</v-btn>
+                <v-btn>Submit</v-btn>
             </v-row>
         </v-col>
         
         <v-col cols="9" class="main">
             <div class="main">
-                <ChartDummy/>
+                <ChartDummyCity v-if="sortBy == 'city'"></ChartDummyCity>
+                <ChartDummyPlant v-else></ChartDummyPlant>
             </div>
         </v-col>
     </v-row>
@@ -82,11 +90,12 @@
 </template>
 
 <script>
-  import ChartDummy from "@/components/ChartDummy.vue"
+  import ChartDummyPlant from "@/components/ChartDummyPlant.vue"
+  import ChartDummyCity from "@/components/ChartDummyCity.vue"
   export default {
     name: 'Demo', 
     components: {
-        ChartDummy,
+        ChartDummyPlant, ChartDummyCity
     },
     data () {
         return {
@@ -103,6 +112,7 @@
             dataParameters: [
                 'C02 Emission Rate (lb/MWh)'
             ],
+            sortBy: null,
             selectedData: null,
             loadChart: true,
             chart_data: null,
@@ -142,7 +152,7 @@
 
 .main {
     height: 86.3vh;
-    width: 75%;
+    width: 100%;
     float: right;
 }
 
