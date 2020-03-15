@@ -34,16 +34,27 @@
                     </v-row>
 
                     <v-row>
-                        <v-text-field label="City"
-                                      placeholder="Portland"></v-text-field>
+                        <v-text-field label="City 1"
+                                      placeholder="Portland"
+                                      v-model="city"></v-text-field>
+                    </v-row>
+
+                    <v-row>
+                        <v-checkbox
+                            v-model="secondCity"
+                            label="Check for second city"
+                            ></v-checkbox>
+                        <v-text-field v-if="secondCity" label="City 2"
+                                      placeholder="Portland"
+                                      v-model="city2"></v-text-field>
                     </v-row>
 
                     <v-row>
                         <v-select id="plantType"
                                   :items="items"
                                   v-model="plant"
-                                  label="Plant Type"></v-select>
-                        <!--<:multiple="true">--->
+                                  label="Plant Type"
+                                  :multiple="true"></v-select>
 
                     </v-row>
 
@@ -57,6 +68,12 @@
                                   v-model="selectedData"
                                   label="Parameter 1"></v-select>
                     </v-row>
+                    <v-row>
+                        <v-select id="energyParameter"
+                                  :items="dataParameters"
+                                  v-model="selectedEnergy"
+                                  label="Parameter 2"></v-select>
+                    </v-row>
                 </v-row>
                 <br>
                 <v-row>
@@ -68,7 +85,7 @@
 
             </form>
             <v-row justify="center" >
-                <v-btn v-on:click="formPost">Submit</v-btn>
+                <v-btn type="submit" v-on:click="formPost">Submit</v-btn>
             </v-row>
         </v-col>
         
@@ -97,6 +114,9 @@
             max: 1000,
             slider: 100,
             plant: null,
+            city: null,
+            city2: null,
+            secondCity: false,
             items: [
                 'Nuclear',
                 'Coal',
@@ -104,9 +124,11 @@
                 'Hydroelectric'
             ],
             dataParameters: [
-                'C02 Emission Rate (lb/MWh)'
+                'C02 Emission Rate (lb/MWh)',
+                'Annual Net Power (MWh)'
             ],
             selectedData: null,
+            selectedEnergy: null,
             loadChart: false,
             chart_data: null,
             chartOptions: {
@@ -131,13 +153,11 @@
             var chart = this;
 
             var form = window.$("form");
-            let dist = form[0].elements[1].valueAsNumber;
             console.log(form[0].elements);
-            let city = form[0].elements[2].value;
-            let plant = form[0].elements[4].value;
+            
 
             //first, use this resource to find out the lat and lon of the input city
-            window.$.get('https://nominatim.openstreetmap.org/search?q=' + city + '&format=json', function (cityData) {
+            window.$.get('https://nominatim.openstreetmap.org/search?q=' + this.city + '&format=json', function (cityData) {
 
                 //console.log(cityData);
 
@@ -148,11 +168,14 @@
                     var long = cityData[0].lon;
 
                     window.$.post('http://localhost:3000/sqlMidWare', {
-                        distance: dist,
-                        'city': city,
-                        'plant': plant,
+                        distance: this.slider,
+                        'city': this.city,
+                        //'city2': this.city2,
+                        'plant': this.plant,
                         longitude: long,
-                        latitude: lat
+                        latitude: lat,
+                        //'emissions': this.selectedData,
+                        //'energy': this.selectedEnergy,
                     }, function (responseData) {
 
                         
@@ -160,10 +183,10 @@
                         var resData = parseFloat(responseData[0].avgCO2);
                         chart.chart_data = {
 
-                            labels: [plant],
+                            labels: [this.plant],
 
                             datasets: [{
-                                label: plant,
+                                label: this.plant,
                                 backgroundColor: "#f87979",
                                 data: [resData]
                             }]
