@@ -162,7 +162,9 @@
                 //first, use this resource to find out the lat and lon of the input city
                 window.$.get('https://nominatim.openstreetmap.org/search?q=' + chart.city + '&format=json', function (cityData) {
 
-                    //console.log(cityData);
+                    window.$.get('https://nominatim.openstreetmap.org/search?q=' + chart.city2 + '&format=json', function (city2Data) {
+
+                        console.log(city2Data);
 
                     //if no cities were returned, don't go further. The user probably misspelled something
                     if (cityData.length == 0) {
@@ -179,7 +181,7 @@
                             distance: chart.slider,
                             'city': chart.city,
                             //'city2': this.city2,
-                            'plant': chart.plant[0],
+                            'plant': chart.plant,
                             longitude: long,
                             latitude: lat,
                             //'emissions': this.selectedData,
@@ -208,6 +210,7 @@
                         }
                         );
                     }
+                });
                 });
             }
 

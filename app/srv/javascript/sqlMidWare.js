@@ -30,33 +30,36 @@ router.post('/', function (req, res) {
     var milesToDegreesLat = req.body.distance / 69;
     var milesToDegreesLong = req.body.distance / 53;
 
-    var plant = '';
+    var plant = [];
 
-    switch (req.body.plant.toLowerCase()) {
+    for (var i = 0; i < req.body.plant.length; i++) {
+        console.log(req.body.plant[i]);
+        switch (req.body.plant[i].toLowerCase()) {
 
-        case "nuclear":
-            plant = 'NUCLEAR';
-            break;
+            case "nuclear":
+                plant[plant.length] = 'NUCLEAR';
+                break;
 
-        case "coal":
-            plant = 'COAL';
-            break;
+            case "coal":
+                plant[plant.length] = 'COAL';
+                break;
 
-        case "natural gas":
-            plant = 'GAS';
-            break;
+            case "natural gas":
+                plant[plant.length] = 'GAS';
+                break;
 
-        case "oil":
-            plant = 'OIL';
-            break;
+            case "oil":
+                plant[plant.length] = 'OIL';
+                break;
 
-        case "solar":
-            plant = 'SOLAR';
-            break; 
+            case "solar":
+                plant[plant.length] = 'SOLAR';
+                break;
 
-        case "hydroelectric":
-            plant = 'HYDRO';
-            break;
+            case "hydroelectric":
+                plant[plant.length] = 'HYDRO';
+                break;
+        }
     }
 
     var latMin = req.body.latitude - milesToDegreesLat;
@@ -68,7 +71,7 @@ router.post('/', function (req, res) {
     console.log(req.body.latitude + ", " + milesToDegreesLat + ", " + (req.body.latitude + milesToDegreesLat));
 
     var queryString = "select avg(PLCO2RTA) as avgCO2 from PlantEmissions2018 ";
-    queryString += "where PLFUELCT='" + plant + "' and ";
+    queryString += "where PLFUELCT='" + plant[0] + "' and ";
     queryString += "LAT between " + latMin + " and " + latMax + " ";
     queryString += "and LON between " + longMin + " and " + longMax + ";";
 
