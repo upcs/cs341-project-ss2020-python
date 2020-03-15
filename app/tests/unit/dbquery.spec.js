@@ -1,7 +1,7 @@
 /**
  * ensures that dbms queries are functioning
  */
-
+import { shallowMount } from '@vue/test-utils'
 var dbms = require('../../srv/javascript/dbms');
 
 
