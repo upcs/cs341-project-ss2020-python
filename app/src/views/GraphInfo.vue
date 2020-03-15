@@ -40,7 +40,11 @@
                     </v-row>
 
                     <v-row>
-                        <v-text-field label="City 2"
+                        <v-checkbox
+                            v-model="secondCity"
+                            label="Check for second city"
+                            ></v-checkbox>
+                        <v-text-field v-if="secondCity" label="City 2"
                                       placeholder="Portland"
                                       v-model="city2"></v-text-field>
                     </v-row>
@@ -66,7 +70,7 @@
                     </v-row>
                     <v-row>
                         <v-select id="energyParameter"
-                                  :items="energyParameters"
+                                  :items="dataParameters"
                                   v-model="selectedEnergy"
                                   label="Parameter 2"></v-select>
                     </v-row>
@@ -81,7 +85,7 @@
 
             </form>
             <v-row justify="center" >
-                <v-btn v-on:click="formPost">Submit</v-btn>
+                <v-btn type="submit" v-on:click="formPost">Submit</v-btn>
             </v-row>
         </v-col>
         
@@ -112,6 +116,7 @@
             plant: null,
             city: null,
             city2: null,
+            secondCity: false,
             items: [
                 'Nuclear',
                 'Coal',
@@ -119,13 +124,10 @@
                 'Hydroelectric'
             ],
             dataParameters: [
-                'C02 Emission Rate (lb/MWh)'
+                'C02 Emission Rate (lb/MWh)',
+                'Annual Net Power (MWh)'
             ],
             selectedData: null,
-            energyParameters: [
-                'Solar',
-                'Nuclear',
-            ],
             selectedEnergy: null,
             loadChart: false,
             chart_data: null,
