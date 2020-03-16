@@ -8,9 +8,8 @@
 ### Contact Us page cleanup.
 - More HTML modification for the contact us page for visual austhetic. 
 
-### Codecov
-- Token: c87a5e6c-9f16-49e7-883b-75f4b8026ea0
-- Use this token when uploading reports to this repository. You can set it in your CI environment variables. CODECOV_TOKEN="c87a5e6c-9f16-49e7-883b-75f4b8026ea0"
+### Code Coverage
+- CODECOV_TOKEN="c87a5e6c-9f16-49e7-883b-75f4b8026ea0"
 - Report Badge Format: [![Codecov Coverage](https://img.shields.io/codecov/c/github/upcs/cs341-project-ss2020-python/contactUs.svg?style=flat-square)](https://codecov.io/gh/upcs/cs341-project-ss2020-python/)
 
 ## Sprint 2
