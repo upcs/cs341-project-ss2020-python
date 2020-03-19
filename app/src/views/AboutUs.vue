@@ -1,5 +1,4 @@
 <template>
-
 <div data-app="true" class="v-application v-application--is-ltr theme--light" id="app">
     <div class="v-application--wrap">
     <main class="v-content" style="padding: 0px;" data-booted="true">
