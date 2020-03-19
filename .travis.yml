@@ -8,6 +8,7 @@ before_script:
   - cd app  
   - npm install
   - npm install -g codecov
+  - npm run express &
 script:
   - npm run test:unit
   - codecov
