@@ -136,11 +136,12 @@
             items: [
                 'Nuclear',
                 'Coal',
-                'Solar',
-                'Hydroelectric'
+                'Hydroelectric',
+                'Natural Gas',
+                'Oil'
             ],
             dataParameters: [
-                'C02 Emission Rate (lb/MWh)',
+                'CO2 Emission Rate (lb/MWh)',
                 'Annual Net Power (MWh)'
             ],
             selectedData: null,
@@ -151,10 +152,181 @@
                 title: "Energy Produced in a Year by Source",
                 responsive: true,
                 maintainAspectRatio: false,
+                scales: {
+                    xAxes: [ { stacked: true } ]
+                }
             }
         }
     },
     methods: {
+        /**
+         * method: formatChartData
+         */
+        formatChartDataByPlant: function(queryData) {
+            
+            // set up Y-axis
+            var chart = this;
+            chart.loadChart = false;
+
+            var newYAxes = []
+            var newChartData = {};
+
+            var isFirstMetric = true;
+
+            for (let metric of queryData.metrics) {
+                newYAxes.push({
+                    'id': metric,
+                    'scaleLabel': {
+                        'labelString': metric,
+                        'display': true,
+                    },
+                    'position': (isFirstMetric ? "left" : "right"),
+                    'stacked': true,
+
+                });
+                isFirstMetric = false;
+            }
+
+            newYAxes[newYAxes.length-1]['gridLines'] = {
+                drawOnChartArea: false
+            };
+
+            chart.chartOptions.scales['yAxes'] = newYAxes;
+            console.log(chart.chartOptions.yAxes);
+            
+            // add the datasets to the chart
+            newChartData['labels'] = queryData.labels;
+            newChartData['datasets'] = [];
+            
+            var isFirstCity = true;
+
+            var colors = ["#00b3ff", "#20b2aa", "#f0a122", "#8638ba"];
+            var colorIterator = 0;
+
+            for (var city of queryData.cities) {
+                
+                isFirstMetric = true
+                
+                for (let metric of queryData.metrics) {
+
+                    if (!isFirstMetric) {
+                        colorIterator = 2;
+                    }
+
+                    newChartData['datasets'].push({
+                        'label': city.name + "-" + metric,
+                        'backgroundColor': (isFirstCity ? colors[colorIterator] : colors[colorIterator+1]),
+                        'stack': (isFirstMetric ? "0" : "1"),
+                        'yAxisID': metric,
+                        'data': city[metric],
+                    });
+                    
+                    isFirstMetric = false;
+                    colorIterator = 0;
+                } 
+
+                isFirstCity = false;
+            }
+
+            chart.chart_data = newChartData;
+
+            chart.loadChart = true;
+        },
+
+        /**
+         * method: sqlMidwareCall
+         * 
+         * Example return:
+         *  {
+         *      "cities: [
+         *          "0": {
+         *              "city" : "Portland"
+         *          [metric] = ": [10, 12, 103, 10]
+         *              "annual power": [120, 22, 1023, 120]
+         *          }
+         *          "1": {
+         *              "city" : "Seattle"
+         *               "emissions": [10, 12, 103, 10]
+         *               "annual power": [120, 22, 1023, 120]
+         *          }
+         *      ]
+         *      "metrics" : ["emission", "annual power"]
+         *      "labels": ["wind", "solar", "nuclear, "hydro"]
+         *  }
+         */
+        sqlMidwareCall: async function(coords, metrics) {
+
+            var chart = this;
+            var dataSet = { 
+                'labels' : chart.plant,
+                'metrics' : metrics,
+                'cities' : []    
+            };
+
+            for (var loc of coords) {
+                
+                var locationData = { 'name' : loc.name };
+        
+                for (var metric of metrics) {
+
+                    var plantData = [];
+
+                    for (var myPlant of chart.plant) {
+                        await window.$.ajax({
+                            url: 'http://localhost:3000/sqlMidWare',
+                            method: "POST",
+                            dataType: "json",
+                            data: {
+                                'distance': chart.slider,
+                                'plant': myPlant,
+                                'latitude': loc.lat,
+                                'longitude': loc.lon,
+                                'metric': metric
+                            }
+                        }).done(function(response) {
+                            plantData.push(response.average[0].average);
+                        });
+                    }
+
+                   locationData[metric] = plantData;
+                    
+                }
+
+               dataSet.cities.push(locationData);
+            }
+
+            return dataSet
+        
+        },
+
+        cityInfoGetter: async function(cities) {
+
+
+                var latsAndLongs = [];
+
+                if (cities.length == 0)
+                    return null;
+
+                for (var city of cities) {
+                    if (city != null){
+                        var cityURL = 'https://nominatim.openstreetmap.org/search?q=' + city + '&format=json';
+                        console.log(cityURL);
+
+                        await window.$.ajax({url: cityURL}).done(function(data) {
+                            var thisLat = data[0].lat;
+                            var thisLon = data[0].lon;
+                            latsAndLongs.push({
+                                lat: thisLat,
+                                lon: thisLon,
+                                name: city
+                            });
+                        });
+                    }
+                }
+
+                return latsAndLongs;
+
+        },
 
         /**
          * method: formPost
@@ -162,7 +334,42 @@
          * gets called when the submit button is clicked. Extracts information from the form and sends it through a post
          * to be handled by our express server
          * */
-        formPost: function () {
+        formPost: async function () {
+
+            var chart = this;
+
+            console.log("Querying geocoding");
+
+            var latsAndLongs = await chart.cityInfoGetter([this.city, this.city2]);
+
+            console.log(latsAndLongs);
+
+            var metrics = [];
+
+            if (chart.selectedData != null) {
+                metrics.push(chart.selectedData);
+            }
+
+            if (chart.selectedEnergy != null) {
+                metrics.push(chart.selectedEnergy);
+            }
+
+            console.log("Querying power plant database")
+            var queriedData = await chart.sqlMidwareCall(latsAndLongs, metrics);
+            console.log(queriedData);
+
+            chart.formatChartDataByPlant(queriedData);
+            //console.log(chart.chartOptions);
+            
+        },
+        
+        /**
+         * method: formPostOld
+         * 
+         * gets called when the submit button is clicked. Extracts information from the form and sends it through a post
+         * to be handled by our express server
+         * */
+        formPostOld: function () {
 
             this.loadChart = false;
             
@@ -189,7 +396,9 @@
                 //first, use this resource to find out the lat and lon of the input city
                 window.$.get('https://nominatim.openstreetmap.org/search?q=' + chart.city + '&format=json', function (cityData) {
 
-                    //console.log(cityData);
+                    window.$.get('https://nominatim.openstreetmap.org/search?q=' + chart.city2 + '&format=json', function (city2Data) {
+
+                        console.log(city2Data);
 
                     //if no cities were returned, don't go further. The user probably misspelled something
                     if (cityData.length == 0) {
@@ -206,7 +415,7 @@
                             distance: chart.slider,
                             'city': chart.city,
                             //'city2': this.city2,
-                            'plant': chart.plant[0],
+                            'plant': chart.plant,
                             longitude: long,
                             latitude: lat,
                             //'emissions': this.selectedData,
@@ -235,8 +444,7 @@
                         );
                     }
                 });
-            
-
+                        
                 console.log(this.chart_data);
             }
         } 

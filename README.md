@@ -1,12 +1,27 @@
 ## Sprint 3
 
+### Data Visualization
+- The "Plant Graphs" page now pulls live data from the user's query.
+- Compare up two cities and two metrics for five different plant types!
+- Future plans are to have a toggle option to sorting the data by plant type (current) and by city (future goal).
+
 ### Travis CI
 - Our project is now in correspondance with Travis CI framework. We added a .travis.yml file in our root directory.
 - Also discovered an interactive testing tool 'watch' which can be used by adding '--watch' at the end of the "test:unit" line
 - in the package.json file. 
+- Build Badage: [![Build Status](https://travis-ci.org/upcs/cs341-project-ss2020-python.svg?branch=master)](https://travis-ci.org/upcs/cs341-project-ss2020-python)
 
 ### Contact Us page cleanup.
 - More HTML modification for the contact us page for visual austhetic. 
+
+### News Page
+- For the news page we converted the formating from the carousel format to the tiles format in order to display multiple news articles at once.
+- We were having issues tracking the button clicking of the carousel object and resorted to this solutio which turned out great. All of the news 
+- articles on that page work and allow the user the "explore" to the news article.
+
+### Search Bar
+- We created a custom google search, but the formatting of vue makes it quite difficult to implement in comparison to standard html and css. 
+- Unfortunately due to the time constraints, we were not able to find a quick solution for this and have to push this assignment to the next sprint. 
 
 ### Code Coverage
 - CODECOV_TOKEN="c87a5e6c-9f16-49e7-883b-75f4b8026ea0"
