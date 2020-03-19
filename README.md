@@ -1,5 +1,10 @@
 ## Sprint 3
 
+### Data Visualization
+- The "Plant Graphs" page now pulls live data from the user's query.
+- Compare up two cities and two metrics for five different plant types!
+- Future plans are to have a toggle option to sorting the data by plant type (current) and by city (future goal).
+
 ### Travis CI
 - Our project is now in correspondance with Travis CI framework. We added a .travis.yml file in our root directory.
 - Also discovered an interactive testing tool 'watch' which can be used by adding '--watch' at the end of the "test:unit" line
