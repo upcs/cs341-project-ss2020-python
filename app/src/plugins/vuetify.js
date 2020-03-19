@@ -9,7 +9,7 @@ Vue.use(Vuetify, {
         error: '#f44336',
         warning: '#ff9800',
         info: '#2196f3',
-        success: '#673ab7'
+        success: '#673ab7',
         }
 });
 

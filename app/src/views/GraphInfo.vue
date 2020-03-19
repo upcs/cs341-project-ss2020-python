@@ -180,31 +180,39 @@
             else
                 this.errors.plant = false;
             var form = window.$("form");
-            console.log(form[0].elements);  
-            //first, use this resource to find out the lat and lon of the input city
-            if(this.errors.city1 && this.errors.city2 && this.errors.plant) {
-                window.$.get('https://nominatim.openstreetmap.org/search?q=' + this.city + '&format=json', function (cityData) {
+            console.log(form[0].elements);
+            console.log(chart.city);
+            console.log(chart.city2);
+            console.log(chart.plant);
+            
+            if (!this.errors.city1 && !this.errors.city2 && !this.error.plant) {
+                //first, use this resource to find out the lat and lon of the input city
+                window.$.get('https://nominatim.openstreetmap.org/search?q=' + chart.city + '&format=json', function (cityData) {
 
                     //console.log(cityData);
 
                     //if no cities were returned, don't go further. The user probably misspelled something
-                    if (cityData.length > 0) { 
+                    if (cityData.length == 0) {
+                        //TODO: report error
+                        chart.loadChart = false;
+                    }
+
+                    else {
 
                         var lat = cityData[0].lat;
                         var long = cityData[0].lon;
 
                         window.$.post('http://localhost:3000/sqlMidWare', {
-                            distance: this.slider,
-                            'city': this.city,
+                            distance: chart.slider,
+                            'city': chart.city,
                             //'city2': this.city2,
-                            'plant': this.plant,
+                            'plant': chart.plant[0],
                             longitude: long,
                             latitude: lat,
                             //'emissions': this.selectedData,
                             //'energy': this.selectedEnergy,
                         }, function (responseData) {
 
-                            
                             console.log(responseData[0].avgCO2);
                             var resData = parseFloat(responseData[0].avgCO2);
                             chart.chart_data = {
@@ -220,13 +228,14 @@
                             };
                             console.log(chart.chart_data);
                             chart.loadChart = true;
-                            
-                        
+
+
 
                         }
                         );
                     }
                 });
+            
 
                 console.log(this.chart_data);
             }
@@ -261,7 +270,7 @@
 
 .main {
     height: 86.3vh;
-    width: 75%;
+    width: 100%;
     float: right;
 }
 
