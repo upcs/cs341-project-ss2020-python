@@ -4,6 +4,7 @@
 - Our project is now in correspondance with Travis CI framework. We added a .travis.yml file in our root directory.
 - Also discovered an interactive testing tool 'watch' which can be used by adding '--watch' at the end of the "test:unit" line
 - in the package.json file. 
+- Build Badage: [![Build Status](https://travis-ci.org/upcs/cs341-project-ss2020-python.svg?branch=master)](https://travis-ci.org/upcs/cs341-project-ss2020-python)
 
 ### Contact Us page cleanup.
 - More HTML modification for the contact us page for visual austhetic. 
