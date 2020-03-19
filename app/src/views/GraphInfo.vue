@@ -140,6 +140,40 @@
     },
     methods: {
 
+        // sqlMidwareCall: async function(data) {
+
+        // },
+
+        cityInfoGetter: async function(cities) {
+
+                console.log('Start');
+
+                var latsAndLongs = [];
+
+                if (cities.length == 0)
+                    return null;
+
+                for (var city of cities) {
+                    if (city != null){
+                        var cityURL = 'https://nominatim.openstreetmap.org/search?q=' + city + '&format=json';
+                        console.log(cityURL);
+
+                        await window.$.ajax({url: cityURL}).done(function(data) {
+                            var thisLat = data[0].lat;
+                            var thisLon = data[0].lon;
+                            latsAndLongs.push({lat: thisLat, lon: thisLon});
+                        });
+                    }
+                }
+
+                console.log(latsAndLongs);
+                console.log('End');
+                return latsAndLongs;
+                
+            
+
+        },
+
         /**
          * method: formPost
          * 
@@ -147,6 +181,26 @@
          * to be handled by our express server
          * */
         formPost: function () {
+
+            var chart = this;
+
+
+            // var latsAndLongs = 
+            chart.cityInfoGetter([this.city, this.city2]);
+            
+            // for (var latAndLong of latsAndLongs) {
+                
+            // }
+
+        },
+        
+        /**
+         * method: formPostOld
+         * 
+         * gets called when the submit button is clicked. Extracts information from the form and sends it through a post
+         * to be handled by our express server
+         * */
+        formPostOld: function () {
 
             this.loadChart = false;
             
