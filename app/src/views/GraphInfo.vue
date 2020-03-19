@@ -37,6 +37,9 @@
                         <v-text-field label="City 1"
                                       placeholder="Portland"
                                       v-model="city"></v-text-field>
+                        <div v-if="errors.city1 === true">
+                            <error message="Please Enter a City"> </error>
+                        </div>
                     </v-row>
 
                     <v-row>
@@ -46,7 +49,11 @@
                             ></v-checkbox>
                         <v-text-field v-if="secondCity" label="City 2"
                                       placeholder="Portland"
-                                      v-model="city2"></v-text-field>
+                                      v-model="city2">
+                                      </v-text-field>
+                        <div v-if="errors.city2 === true">
+                            <error message="Please Enter a City"> </error>
+                        </div>
                     </v-row>
 
                     <v-row>
@@ -55,7 +62,9 @@
                                   v-model="plant"
                                   label="Plant Type"
                                   :multiple="true"></v-select>
-
+                        <div v-if="errors.plant === true">
+                            <error message="Please Select at least 1 Plant Type"> </error>
+                        </div>
                     </v-row>
 
                 </v-row>
@@ -103,10 +112,12 @@
 
 <script>
   import Chart from "@/components/Chart.vue"
+  import Error from "@/views/Error.vue"
   export default {
     name: 'GraphInfo', 
     components: {
         Chart,
+        Error,
     },
     data () {
         return {
@@ -117,6 +128,11 @@
             city: null,
             city2: null,
             secondCity: false,
+            errors: {
+                'city1': false,
+                'city2': false,
+                'plant': false
+            },
             items: [
                 'Nuclear',
                 'Coal',
@@ -358,14 +374,25 @@
             this.loadChart = false;
             
             var chart = this;
-
+            if(this.city == null)
+                this.errors.city1 = true;
+            else
+                this.errors.city1 = false;
+            if(this.city2 == null && this.secondCity == true)
+                this.errors.city2 = true;
+            else
+                this.errors.city2 = false;
+            if(this.plant.length == 0) 
+                this.errors.plant = true;
+            else
+                this.errors.plant = false;
             var form = window.$("form");
             console.log(form[0].elements);
             console.log(chart.city);
             console.log(chart.city2);
             console.log(chart.plant);
             
-            if (chart.city != null) {
+            if (!this.errors.city1 && !this.errors.city2 && !this.error.plant) {
                 //first, use this resource to find out the lat and lon of the input city
                 window.$.get('https://nominatim.openstreetmap.org/search?q=' + chart.city + '&format=json', function (cityData) {
 
@@ -395,7 +422,6 @@
                             //'energy': this.selectedEnergy,
                         }, function (responseData) {
 
-
                             console.log(responseData[0].avgCO2);
                             var resData = parseFloat(responseData[0].avgCO2);
                             chart.chart_data = {
@@ -418,10 +444,9 @@
                         );
                     }
                 });
-                });
+                        
+                console.log(this.chart_data);
             }
-
-            console.log(this.chart_data);
         } 
     }
   }
