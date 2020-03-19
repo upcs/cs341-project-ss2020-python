@@ -9,14 +9,14 @@ function getDefaultData() {
     return new Promise((resolve, reject) => {
         //use a dummied up JSON 
         $.post('http://localhost:3000/sqlMidWare', {
-            distance: 100,
-            'city': 'Portland',
+            'distance': 100,
             'plant': 'coal',
             longitude: -122.7,
-            latitude: 45.5
+            latitude: 45.5,
+            metric: "CO2 Emission Rate (lb/MWh)"
         }, function (responseData) {
 
-            var resData = parseFloat(responseData[0].avgCO2);
+            var resData = parseFloat(responseData.average[0].average);
             //resData is what the test will check
             resolve(resData);
         }
