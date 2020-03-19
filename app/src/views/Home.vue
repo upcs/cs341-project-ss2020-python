@@ -42,9 +42,12 @@ body {
   }
  #logo{
    position: absolute;
-   margin-top: var(-650px);
-   left: 42%;
-   width: var(500px);
-   height: var(50px);
+   margin-top: 1em;
+   margin-left: 20em;
+   margin-right: 25em;
+  //  left: 20em;
+  //  right: 20em;
+   width: 38em;
+   height: 8em;
  }
 </style>
