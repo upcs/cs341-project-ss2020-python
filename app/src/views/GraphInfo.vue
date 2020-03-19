@@ -37,6 +37,9 @@
                         <v-text-field label="City 1"
                                       placeholder="Portland"
                                       v-model="city"></v-text-field>
+                        <div v-if="errors.city1 === true">
+                            <error message="Please Enter a City"> </error>
+                        </div>
                     </v-row>
 
                     <v-row>
@@ -47,6 +50,9 @@
                         <v-text-field v-if="secondCity" label="City 2"
                                       placeholder="Portland"
                                       v-model="city2"></v-text-field>
+                        <div v-if="errors.city2 === true">
+                            <error message="Please Enter a City"> </error>
+                        </div>
                     </v-row>
 
                     <v-row>
@@ -55,6 +61,9 @@
                                   v-model="plant"
                                   label="Plant Type"
                                   :multiple="true"></v-select>
+                        <div v-if="errors.plant === true">
+                            <error message="Please Select at least 1 Plant Type"> </error>
+                        </div>
 
                     </v-row>
 
@@ -103,10 +112,12 @@
 
 <script>
   import Chart from "@/components/Chart.vue"
+  import Error from "@/views/Error.vue"
   export default {
     name: 'GraphInfo', 
     components: {
         Chart,
+        Error
     },
     data () {
         return {
@@ -117,6 +128,11 @@
             city: null,
             city2: null,
             secondCity: false,
+            errors: {
+                'city1': false,
+                'city2': false,
+                'plant': false
+            },
             items: [
                 'Nuclear',
                 'Coal',
@@ -321,29 +337,45 @@
         formPost: async function () {
 
             var chart = this;
-
+            
             console.log("Querying geocoding");
+
+            if(this.city == null)
+                this.errors.city1 = true;
+            else
+                this.errors.city1 = false;
+            if(this.city2 == null && this.secondCity == true)
+                this.errors.city2 = true;
+            else
+                this.errors.city2 = false;
+            if(this.plant.length == 0) 
+                this.errors.plant = true;
+            else
+                this.errors.plant = false;
 
             var latsAndLongs = await chart.cityInfoGetter([this.city, this.city2]);
 
-            console.log(latsAndLongs);
+            if (!this.errors.city1 && !this.errors.city2 && !this.errors.plant) {
 
-            var metrics = [];
+                console.log(latsAndLongs);
 
-            if (chart.selectedData != null) {
-                metrics.push(chart.selectedData);
+                var metrics = [];
+
+                if (chart.selectedData != null) {
+                    metrics.push(chart.selectedData);
+                }
+
+                if (chart.selectedEnergy != null) {
+                    metrics.push(chart.selectedEnergy);
+                }
+
+                console.log("Querying power plant database")
+                var queriedData = await chart.sqlMidwareCall(latsAndLongs, metrics);
+                console.log(queriedData);
+
+                chart.formatChartDataByPlant(queriedData);
+                //console.log(chart.chartOptions);
             }
-
-            if (chart.selectedEnergy != null) {
-                metrics.push(chart.selectedEnergy);
-            }
-
-            console.log("Querying power plant database")
-            var queriedData = await chart.sqlMidwareCall(latsAndLongs, metrics);
-            console.log(queriedData);
-
-            chart.formatChartDataByPlant(queriedData);
-            //console.log(chart.chartOptions);
             
         },
         
