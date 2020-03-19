@@ -46,6 +46,12 @@ const routes = [
     name: 'ContactUs',
     component: ContactUs
   }
+  // },
+  // {
+  //   path: '/trimet',
+  //   name: 'TriMet',
+  //   component: TriMet
+  // }
 ]
 
 const router = new VueRouter({
