@@ -9,6 +9,7 @@ var dbms = require('./dbms');
 //this get exists for testing purposes. Our website will issue post requests that pass data
 router.get('/', function (req, res) {
 
+    
     //selects all nuclear power plants
     dbms.dbquery('select * from PlantEmissions2018 where PLPRMFL=\'NUC\';', function (error, result) {
 
@@ -30,36 +31,40 @@ router.post('/', function (req, res) {
     var milesToDegreesLat = req.body.distance / 69;
     var milesToDegreesLong = req.body.distance / 53;
 
-    var plant = [];
+    var plant;
 
-    for (var i = 0; i < req.body.plant.length; i++) {
-        console.log(req.body.plant[i]);
-        switch (req.body.plant[i].toLowerCase()) {
+    switch (req.body.plant.toLowerCase()) {
 
-            case "nuclear":
-                plant[plant.length] = 'NUCLEAR';
-                break;
+        case "nuclear":
+            plant = 'NUCLEAR';
+            break;
 
-            case "coal":
-                plant[plant.length] = 'COAL';
-                break;
+        case "coal":
+            plant = 'COAL';
+            break;
 
-            case "natural gas":
-                plant[plant.length] = 'GAS';
-                break;
+        case "natural gas":
+            plant = 'GAS';
+            break;
 
-            case "oil":
-                plant[plant.length] = 'OIL';
-                break;
+        case "oil":
+            plant = 'OIL';
+            break;
 
-            case "solar":
-                plant[plant.length] = 'SOLAR';
-                break;
+        case "hydroelectric":
+            plant = 'HYDRO';
+            break;
+    }
 
-            case "hydroelectric":
-                plant[plant.length] = 'HYDRO';
-                break;
-        }
+    var metric;
+
+    switch (req.body.metric.toLowerCase()) {
+        case "co2 emission rate (lb/mwh)":
+            metric = 'PLCO2RTA';
+            break;
+        case "annual net power (mwh)":
+            metric = 'PLNGENAN';
+            break;
     }
 
     var latMin = req.body.latitude - milesToDegreesLat;
@@ -70,8 +75,8 @@ router.post('/', function (req, res) {
     console.log(req.body.distance + ", " + milesToDegreesLat + ", " + req.body.latitude + ", " + latMax);
     console.log(req.body.latitude + ", " + milesToDegreesLat + ", " + (req.body.latitude + milesToDegreesLat));
 
-    var queryString = "select avg(PLCO2RTA) as avgCO2 from PlantEmissions2018 ";
-    queryString += "where PLFUELCT='" + plant[0] + "' and ";
+    var queryString = "select avg(" + metric +  ") as average from PlantEmissions2018 ";
+    queryString += "where PLFUELCT='" + plant + "' and ";
     queryString += "LAT between " + latMin + " and " + latMax + " ";
     queryString += "and LON between " + longMin + " and " + longMax + ";";
 
@@ -82,7 +87,13 @@ router.post('/', function (req, res) {
     dbms.dbquery(queryString, function (error, result) {
 
         console.log("database got queried");
-        res.send(result);
+        var resData = {
+            average : result,
+            fuel : plant,
+            param : metric
+        };
+        console.log(resData);
+        res.send(resData);
 
     }); 
 });

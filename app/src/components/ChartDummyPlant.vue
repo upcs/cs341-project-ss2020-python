@@ -42,18 +42,6 @@ export default {
       responsive: true,
       maintainAspectRatio: false,
       scales: {
-        // y1: {
-        //   type: 'linear',
-        //   display: true,
-        //   position: 'left',
-        //   stacked: true
-        // },
-        // y2: {
-        //   type: 'linear',
-        //   display: true,
-        //   position: 'right',
-        //   stacked: true
-        // },
         xAxes: [
           {
             stacked: true
