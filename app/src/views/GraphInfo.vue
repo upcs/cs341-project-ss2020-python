@@ -222,13 +222,6 @@
                             chart.loadChart = true;
                             
                         
-                        console.log(responseData[0].avgCO2);
-
-                            labels: [this.plant],
-
-                            datasets: [{
-                                label: this.plant,
-                                backgroundColor: "#f87979",
 
                         }
                         );
