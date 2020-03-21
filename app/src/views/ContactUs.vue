@@ -1,3 +1,5 @@
+
+
 <template>
     <div class="v-content__wrap">
       <section class="container container--fluid" id="user-profile">
@@ -14,17 +16,24 @@
                   </div>
                 </div>
                 <div class="v-card__text">
-                  <form novalidate="novalidate" class="v-form">
+                  <ValidationObserver ref="observer" v-slot="{ validate, reset }">
+                  <form id = "contact" novalidate="novalidate" class="v-form">
+                    
                     <div class="container py-0">
                       <div class="layout wrap">
                         
                         <div class="flex xs12 md4">
                           <div class="v-input purple-input v-text-field theme--light">
                             <div class="v-input__control">
-                              
-                              <v-text-field label="First Name">
-                              </v-text-field>
-
+                              <ValidationProvider v-slot="{ errors }" name="Name" rules="required|max:20">
+                                <v-text-field 
+                                  label="First Name" 
+                                  v-model="FirstName"
+                                  :counter="20"
+                                  :error-messages="errors"
+                                  required>
+                                </v-text-field>
+                              </ValidationProvider>
                               <div class="v-text-field__details">
                                 <div class="v-messages theme--light">
                                   <div class="v-messages__wrapper"></div>
@@ -37,8 +46,15 @@
                         <div class="flex xs12 md4">
                           <div class="v-input purple-input v-text-field theme--light">
                             <div class="v-input__control">
-                              <v-text-field label="Last Name">
-                              </v-text-field>
+                              <ValidationProvider v-slot="{ errors }" name="Last" rules="required|max:20">
+                                <v-text-field 
+                                  label="Last Name" 
+                                  v-model="LastName"
+                                  :counter="20"
+                                  :error-messages="errors"
+                                  required>
+                                </v-text-field>
+                              </ValidationProvider>
                               <div class="v-text-field__details">
                                 <div class="v-messages theme--light">
                                   <div class="v-messages__wrapper"></div>
@@ -51,8 +67,14 @@
                         <div class="flex xs12 md4">
                           <div class="v-input purple-input v-text-field theme--light">
                             <div class="v-input__control">
-                              <v-text-field label="Email Address">
-                              </v-text-field>
+                              <ValidationProvider v-slot="{ errors }" name="email" rules="required|email">
+                                <v-text-field 
+                                  label="Email Address" 
+                                  v-model="email"
+                                  :error-messages="errors"
+                                  required>
+                                </v-text-field>
+                              </ValidationProvider>
                               <div class="v-text-field__details">
                                 <div class="v-messages theme--light">
                                   <div class="v-messages__wrapper"></div>
@@ -68,7 +90,7 @@
                               <div class="v-input__slot">
                                 <div class="v-text-field__slot">
                                   <label for="input-222" class="v-label v-label--active theme--light" style="left: 0px; right: auto; position: absolute; font-size: 22px;">Message</label>
-                                  <textarea aria-label="About Me" rows="5" style="margin-top: 0px; margin-bottom: 0px; height: 76px;">
+                                  <textarea v-model="message" aria-label="About Me" rows="5" style="margin-top: 0px; margin-bottom: 0px; height: 76px;">
                                   </textarea>
                                 </div>
                               </div>
@@ -83,15 +105,16 @@
                           </div>
 
                         <div class="text-right col col-12">
-                          <button type="button" class="mr-0 v-btn v-btn--contained theme--dark v-size--default blue">
+                          <button type="button" @click="submit" v-on:click="validateForm" class="mr-0 v-btn v-btn--contained theme--dark v-size--default blue">
                             <span class="v-btn__content">
                             Send Info</span>                   
                           </button>
                         </div>
-
+                        
                       </div>
                     </div>
                   </form>
+                  </ValidationObserver>
                 </div>
               </div>
             </div>
@@ -116,7 +139,6 @@ element.style {
   -webkit-box-sizing: inherit;
     /* box-sizing: inherit; */
 }
-
 /*
 .v-text-field>.v-input__control>.v-input__slot:after,
 .v-text-field>.v-input__control>.v-input__slot:before{
@@ -132,7 +154,53 @@ element.style {
 </style>
 
 <script>
+  import { required, email, max } from 'vee-validate/dist/rules'
+  import { extend, ValidationObserver, ValidationProvider, setInteractionMode } from 'vee-validate'
+  setInteractionMode('eager')
+
+  extend('required', {
+    ...required,
+    message: '{_field_} can not be empty',
+  })
+  extend('max', {
+    ...max,
+    message: '{_field_} may not be greater than {length} characters',
+  })
+  extend('email', {
+    ...email,
+    message: 'Email must be valid',
+  })
+  
+
   export default {
     name: 'ContactUs',
-  }
+    components: {
+      ValidationProvider,
+      ValidationObserver,
+    },
+    data () {
+      return {
+        FirstName: '', 
+        LastName: '',
+        email: '',
+        message: ''
+      }
+    }, 
+    methods: {
+      submit(){
+        this.$refs.observer.validate()
+      },
+      clear () {
+        this.FirstName = ''
+        this.LastName = ''
+        this.email = ''
+        this.$refs.observer.reset()
+      },
+      //TODO: Use this method for conditions on the message part of the page. 
+      validateForm: function (){
+        var mes = this.message;
+        alert(mes) //And this works. 
+        },
+  },
+}
 </script>
