@@ -340,11 +340,11 @@
             
             console.log("Querying geocoding");
 
-            if(this.city == null)
+            if(this.city == null || this.city == "")
                 this.errors.city1 = true;
             else
                 this.errors.city1 = false;
-            if(this.city2 == null && this.secondCity == true)
+            if((this.city2 == null || this.city2 == "") && this.secondCity == true)
                 this.errors.city2 = true;
             else
                 this.errors.city2 = false;
