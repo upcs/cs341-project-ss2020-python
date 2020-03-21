@@ -48,7 +48,7 @@
                             label="Check for second city"
                             ></v-checkbox>
                         <v-text-field v-if="secondCity" label="City 2"
-                                      placeholder="Portland"
+                                      placeholder="Seattle"
                                       v-model="city2"></v-text-field>
                         <div v-if="errors.city2 === true">
                             <error message="Please Enter a City"> </error>
@@ -76,11 +76,14 @@
                                   :items="dataParameters"
                                   v-model="selectedData"
                                   label="Parameter 1"></v-select>
+                        <div v-if="errors.param1 === true">
+                            <error message="Please Select at least 1 Metric"> </error>
+                        </div>
                     </v-row>
-                    <v-row>
-                        <v-select id="energyParameter"
+                    <v-row v-if="selectedData != null">
+                        <v-select id="dataParameter2"
                                   :items="dataParameters"
-                                  v-model="selectedEnergy"
+                                  v-model="selectedData2"
                                   label="Parameter 2"></v-select>
                     </v-row>
                 </v-row>
@@ -131,7 +134,8 @@
             errors: {
                 'city1': false,
                 'city2': false,
-                'plant': false
+                'plant': false,
+                'param1': false
             },
             items: [
                 'Nuclear',
@@ -145,7 +149,7 @@
                 'Annual Net Power (MWh)'
             ],
             selectedData: null,
-            selectedEnergy: null,
+            selectedData2: null,
             loadChart: false,
             chart_data: null,
             chartOptions: {
@@ -352,6 +356,10 @@
                 this.errors.plant = true;
             else
                 this.errors.plant = false;
+            if(this.selectedData == null)
+                this.errors.param1 = true;
+            else
+                this.errors.param1 = false;
 
             var latsAndLongs = await chart.cityInfoGetter([this.city, this.city2]);
 
