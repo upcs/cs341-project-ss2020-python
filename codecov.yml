@@ -1,2 +1,2 @@
-fixes:
-  - "io/github/cs341-project-ss2020-python::src/main/io.github.cs341-project-ss2020-python"
+ignore:
+  - "app/coverage"
