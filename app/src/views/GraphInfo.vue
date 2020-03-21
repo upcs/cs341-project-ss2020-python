@@ -34,6 +34,9 @@
                         <v-text-field label="City 1"
                                       placeholder="Portland"
                                       v-model="city"></v-text-field>
+                        <div v-if="errors.city1 === true">
+                            <error message="Please Enter a City"> </error>
+                        </div>
                     </v-row>
 
                     <v-row class="slideContainer">
@@ -42,8 +45,11 @@
                             label="Check for second city"
                             ></v-checkbox>
                         <v-text-field v-if="secondCity" label="City 2"
-                                      placeholder="Portland"
+                                      placeholder="Seattle"
                                       v-model="city2"></v-text-field>
+                        <div v-if="errors.city2 === true">
+                            <error message="Please Enter a City"> </error>
+                        </div>
                     </v-row>
                 </v-row>
 
@@ -55,6 +61,10 @@
                                   v-model="plant"
                                   label="Plant Type"
                                   :multiple="true"></v-select>
+                        <div v-if="errors.plant === true">
+                            <error message="Please Select at least 1 Plant Type"> </error>
+                        </div>
+
                     </v-row>
                 </v-row>
 
@@ -67,11 +77,14 @@
                                   :items="dataParameters"
                                   v-model="selectedData"
                                   label="Parameter 1"></v-select>
+                        <div v-if="errors.param1 === true">
+                            <error message="Please Select at least 1 Metric"> </error>
+                        </div>
                     </v-row>
-                    <v-row>
-                        <v-select id="energyParameter"
+                    <v-row v-if="selectedData != null">
+                        <v-select id="dataParameter2"
                                   :items="dataParameters"
-                                  v-model="selectedEnergy"
+                                  v-model="selectedData2"
                                   label="Parameter 2"></v-select>
                     </v-row>
                 </v-row>
@@ -112,10 +125,12 @@
 
 <script>
   import Chart from "@/components/Chart.vue"
+  import Error from "@/views/Error.vue"
   export default {
     name: 'GraphInfo', 
     components: {
         Chart,
+        Error
     },
     data () {
         return {
@@ -126,6 +141,12 @@
             city: null,
             city2: null,
             secondCity: false,
+            errors: {
+                'city1': false,
+                'city2': false,
+                'plant': false,
+                'param1': false
+            },
             items: [
                 'Nuclear',
                 'Coal',
@@ -138,7 +159,7 @@
                 'Annual Net Power (MWh)'
             ],
             selectedData: null,
-            selectedEnergy: null,
+            selectedData2: null,
             sortBy: null,
             loadChart: false,
             chart_data: null,
@@ -384,29 +405,48 @@
 
             var chart = this;
 
-            console.log("Querying geocoding");
+            // form validation
+            if(this.city == null || this.city == "")
+                this.errors.city1 = true;
+            else
+                this.errors.city1 = false;
+            if((this.city2 == null || this.city2 == "") && this.secondCity == true)
+                this.errors.city2 = true;
+            else
+                this.errors.city2 = false;
+            if(this.plant.length == 0) 
+                this.errors.plant = true;
+            else
+                this.errors.plant = false;
+            if(this.selectedData == null)
+                this.errors.param1 = true;
+            else
+                this.errors.param1 = false;
 
-            var latsAndLongs = await chart.cityInfoGetter([this.city, this.city2]);
+            if (!this.errors.city1 && !this.errors.city2 && !this.errors.plant) {
+                console.log("Querying geocoding");
+                var latsAndLongs = await chart.cityInfoGetter([this.city, this.city2]);
+                console.log(latsAndLongs);
 
-            console.log(latsAndLongs);
+                var metrics = [];
 
-            var metrics = [];
+                if (chart.selectedData != null) {
+                    metrics.push(chart.selectedData);
+                }
 
-            if (chart.selectedData != null) {
-                metrics.push(chart.selectedData);
-            }
+                if (chart.selectedData2 != null) {
+                    metrics.push(chart.selectedData2);
+                }
 
-            if (chart.selectedEnergy != null) {
-                metrics.push(chart.selectedEnergy);
-            }
+                console.log("Querying power plant database")
+                var queriedData = await chart.sqlMidwareCall(latsAndLongs, metrics);
+                console.log(queriedData);
 
-            console.log("Querying power plant database")
-            var queriedData = await chart.sqlMidwareCall(latsAndLongs, metrics);
-            console.log(queriedData);
-
-            chart.configureYAxis(queriedData);
-
-            switch (chart.sortBy) {
+                console.log("Configurationg Y-Axis")
+                chart.configureYAxis(queriedData);
+                
+                console.log("Formatting and showing chart")
+                switch (chart.sortBy) {
                 case "city":
                     chart.formatChartDataByCity(queriedData);
                     break;
@@ -417,9 +457,11 @@
                 
                 default:
                     console.log("Unexpected sorting case")
-            }
+                }
 
-            console.log(this.chart_data);
+                console.log(this.chart_data);
+            }
+            
         },
     }
   }
