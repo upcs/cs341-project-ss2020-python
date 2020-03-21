@@ -358,7 +358,8 @@
                 this.errors.plant = false;
             if(this.selectedData == null)
                 this.errors.param1 = true;
-            
+            else
+                this.errors.param1 = false;
 
             var latsAndLongs = await chart.cityInfoGetter([this.city, this.city2]);
 
