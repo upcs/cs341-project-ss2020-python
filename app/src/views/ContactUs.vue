@@ -1,5 +1,6 @@
 
 
+
 <template>
     <div class="v-content__wrap">
       <section class="container container--fluid" id="user-profile">
@@ -187,8 +188,17 @@ element.style {
       }
     }, 
     methods: {
-      submit(){
-        this.$refs.observer.validate()
+      async submit(){
+        const isValid = await this.$refs.observer.validate();
+        //We only want to send to if its true. 
+        if(isValid){
+          this.databaseCall();
+          alert("Thank you! Your comment was submitted.")
+        }
+        else{
+          //do nothing
+          alert("Could not submit.")
+        }
       },
       clear () {
         this.FirstName = ''
@@ -198,9 +208,22 @@ element.style {
       },
       //TODO: Use this method for conditions on the message part of the page. 
       validateForm: function (){
-        var mes = this.message;
-        alert(mes) //And this works. 
+        // var mes = this.message;
+        // alert(mes) //And this works. 
         },
-  },
+      databaseCall: async function(){
+        var infoObj = {
+          mes : this.message,
+          first : this.FirstName,
+          last : this.LastName,
+          email : this.email
+        };
+        
+    
+        window.$.post("http://localhost:3000/contactUsSQL", infoObj, function(){
+          //no need to respond
+        });
+      }
+  }
 }
 </script>

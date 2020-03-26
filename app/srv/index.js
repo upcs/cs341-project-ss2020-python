@@ -2,6 +2,7 @@ import express from 'express';
 
 //router that handles get/post requests for database queries
 var dataRouter = require('./javascript/sqlMidWare');
+var contactUsRouter = require('./javascript/contactUsSQL');
 
 export default (app, http) => {
 
@@ -14,7 +15,7 @@ export default (app, http) => {
         res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         next();
     });
-
+    app.use('/contactUsSQL', contactUsRouter);
     app.use('/sqlMidWare', dataRouter);
   
     app.listen(process.env.PORT);
