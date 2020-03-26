@@ -22,10 +22,6 @@
               <v-btn text id="header">News</v-btn>
             </router-link>
 
-            <router-link to="/about">
-              <v-btn text id="header">About Us</v-btn>
-            </router-link>
-
             <router-link to="/contact">
               <v-btn text id="header">Contact Us</v-btn>
             </router-link>
