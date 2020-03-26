@@ -341,7 +341,7 @@
 
                     for (var myPlant of chart.plant) {
                         await window.$.ajax({
-                            url: 'http://localhost:3000/sqlMidWare',
+                            url: '/api/sqlMidWare/',
                             method: "POST",
                             dataType: "json",
                             data: {
