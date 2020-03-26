@@ -1,7 +1,4 @@
-<template>
-
-    
-        
+<template>   
     <v-row>
         <div class="title">
             City Energy Info Visualizer
@@ -33,60 +30,85 @@
                         </v-col>
                     </v-row>
 
-                    <v-row>
+                    <v-row class="slideContainer">
                         <v-text-field label="City 1"
                                       placeholder="Portland"
                                       v-model="city"></v-text-field>
+                        <div v-if="errors.city1 === true">
+                            <error message="Please Enter a City"> </error>
+                        </div>
                     </v-row>
 
-                    <v-row>
+                    <v-row class="slideContainer">
                         <v-checkbox
                             v-model="secondCity"
                             label="Check for second city"
                             ></v-checkbox>
                         <v-text-field v-if="secondCity" label="City 2"
-                                      placeholder="Portland"
+                                      placeholder="Seattle"
                                       v-model="city2"></v-text-field>
+                        <div v-if="errors.city2 === true">
+                            <error message="Please Enter a City"> </error>
+                        </div>
                     </v-row>
+                </v-row>
 
-                    <v-row>
+                <v-row class="optBorderTop">
+                    <h1 class="optTitle">Power Plants: </h1>
+                    <v-row class="slideContainer">
                         <v-select id="plantType"
                                   :items="items"
                                   v-model="plant"
                                   label="Plant Type"
                                   :multiple="true"></v-select>
+                        <div v-if="errors.plant === true">
+                            <error message="Please Select at least 1 Plant Type"> </error>
+                        </div>
 
                     </v-row>
-
                 </v-row>
+
                 <br>
+
                 <v-row class="optBorderTop">
                     <h1 class="optTitle"> Metrics: </h1>
-                    <v-row>
+                    <v-row class="slideContainer">
                         <v-select id="dataParameter"
                                   :items="dataParameters"
                                   v-model="selectedData"
                                   label="Parameter 1"></v-select>
+                        <div v-if="errors.param1 === true">
+                            <error message="Please Select at least 1 Metric"> </error>
+                        </div>
                     </v-row>
-                    <v-row>
-                        <v-select id="energyParameter"
+                    <v-row v-if="selectedData != null">
+                        <v-select id="dataParameter2"
                                   :items="dataParameters"
-                                  v-model="selectedEnergy"
+                                  v-model="selectedData2"
                                   label="Parameter 2"></v-select>
                     </v-row>
                 </v-row>
-                <br>
-                <v-row>
-                    <div class="my-2">
-                        <!--<input type="submit">-->
 
-                    </div>
+                <br>
+
+                <v-row class="optBorderTop">
+                    <h1 class="optTitle"> X Axis: </h1>
+                    <v-row class="slideContainer">
+                        <v-radio-group v-model="sortBy" :mandatory="true">
+                            <v-radio label="Plant" value="plant"></v-radio>
+                            <v-radio label="City" value="city"></v-radio>
+                        </v-radio-group>
+                    </v-row>
                 </v-row>
 
+                <br>
+
             </form>
-            <v-row justify="center" >
-                <v-btn type="submit" v-on:click="formPost">Submit</v-btn>
+
+            <v-row class="optBorderTop py-8" justify="center">
+                <v-btn type="submit" v-on:click="formPost">Create Graph</v-btn>
             </v-row>
+
         </v-col>
         
         <v-col cols="9" class="main">
@@ -103,10 +125,12 @@
 
 <script>
   import Chart from "@/components/Chart.vue"
+  import Error from "@/views/Error.vue"
   export default {
     name: 'GraphInfo', 
     components: {
         Chart,
+        Error
     },
     data () {
         return {
@@ -117,6 +141,12 @@
             city: null,
             city2: null,
             secondCity: false,
+            errors: {
+                'city1': false,
+                'city2': false,
+                'plant': false,
+                'param1': false
+            },
             items: [
                 'Nuclear',
                 'Coal',
@@ -129,7 +159,8 @@
                 'Annual Net Power (MWh)'
             ],
             selectedData: null,
-            selectedEnergy: null,
+            selectedData2: null,
+            sortBy: null,
             loadChart: false,
             chart_data: null,
             chartOptions: {
@@ -139,21 +170,22 @@
                 scales: {
                     xAxes: [ { stacked: true } ]
                 }
-            }
+            },
+            colors: ["#00b3ff", "#20b2aa", "#f0a122", "#8638ba", "#fff000", "#b40049"],
         }
     },
     methods: {
         /**
-         * method: formatChartData
+         * method: configureYAxis
+         * 
+         * Sets up the Y-axis so it can handle two metrics being displayed,
+         * as well as being able to stack metrics on top of each other
          */
-        formatChartDataByPlant: function(queryData) {
-            
-            // set up Y-axis
+        configureYAxis: function(queryData) {
             var chart = this;
             chart.loadChart = false;
 
             var newYAxes = []
-            var newChartData = {};
 
             var isFirstMetric = true;
 
@@ -176,20 +208,72 @@
             };
 
             chart.chartOptions.scales['yAxes'] = newYAxes;
-            console.log(chart.chartOptions.yAxes);
+        },
+
+        /**
+         * method: formatChartDataByCity
+         */
+        formatChartDataByCity: function(queryData) {
+            var chart = this;
+            var newChartData = {};
+            let colorIterator = 0;
+
+            // add the datasets to the chart
+            newChartData['labels'] = [];
+            newChartData['datasets'] = [];
+
+
+            for (let city of queryData.cities) {
+                newChartData['labels'].push(city.name);
+            }
+
+            for (let i = 0; i < queryData.metrics.length; i++) {
+
+                let metric = queryData.metrics[i]
+                
+                for (let j = 0; j < queryData.labels.length; j++) {
+                    var plant = queryData.labels[j];
+
+                    var plantMetricsData = [];
+
+                    for (var city of queryData.cities) {
+                        plantMetricsData.push(city[metric][j]);
+                    }
+
+                    newChartData['datasets'].push({
+                            'label': plant + "-" + metric,
+                            'backgroundColor': chart.colors[colorIterator],
+                            'stack': i,
+                            'yAxisID': metric,
+                            'data': plantMetricsData,
+                    })
+                    
+                    colorIterator = (colorIterator + 1) % queryData.labels.length;                    
+                }
+            }
+
+            chart.chart_data = newChartData;
+
+            chart.loadChart = true;
+        },
+
+        /**
+         * method: formatChartDataByPlant
+         */
+        formatChartDataByPlant: function(queryData) {
+            var chart = this;
+            var newChartData = {};
             
             // add the datasets to the chart
             newChartData['labels'] = queryData.labels;
             newChartData['datasets'] = [];
             
             var isFirstCity = true;
+            let colorIterator = 0;
 
-            var colors = ["#00b3ff", "#20b2aa", "#f0a122", "#8638ba"];
-            var colorIterator = 0;
-
-            for (var city of queryData.cities) {
+            for (let city of queryData.cities) {
                 
-                isFirstMetric = true
+                var isFirstMetric = true
                 
                 for (let metric of queryData.metrics) {
 
@@ -199,7 +283,7 @@
 
                     newChartData['datasets'].push({
                         'label': city.name + "-" + metric,
-                        'backgroundColor': (isFirstCity ? colors[colorIterator] : colors[colorIterator+1]),
+                        'backgroundColor': (isFirstCity ? chart.colors[colorIterator] : chart.colors[colorIterator+1]),
                         'stack': (isFirstMetric ? "0" : "1"),
                         'yAxisID': metric,
                         'data': city[metric],
@@ -285,7 +369,6 @@
 
         cityInfoGetter: async function(cities) {
 
-
                 var latsAndLongs = [];
 
                 if (cities.length == 0)
@@ -322,107 +405,64 @@
 
             var chart = this;
 
-            console.log("Querying geocoding");
+            // form validation
+            if(this.city == null || this.city == "")
+                this.errors.city1 = true;
+            else
+                this.errors.city1 = false;
+            if((this.city2 == null || this.city2 == "") && this.secondCity == true)
+                this.errors.city2 = true;
+            else
+                this.errors.city2 = false;
+            if(this.plant.length == 0) 
+                this.errors.plant = true;
+            else
+                this.errors.plant = false;
+            if(this.selectedData == null)
+                this.errors.param1 = true;
+            else
+                this.errors.param1 = false;
 
-            var latsAndLongs = await chart.cityInfoGetter([this.city, this.city2]);
+            if (!this.errors.city1 && !this.errors.city2 && !this.errors.plant) {
+                console.log("Querying geocoding");
+                var latsAndLongs = await chart.cityInfoGetter([this.city, this.city2]);
+                console.log(latsAndLongs);
 
-            console.log(latsAndLongs);
+                var metrics = [];
 
-            var metrics = [];
+                if (chart.selectedData != null) {
+                    metrics.push(chart.selectedData);
+                }
 
-            if (chart.selectedData != null) {
-                metrics.push(chart.selectedData);
+                if (chart.selectedData2 != null) {
+                    metrics.push(chart.selectedData2);
+                }
+
+                console.log("Querying power plant database")
+                var queriedData = await chart.sqlMidwareCall(latsAndLongs, metrics);
+                console.log(queriedData);
+
+                console.log("Configurationg Y-Axis")
+                chart.configureYAxis(queriedData);
+                
+                console.log("Formatting and showing chart")
+                switch (chart.sortBy) {
+                case "city":
+                    chart.formatChartDataByCity(queriedData);
+                    break;
+                
+                case "plant":
+                    chart.formatChartDataByPlant(queriedData);
+                    break;
+                
+                default:
+                    console.log("Unexpected sorting case")
+                }
+
+                console.log(this.chart_data);
             }
-
-            if (chart.selectedEnergy != null) {
-                metrics.push(chart.selectedEnergy);
-            }
-
-            console.log("Querying power plant database")
-            var queriedData = await chart.sqlMidwareCall(latsAndLongs, metrics);
-            console.log(queriedData);
-
-            chart.formatChartDataByPlant(queriedData);
-            //console.log(chart.chartOptions);
             
         },
-        
-        /**
-         * method: formPostOld
-         * 
-         * gets called when the submit button is clicked. Extracts information from the form and sends it through a post
-         * to be handled by our express server
-         * */
-        formPostOld: function () {
-
-            this.loadChart = false;
-            
-            var chart = this;
-
-            var form = window.$("form");
-            console.log(form[0].elements);
-            console.log(chart.city);
-            console.log(chart.city2);
-            console.log(chart.plant);
-            
-            if (chart.city != null) {
-                //first, use this resource to find out the lat and lon of the input city
-                window.$.get('https://nominatim.openstreetmap.org/search?q=' + chart.city + '&format=json', function (cityData) {
-
-                    window.$.get('https://nominatim.openstreetmap.org/search?q=' + chart.city2 + '&format=json', function (city2Data) {
-
-                        console.log(city2Data);
-
-                    //if no cities were returned, don't go further. The user probably misspelled something
-                    if (cityData.length == 0) {
-                        //TODO: report error
-                        chart.loadChart = false;
-                    }
-
-                    else {
-
-                        var lat = cityData[0].lat;
-                        var long = cityData[0].lon;
-
-                        window.$.post('http://localhost:3000/sqlMidWare', {
-                            distance: chart.slider,
-                            'city': chart.city,
-                            //'city2': this.city2,
-                            'plant': chart.plant,
-                            longitude: long,
-                            latitude: lat,
-                            //'emissions': this.selectedData,
-                            //'energy': this.selectedEnergy,
-                        }, function (responseData) {
-
-
-                            console.log(responseData[0].avgCO2);
-                            var resData = parseFloat(responseData[0].avgCO2);
-                            chart.chart_data = {
-
-                                labels: [this.plant],
-
-                                datasets: [{
-                                    label: this.plant,
-                                    backgroundColor: "#f87979",
-                                    data: [resData]
-                                }]
-
-                            };
-                            console.log(chart.chart_data);
-                            chart.loadChart = true;
-
-
-
-                        }
-                        );
-                    }
-                });
-                });
-            }
-
-            console.log(this.chart_data);
-        } 
     }
   }
 
