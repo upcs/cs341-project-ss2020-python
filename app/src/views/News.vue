@@ -3,6 +3,7 @@
     <v-row no-gutters>
       <v-col cols="4">
         <v-card
+          id="newsCard1"
           class="mx-auto"
           max-width="400"
         >
@@ -34,6 +35,7 @@
       </v-col>
       <v-col cols="4">
         <v-card
+          id="newsCard2"
           class="mx-auto"
           max-width="400"
         >
@@ -65,6 +67,7 @@
       </v-col>
       <v-col cols="4">
         <v-card
+          id="newsCard3"
           class="mx-auto"
           max-width="400"
         >
@@ -98,6 +101,7 @@
     <v-row no-gutters>
       <v-col cols="4">
         <v-card
+          id="newsCard4"
           class="mx-auto"
           max-width="400"
         >
@@ -129,6 +133,7 @@
       </v-col>
       <v-col cols="4">
         <v-card
+          id="newsCard5"
           class="mx-auto"
           max-width="400"
         >
@@ -160,6 +165,7 @@
       </v-col>
       <v-col cols="4">
         <v-card
+          id="newsCard6"
           class="mx-auto"
           max-width="400"
         >
