@@ -3,7 +3,6 @@ import VueRouter from 'vue-router'
 import Home from '@/views/Home'
 import MapView from '@/views/MapView'
 import GraphInfo from '@/views/GraphInfo'
-import AboutUs from '@/views/AboutUs'
 import News from '@/views/News'
 import ContactUs from '@/views/ContactUs'
 import Demo from '@/views/Demo'
@@ -30,11 +29,6 @@ const routes = [
     path: '/map',
     name: 'MapView',
     component: MapView
-  },
-  {
-    path: '/about',
-    name: 'AboutUs',
-    component: AboutUs
   },
   {
     path: '/news',
