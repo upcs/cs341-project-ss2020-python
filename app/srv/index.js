@@ -17,6 +17,7 @@ app.use(function (req, res, next) {
 });
 
 app.use('/sqlMidWare', dataRouter);
+app.use('/contactUsSQL', contactUsRouter);
 
 //handle production
 if (process.env.NODE_ENV === 'production') {
