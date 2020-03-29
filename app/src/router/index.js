@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '@/views/Home'
-import MapView from '@/views/MapView'
 import GraphInfo from '@/views/GraphInfo'
 import News from '@/views/News'
 import ContactUs from '@/views/ContactUs'
@@ -24,11 +23,6 @@ const routes = [
     path: '/graph',
     name: 'GraphInfo',
     component: GraphInfo
-  },
-  {
-    path: '/map',
-    name: 'MapView',
-    component: MapView
   },
   {
     path: '/news',
