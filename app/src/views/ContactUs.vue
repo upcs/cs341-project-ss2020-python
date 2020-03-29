@@ -106,10 +106,18 @@
                           </div>
 
                         <div class="text-right col col-12">
-                          <button type="button" @click="submit" v-on:click="validateForm" class="mr-0 v-btn v-btn--contained theme--dark v-size--default blue">
+                          <v-btn
+                            :disabled="!valid" 
+                            type="button" 
+                            @click="submit" 
+                            v-on:click="validateForm" 
+                            class="mr-0 v-btn v-btn--contained theme--dark v-size--default blue"
+                            >
+                            <router-link to="/about">
                             <span class="v-btn__content">
-                            Send Info</span>                   
-                          </button>
+                            Send Info</span>
+                            </router-link>                   
+                          </v-btn>
                         </div>
                         
                       </div>
@@ -181,15 +189,18 @@ element.style {
     },
     data () {
       return {
+        valid: true,
         FirstName: '', 
         LastName: '',
         email: '',
-        message: ''
+        message: '',
+        route: '/about'
       }
     }, 
     methods: {
       async submit(){
         const isValid = await this.$refs.observer.validate();
+        
         //We only want to send to if its true. 
         if(isValid){
           this.databaseCall();
@@ -199,6 +210,13 @@ element.style {
           //do nothing
           alert("Could not submit.")
         }
+          
+      },
+      reset () {
+        this.$$refs.form.reset()
+      },
+      resetValidation (){
+        this.$refs.form.resetValidation()
       },
       clear () {
         this.FirstName = ''
