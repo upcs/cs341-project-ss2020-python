@@ -16,6 +16,7 @@ describe('GraphInfo', () => {
                   t: () => {},
                 };
               this.$vuetify.theme = { dark: false };
+              this.$vuetify.slots = { scopedSlots: ''}
             }
         });
     });  
