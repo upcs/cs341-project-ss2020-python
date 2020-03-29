@@ -18,7 +18,7 @@
                 </div>
                 <div class="v-card__text">
                   <ValidationObserver ref="observer" v-slot="{ validate, reset }">
-                  <v-form id="contact" ref="form" novalidate="novalidate" v-model="valid">
+                  <v-form id="contact" ref="form" v-model="valid" :lazy-validation="lazy">
                     
                     <div class="container py-0">
                       <div class="layout wrap">
@@ -31,7 +31,7 @@
                                   label="First Name" 
                                   v-model="FirstName"
                                   :counter="20"
-                                  :error-messages="errors"
+                                  :rules="nameRules"
                                   required>
                                 </v-text-field>
                               </ValidationProvider>
@@ -52,7 +52,7 @@
                                   label="Last Name" 
                                   v-model="LastName"
                                   :counter="20"
-                                  :error-messages="errors"
+                                  :rules="nameRules"
                                   required>
                                 </v-text-field>
                               </ValidationProvider>
@@ -72,7 +72,7 @@
                                 <v-text-field 
                                   label="Email Address" 
                                   v-model="email"
-                                  :error-messages="errors"
+                                  :rules="emailRules"
                                   required>
                                 </v-text-field>
                               </ValidationProvider>
@@ -107,14 +107,12 @@
                         <div class="text-right col col-12">
                           <v-btn
                             :disabled="!valid" 
-                            type="button" 
-                            @click="submit" 
-                            v-on:click="validateForm" 
+                            @click="validateForm" 
                             class="mr-0 v-btn v-btn--contained theme--dark v-size--default blue"
                             >
                               <router-link to="/thankyou">
-                              <span class="v-btn__content">
-                              Send Info</span>
+                                <span class="v-btn__content">
+                                Send Info</span>
                               </router-link>                   
                           </v-btn>
                         </div>
@@ -178,7 +176,6 @@ element.style {
     ...email,
     message: 'Email must be valid',
   })
-  
 
   export default {
     name: 'ContactUs',
@@ -189,27 +186,39 @@ element.style {
     data () {
       return {
         valid: true,
-        FirstName: '', 
+        FirstName: '',
+        nameRules: [
+        v => !!v || 'Name is required',
+        v => (v && v.length <= 20) || 'Name must be less than 10 characters',
+        ], 
         LastName: '',
         email: '',
-        message: '',
-        route: '/about'
+        emailRules: [
+        v => !!v || 'E-mail is required',
+        v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
+        ],
+        message: ''
       }
     }, 
     methods: {
-      async submit(){
-        const isValid = await this.$refs.observer.validate();
-        
+      submit(){
+        console.log('Has reached submit. ')
+        this.databaseCall();
+        // const isValid = await this.$refs.observer.validate();
+        // alert("has reached submit")
         //We only want to send to if its true. 
-        if(isValid){
-          this.databaseCall();
-          alert("Thank you! Your comment was submitted.")
-        }
-        else{
-          //do nothing
-          //alert("Could not submit.")
-        }
+        // if(isValid){
+        //   this.databaseCall();
+        //   alert("Thank you! Your comment was submitted.")
+        // }
+        // else{
+        //   //do nothing
+        //   alert("Could not submit.")
+        // }
           
+      },
+      validate (){
+        this.$refs.form.validate()
       },
       reset () {
         this.$refs.form.reset()
@@ -225,6 +234,8 @@ element.style {
       },
       //TODO: Use this method for conditions on the message part of the page. 
       validateForm: function (){
+        alert("")
+        console.log("Has reached validate form method. ")
         //alert("Has reached validateForm")
 
         // var text = document.getElementById('ContactUs');
