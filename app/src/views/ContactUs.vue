@@ -106,18 +106,16 @@
                           </div>
 
                         <div class="text-right col col-12">
-                          <v-btn
-                            :disabled="!valid" 
+                          <button
                             type="button" 
                             @click="submit" 
                             v-on:click="validateForm" 
                             class="mr-0 v-btn v-btn--contained theme--dark v-size--default blue"
                             >
-                            <router-link to="/about">
                             <span class="v-btn__content">
                             Send Info</span>
-                            </router-link>                   
-                          </v-btn>
+                                       
+                          </button>
                         </div>
                         
                       </div>
