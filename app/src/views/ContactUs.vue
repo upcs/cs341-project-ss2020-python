@@ -243,7 +243,7 @@ element.style {
         
     
         window.$.post(process.env.VUE_APP_ROOT_API + '/contactUsSQL', infoObj, function(){
-          //no need to respond
+          return("done");
         });
       }
   }
