@@ -92,7 +92,14 @@
                     <div class="my-2" name="submit">
                         <!--<input type="submit">-->
 
-                    </div>
+                <v-row class="optBorderTop">
+                    <h1 class="optTitle"> X Axis: </h1>
+                    <v-row class="slideContainer">
+                        <v-radio-group id="sortBy" v-model="sortBy" :mandatory="true">
+                            <v-radio id="sortPlant" name="sortBy" label="Plant" value="plant"></v-radio>
+                            <v-radio id="sortCity" label="City" value="city"></v-radio>
+                        </v-radio-group>
+                    </v-row>
                 </v-row>
 
             </form>
@@ -110,7 +117,6 @@
             </div>
         </v-col>
     </v-row>
-        
 </template>
 
 <script>
@@ -150,6 +156,7 @@
             ],
             selectedData: null,
             selectedData2: null,
+            sortBy: 'radio-1',
             loadChart: false,
             chart_data: null,
             chartOptions: {
@@ -277,7 +284,7 @@
 
                     for (var myPlant of chart.plant) {
                         await window.$.ajax({
-                            url: 'http://localhost:3000/sqlMidWare',
+                            url: process.env.VUE_APP_ROOT_API + '/sqlMidWare',
                             method: "POST",
                             dataType: "json",
                             data: {
