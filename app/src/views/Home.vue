@@ -4,13 +4,22 @@
      <div class="container">
       <img id="bg" src="@/assets/images/background.jpeg"/>
       <img id="logo" src="@/assets/images/logo.png"/>
+      <div class="aboutUs ">
+        <div style="height: 93.4vh">
+        </div>
+        <AboutUs> </AboutUs>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import AboutUs from '@/views/AboutUs.vue'
 export default {
-  name: "Home"
+  name: "Home",
+  components: {
+    AboutUs
+  }
     };
 
 </script>
@@ -32,7 +41,7 @@ body {
   padding: 0;
 }
  #bg{
-   height: 93.4vh;
+   height: 93vh;
    width: 100%;
    background-position: center;
    margin: 0;
@@ -49,5 +58,14 @@ body {
   //  right: 20em;
    width: 38em;
    height: 8em;
+ }
+ .aboutUs {
+   position: absolute;
+   overflow-y: scroll;
+   overflow-x: hidden;
+   height: 93vh;
+   width: 100%;
+   left: 0;
+  top: 0;
  }
 </style>
