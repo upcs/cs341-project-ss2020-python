@@ -92,9 +92,6 @@ function getOilData() {
             latitude: 45.5202471,
             metric: "CO2 Emission Rate (lb/MWh)"
         }, function (responseData) {
-
-            console.log(responseData);
-
             var resData = parseFloat(responseData.average[0].average);
             //resData is what the test will check
             resolve(resData);
@@ -113,9 +110,6 @@ function getCoalPowerData() {
             latitude: 45.5202471,
             metric: "annual net power (mwh)"
         }, function (responseData) {
-
-            console.log(responseData);
-
             var resData = parseFloat(responseData.average[0].average);
             //resData is what the test will check
             resolve(resData);
@@ -129,8 +123,6 @@ function getRoot() {
         //use a dummied up JSON 
         $.get(process.env.VUE_APP_ROOT_API + '/sqlMidWare', {
         }, function (responseData) {
-
-            console.log(responseData);
 
             var resData = parseFloat(responseData[0].YEAR);
             //resData is what the test will check
