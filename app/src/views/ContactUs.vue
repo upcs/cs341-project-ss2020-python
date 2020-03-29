@@ -18,7 +18,7 @@
                 </div>
                 <div class="v-card__text">
                   <ValidationObserver ref="observer" v-slot="{ validate, reset }">
-                  <form id = "contact" novalidate="novalidate" class="v-form">
+                  <v-form id="contact" ref="form" novalidate="novalidate" v-model="valid">
                     
                     <div class="container py-0">
                       <div class="layout wrap">
@@ -104,7 +104,6 @@
                               </div>
                             </div>
                           </div>
-
                         <div class="text-right col col-12">
                           <v-btn
                             :disabled="!valid" 
@@ -113,16 +112,16 @@
                             v-on:click="validateForm" 
                             class="mr-0 v-btn v-btn--contained theme--dark v-size--default blue"
                             >
-                            <router-link to="/about">
-                            <span class="v-btn__content">
-                            Send Info</span>
-                            </router-link>                   
+                              <router-link to="/thankyou">
+                              <span class="v-btn__content">
+                              Send Info</span>
+                              </router-link>                   
                           </v-btn>
                         </div>
                         
                       </div>
                     </div>
-                  </form>
+                  </v-form>
                   </ValidationObserver>
                 </div>
               </div>
@@ -208,12 +207,12 @@ element.style {
         }
         else{
           //do nothing
-          alert("Could not submit.")
+          //alert("Could not submit.")
         }
           
       },
       reset () {
-        this.$$refs.form.reset()
+        this.$refs.form.reset()
       },
       resetValidation (){
         this.$refs.form.resetValidation()
@@ -226,12 +225,13 @@ element.style {
       },
       //TODO: Use this method for conditions on the message part of the page. 
       validateForm: function (){
-        alert("Has reached validateForm")
-        var text = document.getElementById('ContactUs');
-        var text2 = JSON.stringify(text)
-        var text3 = JSON.parse(text2)
-        alert(text3)
-        alert("did it work?")
+        //alert("Has reached validateForm")
+
+        // var text = document.getElementById('ContactUs');
+        // var text2 = JSON.stringify(text)
+        // var text3 = JSON.parse(text2)
+        // alert(text3)
+        // alert("did it work?")
         // var mes = this.message;
         // alert(mes) //And this works. 
         },
