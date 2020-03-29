@@ -32,23 +32,26 @@
 
                     <v-row class="slideContainer">
                         <v-text-field label="City 1"
+                                      id="city1"
                                       placeholder="Portland"
                                       v-model="city"></v-text-field>
                         <div v-if="errors.city1 === true">
-                            <error message="Please Enter a City"> </error>
+                            <error id="city1Err" message="Please Enter a City"> </error>
                         </div>
                     </v-row>
 
                     <v-row class="slideContainer">
                         <v-checkbox
+                            id="checkboxSC"
                             v-model="secondCity"
                             label="Check for second city"
                             ></v-checkbox>
                         <v-text-field v-if="secondCity" label="City 2"
+                                      id="city2"
                                       placeholder="Seattle"
                                       v-model="city2"></v-text-field>
                         <div v-if="errors.city2 === true">
-                            <error message="Please Enter a City"> </error>
+                            <error id="city2Err" message="Please Enter a City"> </error>
                         </div>
                     </v-row>
                 </v-row>
@@ -62,7 +65,7 @@
                                   label="Plant Type"
                                   :multiple="true"></v-select>
                         <div v-if="errors.plant === true">
-                            <error message="Please Select at least 1 Plant Type"> </error>
+                            <error id="plantErr" message="Please Select at least 1 Plant Type"> </error>
                         </div>
 
                     </v-row>
@@ -78,7 +81,7 @@
                                   v-model="selectedData"
                                   label="Parameter 1"></v-select>
                         <div v-if="errors.param1 === true">
-                            <error message="Please Select at least 1 Metric"> </error>
+                            <error id="param1Err" message="Please Select at least 1 Metric"> </error>
                         </div>
                     </v-row>
                     <v-row v-if="selectedData != null">
@@ -94,9 +97,9 @@
                 <v-row class="optBorderTop">
                     <h1 class="optTitle"> X Axis: </h1>
                     <v-row class="slideContainer">
-                        <v-radio-group v-model="sortBy" :mandatory="true">
-                            <v-radio label="Plant" value="plant"></v-radio>
-                            <v-radio label="City" value="city"></v-radio>
+                        <v-radio-group id="sortBy" v-model="sortBy" :mandatory="true">
+                            <v-radio id="sortPlant" name="sortBy" label="Plant" value="plant"></v-radio>
+                            <v-radio id="sortCity" label="City" value="city"></v-radio>
                         </v-radio-group>
                     </v-row>
                 </v-row>
@@ -120,7 +123,6 @@
             </div>
         </v-col>
     </v-row>
-        
 </template>
 
 <script>
@@ -160,7 +162,7 @@
             ],
             selectedData: null,
             selectedData2: null,
-            sortBy: null,
+            sortBy: 'radio-1',
             loadChart: false,
             chart_data: null,
             chartOptions: {
