@@ -11,7 +11,7 @@
                 <div class="d-flex grow flex-wrap">
                   <div class="text-start v-card--material__heading my-n9 mb-n1 v-sheet theme--dark elevation-6 blue pa-7" style="width:100%;">
                     
-                      <div class="font-weight-light" style="font-size: 30px;">Contact Us</div>
+                      <div id="ContactUs" class="font-weight-light" style="font-size: 30px;">Contact Us</div>
                       <div class="subtitle-1 font-weight-light">Fill Entries Below</div>
                     
                   </div>
@@ -106,10 +106,18 @@
                           </div>
 
                         <div class="text-right col col-12">
-                          <button type="button" @click="submit" v-on:click="validateForm" class="mr-0 v-btn v-btn--contained theme--dark v-size--default blue">
+                          <v-btn
+                            :disabled="!valid" 
+                            type="button" 
+                            @click="submit" 
+                            v-on:click="validateForm" 
+                            class="mr-0 v-btn v-btn--contained theme--dark v-size--default blue"
+                            >
+                            <router-link to="/about">
                             <span class="v-btn__content">
-                            Send Info</span>                   
-                          </button>
+                            Send Info</span>
+                            </router-link>                   
+                          </v-btn>
                         </div>
                         
                       </div>
@@ -181,15 +189,18 @@ element.style {
     },
     data () {
       return {
+        valid: true,
         FirstName: '', 
         LastName: '',
         email: '',
-        message: ''
+        message: '',
+        route: '/about'
       }
     }, 
     methods: {
       async submit(){
         const isValid = await this.$refs.observer.validate();
+        
         //We only want to send to if its true. 
         if(isValid){
           this.databaseCall();
@@ -199,6 +210,13 @@ element.style {
           //do nothing
           alert("Could not submit.")
         }
+          
+      },
+      reset () {
+        this.$$refs.form.reset()
+      },
+      resetValidation (){
+        this.$refs.form.resetValidation()
       },
       clear () {
         this.FirstName = ''
@@ -208,6 +226,12 @@ element.style {
       },
       //TODO: Use this method for conditions on the message part of the page. 
       validateForm: function (){
+        alert("Has reached validateForm")
+        var text = document.getElementById('ContactUs');
+        var text2 = JSON.stringify(text)
+        var text3 = JSON.parse(text2)
+        alert(text3)
+        alert("did it work?")
         // var mes = this.message;
         // alert(mes) //And this works. 
         },
