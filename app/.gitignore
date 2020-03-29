@@ -2,6 +2,7 @@
 node_modules
 /dist
 /coverage
+/srv/public
 
 # local env files
 .env.local
