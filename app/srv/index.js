@@ -3,6 +3,7 @@ const express = require('express');
 //router that handles get/post requests for database queries
 var dataRouter = require('./javascript/sqlMidWare');
 var contactUsRouter = require('./javascript/contactUsSQL');
+var dbmsPostRouter = require('./javascript/dbmsPostCatcher');
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use(function (req, res, next) {
 
 app.use('/sqlMidWare', dataRouter);
 app.use('/contactUsSQL', contactUsRouter);
+app.use('/dbmsPostCatcher', dbmsPostRouter);
 
 //handle production
 if (process.env.NODE_ENV === 'production') {
