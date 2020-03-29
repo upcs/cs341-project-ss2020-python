@@ -11,7 +11,7 @@
                 <div class="d-flex grow flex-wrap">
                   <div class="text-start v-card--material__heading my-n9 mb-n1 v-sheet theme--dark elevation-6 blue pa-7" style="width:100%;">
                     
-                      <div class="font-weight-light" style="font-size: 30px;">Contact Us</div>
+                      <div id="ContactUs" class="font-weight-light" style="font-size: 30px;">Contact Us</div>
                       <div class="subtitle-1 font-weight-light">Fill Entries Below</div>
                     
                   </div>
@@ -208,6 +208,12 @@ element.style {
       },
       //TODO: Use this method for conditions on the message part of the page. 
       validateForm: function (){
+        alert("Has reached validateForm")
+        var text = document.getElementById('ContactUs');
+        var text2 = JSON.stringify(text)
+        var text3 = JSON.parse(text2)
+        alert(text3)
+        alert("did it work?")
         // var mes = this.message;
         // alert(mes) //And this works. 
         },
