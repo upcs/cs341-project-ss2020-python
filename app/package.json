@@ -8,11 +8,15 @@
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
     "express": "vue-cli-service express:watch",
-    "express:run": "vue-cli-service express:run"
+    "express:run": "vue-cli-service express:run",
+    "start": "node srv/index.js",
+    "deploy": "gcloud app deploy"
   },
   "dependencies": {
+    "async": "^3.2.0",
     "chart.js": "^2.9.3",
     "core-js": "^2.6.5",
+    "express": "^4.17.1",
     "jquery": "^3.4.1",
     "mysql": "^2.18.1",
     "vee-validate": "^3.2.5",

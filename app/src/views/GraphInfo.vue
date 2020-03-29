@@ -341,7 +341,7 @@
 
                     for (var myPlant of chart.plant) {
                         await window.$.ajax({
-                            url: '/api/sqlMidWare/',
+                            url: process.env.VUE_APP_ROOT_API + '/sqlMidWare',
                             method: "POST",
                             dataType: "json",
                             data: {

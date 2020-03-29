@@ -8,7 +8,7 @@ const $ = require('jquery');
 function getDefaultData() {
     return new Promise((resolve, reject) => {
         //use a dummied up JSON 
-        $.post('http://localhost:3000/sqlMidWare', {
+        $.post(process.env.VUE_APP_ROOT_API + '/sqlMidWare', {
             'distance': 100,
             'plant': 'coal',
             longitude: -122.7,
