@@ -132,32 +132,38 @@ function getRoot() {
     });
 }
 
+describe('sqlMidWare api calls', () => {
 
+    afterAll(() => {
+        app.close()
+    });
 
-test('sqlMidWare for Coal', () => {
-    return expect(getCoalData()).resolves.toBeGreaterThan(2484);
+    test('Coal emissions', () => {
+        return expect(getCoalData()).resolves.toBeGreaterThan(2484);
+    });
+    
+    test('Nuclear emissions', () => {
+        return expect(getNuclearData()).resolves.toBe(NaN);
+    });
+    
+    test('Natural Gas emissions', () => {
+        return expect(getGasData()).resolves.toBeGreaterThan(900);
+    });
+    
+    test('Oil emissions', () => {
+        return expect(getOilData()).resolves.toBeGreaterThan(1900);
+    });
+    
+    test('Hydroelectric emissions', () => {
+        return expect(getWaterData()).resolves.toBe(NaN);
+    });
+    
+    test('Coal power', () => {
+        return expect(getCoalPowerData()).resolves.toBeGreaterThan(5367300);
+    });
+    
+    test('root GET request', () => {
+        return expect(getRoot()).resolves.toBe(2018);
+    });
+
 });
-
-test('sqlMidWare for Nuclear', () => {
-    return expect(getNuclearData()).resolves.toBe(NaN);
-});
-
-test('sqlMidWare for Natural Gas', () => {
-    return expect(getGasData()).resolves.toBeGreaterThan(900);
-});
-
-test('sqlMidWare for Oil', () => {
-    return expect(getOilData()).resolves.toBeGreaterThan(1900);
-});
-
-test('sqlMidWare for Hydroelectric', () => {
-    return expect(getWaterData()).resolves.toBe(NaN);
-});
-
-test('sqlMidWare for Power', () => {
-    return expect(getCoalPowerData()).resolves.toBeGreaterThan(5367300);
-});
-
-test('root GET request', () => {
-    return expect(getRoot()).resolves.toBe(2018);
-})
