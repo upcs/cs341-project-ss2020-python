@@ -4,8 +4,8 @@ import vuetify from 'vuetify'
 import VueRouter from 'vue-router'
 import Vue from 'vue'
 
+//const main = require('../../src/main.js');
 const $ = require('jquery');
-const func = require('../../src/views/ContactUs.vue');
 
 describe('ContactUs', () => {
     let wrapper;

@@ -32,4 +32,5 @@ module.exports = {
   '!<rootDir>/src/plugins/**', '!<rootDir>/tests/unit/**'
   ],
   coverageReporters: ['lcov', 'text-summary']
+  
 }

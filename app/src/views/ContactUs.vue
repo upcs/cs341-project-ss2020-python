@@ -241,10 +241,13 @@ element.style {
           email : this.email
         };
         
-    
-        window.$.post(process.env.VUE_APP_ROOT_API + '/contactUsSQL', infoObj, function(){
-          return("done");
+        var retVal = "notdone";
+        window.$ = require('jquery');
+        await window.$.post(process.env.VUE_APP_ROOT_API + '/contactUsSQL', infoObj, function(){
+          console.log("sent the post in contact us");
+          retVal = "done";
         });
+        return(retVal);
       }
   }
 }
