@@ -26,8 +26,8 @@ if (process.env.NODE_ENV === 'production') {
 
 const port = process.env.PORT || 3000
 
-let server = app.listen(port, () => console.log("Server started on port " + port));
-
-function close() {
-    server.close()
+if (process.env.NODE_ENV !== 'test') {
+    app.listen(port, () => console.log("Server started on port " + port));
 }
+
+module.exports = app

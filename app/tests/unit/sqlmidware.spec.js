@@ -134,9 +134,20 @@ function getRoot() {
 
 describe('sqlMidWare api calls', () => {
 
-    afterAll(() => {
-        app.close()
+    let server;
+
+    beforeAll(() => {
+        server = app.listen(3000);
     });
+
+    afterAll(() => {
+        server.close();
+    });
+
+    // test('test', async () => {
+    //     let response = await agent.get(process.env.VUE_APP_ROOT_API + '/sqlMidWare');
+    //     expect(parseFloat(response[0].YEAR)).toBe(2018);
+    // })
 
     test('Coal emissions', () => {
         return expect(getCoalData()).resolves.toBeGreaterThan(2484);
