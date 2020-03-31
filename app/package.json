@@ -13,11 +13,13 @@
   "dependencies": {
     "chart.js": "^2.9.3",
     "core-js": "^2.6.5",
+    "fuse.js": "^5.0.10-beta",
     "jquery": "^3.4.1",
     "mysql": "^2.18.1",
     "vee-validate": "^3.2.5",
     "vue": "^2.6.10",
     "vue-chartjs": "^3.5.0",
+    "vue-fuse": "^2.2.1",
     "vue-router": "^3.1.5",
     "vuetify": "^2.2.11"
   },

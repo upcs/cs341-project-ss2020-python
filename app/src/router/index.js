@@ -4,6 +4,7 @@ import Home from '@/views/Home'
 import MapView from '@/views/MapView'
 import GraphInfo from '@/views/GraphInfo'
 import AboutUs from '@/views/AboutUs'
+import Info from '@/views/Info'
 import News from '@/views/News'
 import ContactUs from '@/views/ContactUs'
 import Demo from '@/views/Demo'
@@ -35,6 +36,11 @@ const routes = [
     path: '/about',
     name: 'AboutUs',
     component: AboutUs
+  },
+  {
+    path: '/info',
+    name: 'Info',
+    component: Info
   },
   {
     path: '/news',
