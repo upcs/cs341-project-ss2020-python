@@ -224,12 +224,12 @@ element.style {
       },
       //TODO: Use this method for conditions on the message part of the page. 
       validateForm: function (){
-        alert("Has reached validateForm")
-        var text = document.getElementById('ContactUs');
-        var text2 = JSON.stringify(text)
-        var text3 = JSON.parse(text2)
-        alert(text3)
-        alert("did it work?")
+        //alert("Has reached validateForm")
+        //var text = document.getElementById('ContactUs');
+        //var text2 = JSON.stringify(text)
+        //var text3 = JSON.parse(text2)
+        //alert(text3)
+        //alert("did it work?")
         // var mes = this.message;
         // alert(mes) //And this works. 
         },
