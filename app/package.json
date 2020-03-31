@@ -7,8 +7,7 @@
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit --detectOpenHandles",
     "lint": "vue-cli-service lint",
-    "express": "vue-cli-service express:watch",
-    "express:run": "vue-cli-service express:run",
+    "express": "nodemon --watch srv srv/index.js",
     "start": "node srv/index.js",
     "deploy": "gcloud app deploy"
   },
@@ -38,14 +37,14 @@
     "codecov": "^3.6.5",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
+    "nodemon": "^2.0.2",
     "sass": "^1.26.3",
     "sass-loader": "^8.0.0",
-    "vue-cli-plugin-express": "^1.0.2",
     "vue-cli-plugin-vuetify": "^2.0.5",
     "vue-template-compiler": "^2.6.10",
     "vuetify-loader": "^1.3.0"
   },
   "globals": {
-    "window" : {}
+    "window": {}
   }
 }
