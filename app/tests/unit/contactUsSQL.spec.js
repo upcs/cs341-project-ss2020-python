@@ -3,7 +3,7 @@
  */
 
 const $ = require('jquery');
-
+const app = require('../../srv/index.js');
 
 async function getDefaultData() {
     return new Promise(async(resolve, reject) => {
@@ -40,6 +40,19 @@ async function getDefaultData() {
 
 }
 
-test('test contactUsSQL', () => {
-    return expect(getDefaultData()).resolves.toBe(1);
+describe('contactUsSQL api call', () => {
+
+    let server;
+
+    beforeAll(() => {
+        server = app.listen(3000);
+    });
+
+    afterAll(() => {
+        server.close();
+    });
+
+    test('test contactUsSQL', () => {
+        return expect(getDefaultData()).resolves.toBe(1);
+    });
 });

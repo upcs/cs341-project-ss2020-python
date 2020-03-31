@@ -6,13 +6,25 @@ import Vue from 'vue'
 
 //const main = require('../../src/main.js');
 const $ = require('jquery');
+const app = require('../../srv/index.js');
 
 describe('ContactUs', () => {
-    let wrapper;
-    beforeEach(() => { 
-        Vue.use(vuetify)
-        wrapper = mount(ContactUs);
-    });  
+
+  let server;
+
+  beforeAll(() => {
+      server = app.listen(3000);
+  });
+
+  afterAll(() => {
+      server.close();
+  });
+
+  let wrapper;
+  beforeEach(() => { 
+      Vue.use(vuetify)
+      wrapper = mount(ContactUs);
+  });  
 
   it('testing the databaseCall function', async () => {
     wrapper.vm.message = "test message"
