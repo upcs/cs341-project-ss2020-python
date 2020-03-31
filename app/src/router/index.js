@@ -4,7 +4,6 @@ import Home from '@/views/Home'
 import GraphInfo from '@/views/GraphInfo'
 import News from '@/views/News'
 import ContactUs from '@/views/ContactUs'
-import Demo from '@/views/Demo'
 
 Vue.use(VueRouter)
 
@@ -13,11 +12,6 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
-  },
-  {
-    path: '/demo',
-    name: 'Demo',
-    component: Demo
   },
   {
     path: '/graph',
@@ -34,12 +28,6 @@ const routes = [
     name: 'ContactUs',
     component: ContactUs
   }
-  // },
-  // {
-  //   path: '/trimet',
-  //   name: 'TriMet',
-  //   component: TriMet
-  // }
 ]
 
 const router = new VueRouter({
