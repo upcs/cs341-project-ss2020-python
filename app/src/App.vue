@@ -10,10 +10,6 @@
           </v-col>
 
           <v-col cols="5">
-            <router-link to="/demo">
-              <v-btn text id="header">Demo</v-btn>
-            </router-link>
-
             <router-link to="/graph">
               <v-btn text id="header">Plant Graphs</v-btn>
             </router-link>

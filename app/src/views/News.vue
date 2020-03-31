@@ -24,6 +24,7 @@
           </v-card-text>
           <v-card-actions>
             <v-btn
+              id="trimet-btn"
               color="orange"
               text
               v-on:click="changeLink('https://news.trimet.org/2019/04/a-us-transit-industry-first-trimets-new-electric-buses-powered-entirely-by-wind/')"
@@ -217,10 +218,6 @@
     methods: {
       changeLink: function(page) {
         window.open(page);
-      },
-      changeText: function(event) {
-        console.log(event);
-        document.getElementById("subtitle").innerHTML = "Wind energy gives American farmers a new crop to sell in tough times";
       }
     }
   }

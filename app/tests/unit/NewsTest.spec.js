@@ -27,5 +27,13 @@ describe('News', () => {
       expect(wrapper.find('#newsCard4').exists()).toBe(true)
       expect(wrapper.find('#newsCard5').exists()).toBe(true)
       expect(wrapper.find('#newsCard6').exists()).toBe(true)
-  })
-})
+  });
+
+  test('if new tab is opened', () => {
+    global.open = jest.fn();
+    let btn = wrapper.find('#trimet-btn');
+    btn.trigger('click');
+    expect(global.open).toBeCalled();
+  });
+
+});
