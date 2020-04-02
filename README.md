@@ -2,7 +2,15 @@
 [![Build Status](https://travis-ci.org/upcs/cs341-project-ss2020-python.svg?branch=master)](https://travis-ci.org/upcs/cs341-project-ss2020-python)
 [![Codecov Coverage](https://img.shields.io/codecov/c/github/upcs/cs341-project-ss2020-python/master.svg?style=flat-square)](https://codecov.io/gh/upcs/cs341-project-ss2020-python/)
 
+
+[http://python-portland-pollution.appspot.com/](http://python-portland-pollution.appspot.com/)
+
 ## Sprint 4
+
+### Summary of Completed Features
+
+### Story Acceptance Tests
+
 #### Story Acceptance Test 1: This user story describes the contact us page web feature.
 - Brian has spent some time using the 'Plant Graphs' section of our application. He than decides he wants to contact the authors of this application. He clicks on Contact Us. He fills all the entries and clicks 'Send Info'. He is notified that his information was sent succesfully. 
 
@@ -17,6 +25,13 @@
 
 #### Story Acceptance Test 5: This user story describes user interaction with a graph
 - Kelly wishes to examine the graph report when comparing Portland and Seattle. She selects all plant types in 100 miles of each city. Then, she clicks on the Annual Net Power as the parameter to show on the Y axis, clicks on plant type to show on the X axis, and finally clicks on create graph. The graph pops up seconds later with five columns of plants and with two data-sets colored for the two cities. Pondering about the energy production of coal in Seattle, Kelly moves her cursor over the corresponding bar on the graph and a pop-up immediately comes up with a value for Seattle's energy production for coal. Afterwards, she only wants to view Portland on the graph, so she clicks on the Seattle data-set label above the graph to remove it from the graph. Immediately, the Seattle data-set is hidden.
+
+### Deployment
+- The website is now deployed [here](http://python-portland-pollution.appspot.com/) on Google Cloud's App Engine.
+- Using Travis-CI, the master branch will automatically be deployed to the cloud when updated. Travis-CI has a built in deployment option to Google's App Engine. In order to do so, a API was encrpyted into the repo and decryption keys were uploaded to travis.
+- Because our project uses Vue as a frontend and Express as a backend, we had to run a build script to compile our Vue files into html and export them into the Express sever.
+
+### Testing
 
 ## Sprint 3
 
