@@ -7,7 +7,34 @@
 
 ## Sprint 4
 
-### Summary of Completed Features
+### Summary of All Completed Features
+
+#### Home Page
+- The initial background transitions into the About Us section when the user scrolls down.
+
+#### Plant Graphs
+- The C02 emission and annual net power of power plants across the United States can be visualized with the following filters:
+1. City name (can request up to two cities)
+2. Distance from city or cities (dependent on option 1)
+3. Plant type (options are nuclear, coal, hydroelectric, natural gas, and oil)
+4. Metric (C02 emissions and/or annual net power)
+- The x-axis of the graph can be configurated to either be the plant type or city
+- If there are missing fields when the create button is clicked, errors will be displayed on corresponding elements that need to be fillled.
+- Once the graph is created, the value of each bar can be viewed by moving the cursor over it.
+- Without chaging the side interface, data-sets can be removed from the graph by clicking on their name in the graph's key.
+- A second request in the interface can be entered to update the graph.
+
+#### News
+- When a user clicks on an article in the News tab, the browser will open a new tab to the source of the article.
+
+#### Energy Info
+- Implemented an energy info tab that displays information about what types of energy is used around the world and at what rate. The purpose of this tab is to give the user a broader understanding of energy use outside of Portland. It displays information from ourworldindata.org and eia.gov.
+
+#### Contact Us
+- We have successfully connected the Contact Us page with our database and will encrypt and store the information provided from the user. Additionally, we have implemented unit testing to check our connection to the database and we have added field error checking so that information only gets sent if the proper field requirements are met: length of names and proper email address. 
+
+#### Other
+- Travis-CI automatically deploys to Google Cloud on a sucessful master branch build.
 
 ### Story Acceptance Tests
 
