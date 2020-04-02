@@ -52,7 +52,7 @@
         </v-container>
       </v-app-bar>
       <v-navigation-drawer v-model="drawer" color="primary" right="right" app class="indigo">
-        <p class="title white--text">Results for: <strong>{{ query }}</strong></p>
+        <p class="title white--text">Results for: '<strong>{{ query }}</strong>'</p>
         <!-- <v-textarea 
           v-model="textarea"
           background-color="white" 
