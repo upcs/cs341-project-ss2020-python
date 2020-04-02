@@ -1,5 +1,5 @@
 <template>   
-    <v-row>
+    <v-row id="graphInfo">
         <div class="title">
             City Energy Info Visualizer
         </div>
@@ -126,8 +126,10 @@
 </template>
 
 <script>
+  import $ from 'jquery'
   import Chart from "@/components/Chart.vue"
   import Error from "@/views/Error.vue"
+  window.$ = $;
   export default {
     name: 'GraphInfo', 
     components: {
