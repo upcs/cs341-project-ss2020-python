@@ -40,18 +40,6 @@
 #### Chrome (Mobile)
 - 
 
-### Performance Tests
-| Page        | Avg Time to Load (s) |
-|-------------|----------------------|
-| Home        | 0.213                |
-| Plant Graph | 4.723                |
-| News        | 0.023                |
-| Energy Info | 0.065                |
-| Contact Us  | 0.058                |
-- The sample size of each average was 10.
-- These tests were collected using Firefox's performance analysis tool.
-- Excluding the Plant Graph page, the time to load was solely time for the elements to display after a refresh. The Plant Graph page included the time for the default elements to load and a graph to display with the following requests: Distance = 1000, City1 = Portland, City2 = Huston, PlantType = All, Metric1 = C02, Metric2 = Power, X-Axis = City.
-
 ### Deployment
 - The website is now deployed [here](http://python-portland-pollution.appspot.com/) on Google Cloud's App Engine.
 - Using Travis-CI, the master branch will automatically be deployed to the cloud when updated. Travis-CI has a built in deployment option to Google's App Engine. In order to do so, a API was encrpyted into the repo and decryption keys were uploaded to travis.
@@ -72,6 +60,17 @@
 
 ### Data Visualization
 - The data can now be sorted by city (along x-axis).
+
+### Homepage and AboutUS joined
+- Visitors to the website can now scroll down on the homepage to read about the developers and their goal
+
+### GraphInfo Error Checking
+- If any inputs from the following are left blank, errors will be generated to tell the user they are empty:
+city1, city2 (when enabled), plant type, and first metric choice
+
+### News Page Redirection
+- When a user clicks on an article in the News tab, the browser will open a new tab to the source of the article.
+
 
 ## Sprint 3
 
