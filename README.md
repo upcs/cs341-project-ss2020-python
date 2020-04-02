@@ -10,6 +10,7 @@
 ### Summary of Completed Features
 
 ### Story Acceptance Tests
+- Internet Exployer -> Passed
 
 #### Story Acceptance Test 1: This user story describes the contact us page web feature.
 - Brian has spent some time using the 'Plant Graphs' section of our application. He than decides he wants to contact the authors of this application. He clicks on Contact Us. He fills all the entries and clicks 'Send Info'. He is notified that his information was sent succesfully. 
