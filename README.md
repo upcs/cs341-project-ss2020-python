@@ -1,7 +1,6 @@
 ## Sprint 4
 - Story Acceptance Test 1: This user story describes the contact us page web feature.
-- As an undergraduate student, I want to be able to contact Portland Python Pollution so that I can request more information about what they provide. 
-- Scenario: Brian has spent some time using the 'Plant Graphs' section of our application. He than decides he wants to contact the authors of this application. He clicks on Contact Us. He fills all the entries and clicks 'Send Info'. He is notified that his information was sent succesfully. 
+- Brian has spent some time using the 'Plant Graphs' section of our application. He than decides he wants to contact the authors of this application. He clicks on Contact Us. He fills all the entries and clicks 'Send Info'. He is notified that his information was sent succesfully. 
 
 - Story Acceptance Test 2: This user story describes the News page web feature. 
 - As a stakeholder, Margaret wants to be mindful about which energy companies to invest in. She wants to be able to profit on the long term but also has her morals set around the quality of the enviornment. After using our Graphing feature, Margaret navigates to the 'News' page and is greeted with several external articles that can provide her with more information about what she is looking for. She clicks on an article about the benefits of Nuclear energy and is sent to the source. 
