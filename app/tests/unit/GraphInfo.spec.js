@@ -22,6 +22,7 @@ describe('GraphInfo', () => {
     });  
 
   it('input fields render', () => {
+        expect(wrapper.find('#graphInfo').exists()).toBe(true)
         expect(wrapper.find('#city1').exists()).toBe(true)
         expect(wrapper.find('#checkboxSC').exists()).toBe(true)
         expect(wrapper.find('#plantType').exists()).toBe(true)
@@ -47,5 +48,36 @@ describe('GraphInfo', () => {
       btn.trigger('click')
       expect(wrapper.find('#city2').exists()).toBe(true)
       
+  })
+
+  it('testing the cityInfoGetter function to retrieve long and lat', async () => {
+    wrapper.vm.city = "Portland"
+    var latsAndLongs = await wrapper.vm.cityInfoGetter([wrapper.vm.city]);
+    expect(latsAndLongs[0].lat != null).toBe(true)  
+  })
+
+  it('testing the formPost function', async () => {
+    var latsAndLongs = await wrapper.vm.cityInfoGetter(['Portland']);
+
+    wrapper = mount(GraphInfo, {
+      data() {
+        return {
+          slider: 100,
+          plant: ['Coal'],
+          city: 'Portland',
+          selectedData: 'CO2 Emission Rate (lb/MWh)'
+        }
+      },
+      created() {
+          this.$vuetify.lang = {
+            t: () => {},
+          };
+        this.$vuetify.theme = { dark: false };
+        this.$vuetify.slots = { scopedSlots: ''}
+      }
+    });
+
+    wrapper.vm.formPost() 
+    //formPost should log finished chart_data local var
   })
 })
