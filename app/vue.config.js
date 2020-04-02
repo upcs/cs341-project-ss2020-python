@@ -1,10 +1,7 @@
+const path = require('path');
+
 module.exports = {
-  "pluginOptions": {
-    "express": {
-      "shouldServeApp": true,
-      "serverDir": "./srv"
-    }
-  },
+  outputDir: path.resolve(__dirname, './srv/public'),
   "transpileDependencies": [
     "vuetify"
   ]

@@ -11,7 +11,7 @@ module.exports = {
     '^.+\\.jsx?$': 'babel-jest'
   },
   transformIgnorePatterns: [
-    '/node_modules/'
+    '/node_modules/(?!(vee-validate)/)',
   ],
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1'
@@ -29,7 +29,8 @@ module.exports = {
   ],
   collectCoverage: true,
   collectCoverageFrom: ['**/*.{vue,js}', '!**/node_modules/**', '!<rootDir>/dist/**',
-  '!<rootDir>/src/plugins/**', '!<rootDir>/tests/unit/**'
+  '!<rootDir>/src/plugins/**', '!<rootDir>/tests/unit/**', '!**/*.config.js', '!<rootDir>/coverage/**',
+  '!<rootDir>/dist/**', '!<rootDir>/srv/public/**', '!<rootDir>/src/main.js'
   ],
-  coverageReporters: ['lcov', 'text-summary']
+  coverageReporters: ['lcov', 'text-summary'],
 }

@@ -1,5 +1,6 @@
 
 
+
 <template>
     <div class="v-content__wrap">
       <section class="container container--fluid" id="user-profile">
@@ -10,7 +11,7 @@
                 <div class="d-flex grow flex-wrap">
                   <div class="text-start v-card--material__heading my-n9 mb-n1 v-sheet theme--dark elevation-6 blue pa-7" style="width:100%;">
                     
-                      <div class="font-weight-light" style="font-size: 30px;">Contact Us</div>
+                      <div id="ContactUs" class="font-weight-light" style="font-size: 30px;">Contact Us</div>
                       <div class="subtitle-1 font-weight-light">Fill Entries Below</div>
                     
                   </div>
@@ -105,9 +106,15 @@
                           </div>
 
                         <div class="text-right col col-12">
-                          <button type="button" @click="submit" v-on:click="validateForm" class="mr-0 v-btn v-btn--contained theme--dark v-size--default blue">
+                          <button
+                            type="button" 
+                            @click="submit" 
+                            v-on:click="validateForm" 
+                            class="mr-0 v-btn v-btn--contained theme--dark v-size--default blue"
+                            >
                             <span class="v-btn__content">
-                            Send Info</span>                   
+                            Send Info</span>
+                                       
                           </button>
                         </div>
                         
@@ -180,15 +187,34 @@ element.style {
     },
     data () {
       return {
+        valid: true,
         FirstName: '', 
         LastName: '',
         email: '',
-        message: ''
+        message: '',
+        route: '/about'
       }
     }, 
     methods: {
-      submit(){
-        this.$refs.observer.validate()
+      async submit(){
+        const isValid = await this.$refs.observer.validate();
+        
+        //We only want to send to if its true. 
+        if(isValid){
+          this.databaseCall();
+          alert("Thank you! Your comment was submitted.")
+        }
+        else{
+          //do nothing
+          alert("Could not submit.")
+        }
+          
+      },
+      reset () {
+        this.$$refs.form.reset()
+      },
+      resetValidation (){
+        this.$refs.form.resetValidation()
       },
       clear () {
         this.FirstName = ''
@@ -198,9 +224,31 @@ element.style {
       },
       //TODO: Use this method for conditions on the message part of the page. 
       validateForm: function (){
-        var mes = this.message;
-        alert(mes) //And this works. 
+        //alert("Has reached validateForm")
+        //var text = document.getElementById('ContactUs');
+        //var text2 = JSON.stringify(text)
+        //var text3 = JSON.parse(text2)
+        //alert(text3)
+        //alert("did it work?")
+        // var mes = this.message;
+        // alert(mes) //And this works. 
         },
-  },
+      databaseCall: async function(){
+        var infoObj = {
+          mes : this.message,
+          first : this.FirstName,
+          last : this.LastName,
+          email : this.email
+        };
+        
+        var retVal = "notdone";
+        window.$ = require('jquery');
+        await window.$.post(process.env.VUE_APP_ROOT_API + '/contactUsSQL', infoObj, function(){
+          console.log("sent the post in contact us");
+          retVal = "done";
+        });
+        return(retVal);
+      }
+  }
 }
 </script>
