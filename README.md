@@ -35,7 +35,7 @@
 - 
 
 #### Internet Explorer
--
+- Passed
 
 #### Chrome (Mobile)
 - 
