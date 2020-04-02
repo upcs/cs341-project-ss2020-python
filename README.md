@@ -26,11 +26,30 @@
 #### Story Acceptance Test 5: This user story describes user interaction with a graph
 - Kelly wishes to examine the graph report when comparing Portland and Seattle. She selects all plant types in 100 miles of each city. Then, she clicks on the Annual Net Power as the parameter to show on the Y axis, clicks on plant type to show on the X axis, and finally clicks on create graph. The graph pops up seconds later with five columns of plants and with two data-sets colored for the two cities. Pondering about the energy production of coal in Seattle, Kelly moves her cursor over the corresponding bar on the graph and a pop-up immediately comes up with a value for Seattle's energy production for coal. Afterwards, she only wants to view Portland on the graph, so she clicks on the Seattle data-set label above the graph to remove it from the graph. Immediately, the Seattle data-set is hidden.
 
+### Browser Compatability (Story Accptance Test Results)
+
+#### Chrome
+- 
+
+#### Safari
+- 
+
+#### Internet Explorer
+- Passed
+
+#### Chrome (Mobile)
+- 
+
 ### Deployment
 - The website is now deployed [here](http://python-portland-pollution.appspot.com/) on Google Cloud's App Engine.
 - Using Travis-CI, the master branch will automatically be deployed to the cloud when updated. Travis-CI has a built in deployment option to Google's App Engine. In order to do so, a API was encrpyted into the repo and decryption keys were uploaded to travis.
-- Because our project uses Vue as a frontend and Express as a backend, we had to run a build script to compile our Vue files into html and export them into the Express sever.
+- Because our project uses Vue as a frontend and Express as a backend, we had to run a build script to compile our Vue files into html and export them into the Express server.
 
+### Code Coverage
+- The code coverage after this sprint dramatically increased.
+- We found out how to mock Vue components so they can be tested, and we figured out that our API was excluded from the code coverage. The issue was that we were running our Express/API server in a separate console from the console that ran our unit tests. To include the API tests, we required Express' index.js file in the initial lines of a unit test. Then, we manually started the server before all tests were ran and stopped it after all tests finished.
+
+<<<<<<< HEAD
 ### Energy Info tab
 - Implemented an energy info tab that displays information about what types of energy is used around the world and at what rate. The purpose of this tab is to give the user a broader understanding of energy use outside of Portland. It displays information from ourworldindata.org and eia.gov.
 
@@ -41,6 +60,10 @@
 - Story Acceptance Test 1: Pass. Story Acceptance Test 2: Pass. Story Acceptance Test 3: Pass. Story Acceptance Test 4: Pass. Story Acceptance Test 5: Fails. The Seattle information does not disappear. 
 
 ### Testing
+=======
+### Contact Us Database and Error Checking
+- We have successfully connected the Contact Us page with our database and will encrypt and store the information provided from the user. Additionally, we have implemented unit testing to check our connection to the database and we have added field error checking so that information only gets sent if the proper field requirements are met: length of names and proper email address. 
+>>>>>>> 47cd39db3ff43b3a740c79bda42c2fc2153dca87
 
 ## Sprint 3
 
