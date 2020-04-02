@@ -26,12 +26,27 @@
 #### Story Acceptance Test 5: This user story describes user interaction with a graph
 - Kelly wishes to examine the graph report when comparing Portland and Seattle. She selects all plant types in 100 miles of each city. Then, she clicks on the Annual Net Power as the parameter to show on the Y axis, clicks on plant type to show on the X axis, and finally clicks on create graph. The graph pops up seconds later with five columns of plants and with two data-sets colored for the two cities. Pondering about the energy production of coal in Seattle, Kelly moves her cursor over the corresponding bar on the graph and a pop-up immediately comes up with a value for Seattle's energy production for coal. Afterwards, she only wants to view Portland on the graph, so she clicks on the Seattle data-set label above the graph to remove it from the graph. Immediately, the Seattle data-set is hidden.
 
+### Browser Compatability (Story Accptance Test Results)
+
+#### Chrome
+- 
+
+#### Safari
+- 
+
+#### Internet Explorer
+-
+
+#### Chrome (Mobile)
+- 
+
 ### Deployment
 - The website is now deployed [here](http://python-portland-pollution.appspot.com/) on Google Cloud's App Engine.
 - Using Travis-CI, the master branch will automatically be deployed to the cloud when updated. Travis-CI has a built in deployment option to Google's App Engine. In order to do so, a API was encrpyted into the repo and decryption keys were uploaded to travis.
 - Because our project uses Vue as a frontend and Express as a backend, we had to run a build script to compile our Vue files into html and export them into the Express sever.
 
-### Testing
+### Code Coverage
+- The code coverage after this sprint dramatically increased. We found out how to mock Vue components so they can be tested, and we figured out that our API was excluded from the code coverage. Previously, we were running our Express server in a separate console from the console that ran our unit tests
 
 ## Sprint 3
 
