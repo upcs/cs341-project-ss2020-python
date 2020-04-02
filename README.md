@@ -35,7 +35,7 @@
 - 
 
 #### Internet Explorer
-- Passed
+-
 
 #### Chrome (Mobile)
 - 
@@ -43,10 +43,11 @@
 ### Deployment
 - The website is now deployed [here](http://python-portland-pollution.appspot.com/) on Google Cloud's App Engine.
 - Using Travis-CI, the master branch will automatically be deployed to the cloud when updated. Travis-CI has a built in deployment option to Google's App Engine. In order to do so, a API was encrpyted into the repo and decryption keys were uploaded to travis.
-- Because our project uses Vue as a frontend and Express as a backend, we had to run a build script to compile our Vue files into html and export them into the Express sever.
+- Because our project uses Vue as a frontend and Express as a backend, we had to run a build script to compile our Vue files into html and export them into the Express server.
 
 ### Code Coverage
-- The code coverage after this sprint dramatically increased. We found out how to mock Vue components so they can be tested, and we figured out that our API was excluded from the code coverage. Previously, we were running our Express server in a separate console from the console that ran our unit tests
+- The code coverage after this sprint dramatically increased.
+- We found out how to mock Vue components so they can be tested, and we figured out that our API was excluded from the code coverage. The issue was that we were running our Express/API server in a separate console from the console that ran our unit tests. To include the API tests, we required Express' index.js file in the initial lines of a unit test. Then, we manually started the server before all tests were ran and stopped it after all tests finished.
 
 ## Sprint 3
 
