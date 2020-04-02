@@ -49,7 +49,7 @@
 - The code coverage after this sprint dramatically increased.
 - We found out how to mock Vue components so they can be tested, and we figured out that our API was excluded from the code coverage. The issue was that we were running our Express/API server in a separate console from the console that ran our unit tests. To include the API tests, we required Express' index.js file in the initial lines of a unit test. Then, we manually started the server before all tests were ran and stopped it after all tests finished.
 
-### Energy Info tab
+### Energy Info Tab
 - Implemented an energy info tab that displays information about what types of energy is used around the world and at what rate. The purpose of this tab is to give the user a broader understanding of energy use outside of Portland. It displays information from ourworldindata.org and eia.gov.
 
 ### Search Bar
@@ -58,6 +58,8 @@
 ### Contact Us Database and Error Checking
 - We have successfully connected the Contact Us page with our database and will encrypt and store the information provided from the user. Additionally, we have implemented unit testing to check our connection to the database and we have added field error checking so that information only gets sent if the proper field requirements are met: length of names and proper email address. 
 
+### Data Visualization
+- The data can now be sorted by city (along x-axis).
 
 ## Sprint 3
 
