@@ -67,7 +67,7 @@
 - Passed
 
 #### Chrome (Mobile)
-- 
+- Failed. The 'Plant Graphs' tab was not visible unless the user was on the home page, making it impossible to navigate to that page from other tabs.
 
 ### Performance Tests
 | Page        | Avg Time to Load (s) |
