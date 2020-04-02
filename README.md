@@ -1,15 +1,22 @@
+# Portland Python Pollution
+[![Build Status](https://travis-ci.org/upcs/cs341-project-ss2020-python.svg?branch=master)](https://travis-ci.org/upcs/cs341-project-ss2020-python)
+[![Codecov Coverage](https://img.shields.io/codecov/c/github/upcs/cs341-project-ss2020-python/master.svg?style=flat-square)](https://codecov.io/gh/upcs/cs341-project-ss2020-python/)
+
 ## Sprint 4
-- Story Acceptance Test 1: This user story describes the contact us page web feature.
+#### Story Acceptance Test 1: This user story describes the contact us page web feature.
 - Brian has spent some time using the 'Plant Graphs' section of our application. He than decides he wants to contact the authors of this application. He clicks on Contact Us. He fills all the entries and clicks 'Send Info'. He is notified that his information was sent succesfully. 
 
-- Story Acceptance Test 2: This user story describes the News page web feature. 
+#### Story Acceptance Test 2: This user story describes the News page web feature. 
 - As a stakeholder, Margaret wants to be mindful about which energy companies to invest in. She wants to be able to profit on the long term but also has her morals set around the quality of the enviornment. After using our Graphing feature, Margaret navigates to the 'News' page and is greeted with several external articles that can provide her with more information about what she is looking for. She clicks on an article about the benefits of Nuclear energy and is sent to the source. 
 
-- Story Acceptance Test 3: This user story describes the Plant Graphs web feature. 
+#### Story Acceptance Test 3: This user story describes the Plant Graphs web feature. 
 - Daniel is curious about the ecological impact of different cities. He navigates to our 'Plant Graphs' page and notices the 'Visualization Options' and proceeds to modify them. He chooses a distance of 200 miles, chooses Portland and Medford as two cities to compare. Under 'Plant Type' he chooses 'Oil' and under 'Metrics' he chooses 'CO2', and 'Annual Net Power'. Lastly, under 'X Axis' he chooses city. Finally, he clicks on 'Create Graph' and a detailed bar graph appears showing the desired statistics of Portland and Medford. 
 
-- Story Acceptance Test 4: This user story describes the Plant Graphs web feature. 
-- Jackie wants to learn about all types of energy production in her city. She navigates to our 'Plant Graphs' page for our web application and sets the distance to 150, types 'Vancouver' as her city, checks all plant types, chooses 'CO2 Emmissions Rate' and 'Annual Net Power' for both her parameters and chooses the X Axis to be the city. She clicks on 'Create Graph'. The user displays all graphs under the x-axis to visualize all plant types with a color coded bar graph is displayed that shows the metric level for each plant type chosen. The different colors reflect the different plant types. 
+#### Story Acceptance Test 4: This user story describes the Plant Graphs web feature. 
+- Jackie wants to learn about all types of energy production in her city. She navigates to our 'Plant Graphs' page for our web application and sets the distance to 150, types 'Vancouver' as her city, checks all plant types, chooses 'CO2 Emmissions Rate' and 'Annual Net Power' for both her parameters and chooses the X Axis to be the city. She clicks on 'Create Graph'. The user displays all graphs under the x-axis to visualize all plant types with a color coded bar graph is displayed that shows the metric level for each plant type chosen. The different colors reflect the different plant types.
+
+#### Story Acceptance Test 5: This user story describes user interaction with a graph
+- Kelly wishes to examine the graph report when comparing Portland and Seattle. She selects all plant types in 100 miles of each city. Then, she clicks on the Annual Net Power as the parameter to show on the Y axis, clicks on plant type to show on the X axis, and finally clicks on create graph. The graph pops up seconds later with five columns of plants and with two data-sets colored for the two cities. Pondering about the energy production of coal in Seattle, Kelly moves her cursor over the corresponding bar on the graph and a pop-up immediately comes up with a value for Seattle's energy production for coal. Afterwards, she only wants to view Portland on the graph, so she clicks on the Seattle data-set label above the graph to remove it from the graph. Immediately, the Seattle data-set is hidden.
 
 ## Sprint 3
 
