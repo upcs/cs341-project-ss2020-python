@@ -29,7 +29,7 @@
 ### Browser Compatability (Story Accptance Test Results)
 
 #### Chrome
-- 
+- Passed
 
 #### Safari
 - 
