@@ -48,6 +48,9 @@
 ### Code Coverage
 - The code coverage after this sprint dramatically increased. We found out how to mock Vue components so they can be tested, and we figured out that our API was excluded from the code coverage. Previously, we were running our Express server in a separate console from the console that ran our unit tests
 
+### Contact Us Database and Error Checking
+- We have successfully connected the Contact Us page with our database and will encrypt and store the information provided from the user. Additionally, we have implemented unit testing to check our connection to the database and we have added field error checking so that information only gets sent if the proper field requirements are met: length of names and proper email address. 
+
 ## Sprint 3
 
 ### Data Visualization
