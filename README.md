@@ -31,6 +31,15 @@
 - Using Travis-CI, the master branch will automatically be deployed to the cloud when updated. Travis-CI has a built in deployment option to Google's App Engine. In order to do so, a API was encrpyted into the repo and decryption keys were uploaded to travis.
 - Because our project uses Vue as a frontend and Express as a backend, we had to run a build script to compile our Vue files into html and export them into the Express sever.
 
+### Energy Info tab
+- Implemented an energy info tab that displays information about what types of energy is used around the world and at what rate. The purpose of this tab is to give the user a broader understanding of energy use outside of Portland. It displays information from ourworldindata.org and eia.gov.
+
+### Search Bar
+- Implemented a drawer navigation menu that displays when the search bar is clicked. A query was developed to track the words being searched inside the search bar in order to process that information and then come up with results from the energy info tab. The results of the search bar will be data/information from the energy info page. 
+
+### Safari Acceptance Testing
+- Story Acceptance Test 1: Pass. Story Acceptance Test 2: Pass. Story Acceptance Test 3: Pass. Story Acceptance Test 4: Pass. Story Acceptance Test 5: Fails. The Seattle information does not disappear. 
+
 ### Testing
 
 ## Sprint 3
