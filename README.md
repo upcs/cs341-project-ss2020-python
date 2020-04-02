@@ -9,6 +9,9 @@
 - Story Acceptance Test 3: This user story describes the Plant Graphs web feature. 
 - Daniel is curious about the ecological impact of different cities. He navigates to our 'Plant Graphs' page and notices the 'Visualization Options' and proceeds to modify them. He chooses a distance of 200 miles, chooses Portland and Medford as two cities to compare. Under 'Plant Type' he chooses 'Oil' and under 'Metrics' he chooses 'CO2', and 'Annual Net Power'. Lastly, under 'X Axis' he chooses city. Finally, he clicks on 'Create Graph' and a detailed bar graph appears showing the desired statistics of Portland and Medford. 
 
+- Story Acceptance Test 4: This user story describes the Plant Graphs web feature. 
+- Jackie wants to learn about all types of energy production in her city. She navigates to our 'Plant Graphs' page for our web application and sets the distance to 150, types 'Vancouver' as her city, checks all plant types, chooses 'CO2 Emmissions Rate' and 'Annual Net Power' for both her parameters and chooses the X Axis to be the city. She clicks on 'Create Graph'. The user displays all graphs under the x-axis to visualize all plant types with a color coded bar graph is displayed that shows the metric level for each plant type chosen. The different colors reflect the different plant types. 
+
 ## Sprint 3
 
 ### Data Visualization
