@@ -1,5 +1,5 @@
 import { mount, createLocalVue, shallowMount } from '@vue/test-utils'
-const GraphInfo = require('@/views/GraphInfo')
+import GraphInfo from '@/views/GraphInfo'
 import vuetify from 'vuetify'
 import VueRouter from 'vue-router'
 import Vue from 'vue'
@@ -11,11 +11,9 @@ describe('GraphInfo', () => {
     let wrapper;
     let server;
 
-    
-
     beforeEach(() => { 
         Vue.use(vuetify)
-        server = app.listen(3000);
+        server = app.listen(3000)
         wrapper = mount(GraphInfo, {
             created() {
                 this.$vuetify.lang = {
@@ -28,7 +26,7 @@ describe('GraphInfo', () => {
     }); 
 
     afterAll(() => {
-      server.close();
+        server.close()
     });
 
   it('input fields render', () => {
