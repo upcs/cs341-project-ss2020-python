@@ -107,11 +107,10 @@
                         <div class="text-right col col-12">
                           <v-btn
                             :disabled="!valid" 
-                            @click="validateForm" 
                             class="mr-0 v-btn v-btn--contained theme--dark v-size--default blue"
                             >
                               <router-link to="/thankyou">
-                                <span class="v-btn__content">
+                                <span class="v-btn__content" v-on:click="submit">
                                 Send Info</span>
                               </router-link>                   
                           </v-btn>
@@ -145,18 +144,6 @@ element.style {
   -webkit-box-sizing: inherit;
     /* box-sizing: inherit; */
 }
-/*
-.v-text-field>.v-input__control>.v-input__slot:after,
-.v-text-field>.v-input__control>.v-input__slot:before{
-  bottom: -1px;
-  content: "";
-  left: 0;
-  position: absolute;
-  transition: .3s
-    cubic-bezier(.25, .8, .5, 1);
-  width: 100%;
-}
-*/
 </style>
 
 <script>
@@ -201,21 +188,10 @@ element.style {
       }
     }, 
     methods: {
-      submit(){
+      async submit(){
+        await this.$nextTick()
         console.log('Has reached submit. ')
-        this.databaseCall();
-        // const isValid = await this.$refs.observer.validate();
-        // alert("has reached submit")
-        //We only want to send to if its true. 
-        // if(isValid){
-        //   this.databaseCall();
-        //   alert("Thank you! Your comment was submitted.")
-        // }
-        // else{
-        //   //do nothing
-        //   alert("Could not submit.")
-        // }
-          
+        await this.databaseCall();
       },
       validate (){
         this.$refs.form.validate()
@@ -232,21 +208,8 @@ element.style {
         this.email = ''
         this.$refs.observer.reset()
       },
-      //TODO: Use this method for conditions on the message part of the page. 
-      validateForm: function (){
-        alert("")
-        console.log("Has reached validate form method. ")
-        //alert("Has reached validateForm")
-
-        // var text = document.getElementById('ContactUs');
-        // var text2 = JSON.stringify(text)
-        // var text3 = JSON.parse(text2)
-        // alert(text3)
-        // alert("did it work?")
-        // var mes = this.message;
-        // alert(mes) //And this works. 
-        },
       databaseCall: async function(){
+        console.log("Database was called. ")
         var infoObj = {
           mes : this.message,
           first : this.FirstName,

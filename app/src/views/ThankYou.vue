@@ -10,6 +10,7 @@
                     
                       <div id="ContactUs" class="font-weight-light" style="font-size: 30px;">Thank you!</div>
                       <div class="subtitle-1 font-weight-light">Your form has been submitted.</div>
+                      
                     
                   </div>
                 </div>
