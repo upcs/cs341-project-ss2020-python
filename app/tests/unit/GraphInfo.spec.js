@@ -1,15 +1,21 @@
 import { mount, createLocalVue, shallowMount } from '@vue/test-utils'
-import GraphInfo from '@/views/GraphInfo'
+const GraphInfo = require('@/views/GraphInfo')
 import vuetify from 'vuetify'
 import VueRouter from 'vue-router'
 import Vue from 'vue'
+const app = require('../../srv/index.js');
 
 
 
 describe('GraphInfo', () => {
     let wrapper;
+    let server;
+
+    
+
     beforeEach(() => { 
         Vue.use(vuetify)
+        server = app.listen(3000);
         wrapper = mount(GraphInfo, {
             created() {
                 this.$vuetify.lang = {
@@ -19,7 +25,11 @@ describe('GraphInfo', () => {
               this.$vuetify.slots = { scopedSlots: ''}
             }
         });
-    });  
+    }); 
+
+    afterAll(() => {
+      server.close();
+    });
 
   it('input fields render', () => {
         expect(wrapper.find('#graphInfo').exists()).toBe(true)
