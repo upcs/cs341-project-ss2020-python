@@ -107,8 +107,8 @@
                         <div class="text-right col col-12">
                           <v-btn
                             :disabled="!valid" 
-                            class="mr-0 v-btn v-btn--contained theme--dark v-size--default blue"
-                            >
+                            rounded
+                            class="mr-0 v-btn v-btn--contained theme--light v-size--default dark">
                               <router-link to="/thankyou">
                                 <span class="v-btn__content" v-on:click="submit">
                                 Send Info</span>
