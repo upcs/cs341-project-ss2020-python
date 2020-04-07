@@ -11,9 +11,12 @@ describe('GraphInfo', () => {
     let wrapper;
     let server;
 
+    beforeAll(() => {
+      server = app.listen(3000)
+    });
+    
     beforeEach(() => { 
         Vue.use(vuetify)
-        server = app.listen(3000)
         wrapper = mount(GraphInfo, {
             created() {
                 this.$vuetify.lang = {
@@ -85,7 +88,7 @@ describe('GraphInfo', () => {
       }
     });
 
-    wrapper.vm.formPost() 
+    await wrapper.vm.formPost() 
     //formPost should log finished chart_data local var
   })
 })
