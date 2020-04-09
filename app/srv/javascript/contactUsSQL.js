@@ -3,7 +3,7 @@
 var express = require('express');
 var router = express.Router();
 var dbms = require('./dbms');
-var SimpleCrypto = require("simple-crypto-js").default;
+import SimpleCrypto from "simple-crypto-js";
 
 //req is the infoObj
 router.post('/', async function (req, res) {
