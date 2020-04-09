@@ -4,6 +4,8 @@
 
 const $ = require('jquery');
 const app = require('../../srv/index.js');
+const contactUsSQL = require('../../srv/javascript/contactUsSQL.js');
+const dbmsPostCatcher = require('../../srv/javascript/dbmsPostCatcher.js');
 
 async function getDefaultData() {
     return new Promise(async(resolve, reject) => {
