@@ -37,7 +37,15 @@
                 v-model="query"
                 @click="drawer = !drawer"
               ></v-text-field>
-              
+              <div class="flex flex-col pt-8">
+                <VueFuse
+                  placeholder="Search for Energy"
+                  event-name="results"
+                  :list="blocks"
+                  :keys="['name', 'description']"
+                  class="w-64 text-center h-8 border rounded-lg center"
+                />
+              </div>
             </v-col>   
             <v-spacer></v-spacer>
           </v-row>
@@ -45,15 +53,6 @@
       </v-app-bar>
       <v-navigation-drawer v-model="drawer" color="primary" right="right" app class="indigo">
         <p class="title white--text">Results for: '<strong>{{ query }}</strong>'</p>
-        <!-- <v-textarea 
-          v-model="textarea"
-          background-color="white" 
-          auto-grow="autoGrow" 
-          name="searchResults"
-          label="Search" 
-          value="The Woodman set to work at once, and so sharp was his axe that the tree was soon chopped nearly through."
-          outlined="outlined"
-        ></v-textarea> -->
         <v-textarea
           outlined
           name="searchResults"
@@ -61,6 +60,11 @@
           background-color="white"
           value="The Woodman set to work at once, and so sharp was his axe that the tree was soon chopped nearly through."
         ></v-textarea>
+        <br>
+         <div v-for="block in results" :key="block.name" class="rounded-lg bg-blue text-white p-4 m-4 flex text-left">
+          <div class="w-1/4">{{ block.name }}</div>
+          <div class="ml-4 w-3/4">{{ block.description }}</div>
+        </div>
       </v-navigation-drawer>
 
       <v-content>
@@ -78,33 +82,47 @@
 </style>
 
 <script>
+import VueFuse from './components/VueFuse.vue'
 export default {
+  name: 'app',
+  components: {
+    VueFuse
+  },
   data() {
     return {
       query: '',
       drawer: false,
+      results: [],
+      blocks: [
+        {
+          name: 'Per',
+          description: 'Per Capita Energy Consumption'
+        }, {
+          name: 'Consume',
+          description: 'How Much Energy Does the World Consume?'
+        }, {
+          name: 'Source',
+          description: 'Global Energy Consumption by Source'
+        }, {
+          name: 'United',
+          description: 'United States uses a mix of energy sources'
+        }
+      ]
+    }
+  },
+  methods: {
+    created () {
+      this.$on('results', results => {
+        this.results = results
+      })
     }
   }
-  // let options = {
-  //   shouldSort: true,
-  //   threshold: 0.6,
-  //   location: 0,
-  //   distance: 100,
-  //   minMatchCharLength: 1,
-  //   keys: [
-  //     "title",
-  //     "author.firstName"
-  //   ]
-  // };
-
-  // var info = [{
-  //   title: "Old Man's War Fiction",
-  //   author: 'John X',
-  //   tags: ['war']
-  // }, {
-  //   title: 'Right Ho Jeeves',
-  //   author: 'P.D. Mans',
-  //   tags: ['fiction', 'war']
-  // }]
 }
 </script>
+<style scoped>
+  .fuse{
+    position: sticky;
+    top: 18px;
+    left: 70px;
+  }
+</style>
