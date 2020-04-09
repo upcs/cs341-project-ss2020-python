@@ -1,22 +1,5 @@
 <template>
     <v-app>
-      <div>
-
-      <div class="flex flex-col pt-8">
-          <VueFuse
-          placeholder="Search Books of the Bible"
-          event-name="results"
-          :list="books"
-          :keys="['name', 'description']"
-          class="w-64 text-center h-8 border rounded-lg center"
-        />
-
-      </div>
-      <div v-for="book in results" :key="book.name" class="rounded-lg bg-blue text-white p-4 m-4 flex text-left">
-        <div class="w-1/4">{{ book.name }}</div>
-        <div class="ml-4 w-3/4">{{ book.description }}</div>
-      </div>
-</div>
       <v-app-bar app color="primary">
         <v-container fluid>
           <v-row justify="center" align="center">
@@ -58,22 +41,6 @@
                 v-model="query"
                 @click="drawer = !drawer"
               ></v-text-field>
-              <div>
-              <div class="flex flex-col pt-8">
-                  <VueFuse
-                  placeholder="Search Books of the Bible"
-                  event-name="results"
-                  :list="books"
-                  :keys="['name', 'description']"
-                  class="w-64 text-center h-8 border rounded-lg center"
-                />
-
-              </div>
-              <div v-for="book in results" :key="book.name" class="rounded-lg bg-blue text-white p-4 m-4 flex text-left">
-                <div class="w-1/4">{{ book.name }}</div>
-                <div class="ml-4 w-3/4">{{ book.description }}</div>
-              </div>
-            </div>
             </v-col>   
             <v-spacer></v-spacer>
           </v-row>
@@ -90,14 +57,13 @@
         ></v-textarea>
         <div>
           <div class="flex flex-col pt-8">
-              <VueFuse
+            <VueFuse
               placeholder="Search Books of the Bible"
-              event-name="results"
               :list="books"
               :keys="['name', 'description']"
               class="w-64 text-center h-8 border rounded-lg center"
+              @fuseResultsUpdated=updateResults
             />
-
           </div>
           <div v-for="book in results" :key="book.name" class="rounded-lg bg-blue text-white p-4 m-4 flex text-left">
             <div class="w-1/4">{{ book.name }}</div>
@@ -168,18 +134,11 @@ export default {
     }
   },
   methods: {
-    runSearch () {
-      this.$search('John', this.books, { keys: ['name'] }).then(result => {
-        this.results = result
-      })
+    updateResults(r) {
+      this.results = r;
     }
   },
-  mounted () {
-    this.$on('results', results => {
-      this.results = results
-    })
-  }
-  }
+}
 
 </script>
 <style scoped>
