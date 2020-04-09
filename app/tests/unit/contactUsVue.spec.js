@@ -1,11 +1,9 @@
 import { mount, createLocalVue, shallowMount } from '@vue/test-utils'
 import ContactUs from '@/views/ContactUs'
 import vuetify from 'vuetify'
-import VueRouter from 'vue-router'
 import Vue from 'vue'
 
 //const main = require('../../src/main.js');
-const $ = require('jquery');
 const app = require('../../srv/index.js');
 
 describe('ContactUs', () => {
