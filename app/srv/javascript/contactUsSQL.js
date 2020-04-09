@@ -13,7 +13,7 @@ router.post('/', async function (req, res) {
     
     var _secretKey = "test key chicken";
     try {
-        simpleCrypto = new SimpleCrypto(_secretKey);
+        var simpleCrypto = new SimpleCrypto(_secretKey);
 
         var lastName = simpleCrypto.encrypt(req.body.last);
         var email = simpleCrypto.encrypt(req.body.email);
