@@ -21,6 +21,7 @@ describe('News', () => {
     });  
 
   it('check if news cards render', () => {
+      expect(wrapper.find('#news').exists()).toBe(true)
       expect(wrapper.find('#newsCard1').exists()).toBe(true)
       expect(wrapper.find('#newsCard2').exists()).toBe(true)
       expect(wrapper.find('#newsCard3').exists()).toBe(true)

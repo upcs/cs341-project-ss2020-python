@@ -429,10 +429,13 @@
 
             if (!this.errors.city1 && !this.errors.city2 && !this.errors.plant) {
                 console.log("Querying geocoding");
-                var latsAndLongs = await chart.cityInfoGetter([this.city, this.city2]);
-                console.log(latsAndLongs);
-
-                var metrics = [];
+                var latsAndLongs;
+                if(this.secondCity)
+                    latsAndLongs = await chart.cityInfoGetter([this.city, this.city2]);
+                else
+                    latsAndLongs = await chart.cityInfoGetter([this.city]);
+              
+              var metrics = [];
 
                 if (chart.selectedData != null) {
                     metrics.push(chart.selectedData);

@@ -3,11 +3,18 @@ import GraphInfo from '@/views/GraphInfo'
 import vuetify from 'vuetify'
 import VueRouter from 'vue-router'
 import Vue from 'vue'
+const app = require('../../srv/index.js');
 
 
 
 describe('GraphInfo', () => {
     let wrapper;
+    let server;
+
+    beforeAll(() => {
+      server = app.listen(3000)
+    });
+    
     beforeEach(() => { 
         Vue.use(vuetify)
         wrapper = mount(GraphInfo, {
@@ -19,7 +26,11 @@ describe('GraphInfo', () => {
               this.$vuetify.slots = { scopedSlots: ''}
             }
         });
-    });  
+    }); 
+
+    afterAll(() => {
+        server.close()
+    });
 
   it('input fields render', () => {
         expect(wrapper.find('#graphInfo').exists()).toBe(true)
@@ -77,7 +88,7 @@ describe('GraphInfo', () => {
       }
     });
 
-    wrapper.vm.formPost() 
+    await wrapper.vm.formPost() 
     //formPost should log finished chart_data local var
   })
 })

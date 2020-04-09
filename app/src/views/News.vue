@@ -1,5 +1,5 @@
 <template>
-  <v-container class="grey lighten-5" fluid>
+  <v-container id="news" class="grey lighten-5" fluid>
     <v-row no-gutters>
       <v-col cols="4">
         <v-card
