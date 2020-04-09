@@ -6,7 +6,7 @@ var dbms = require('./dbms');
 var SimpleCrypto = require("simple-crypto-js").default;
 
 //req is the infoObj
-router.post('/', async function (req) {
+router.post('/', async function (req, res) {
     //testing how the form data looks when sent in a post
     console.log(req.body);
     console.log("post sent");
@@ -32,6 +32,7 @@ router.post('/', async function (req) {
     dbms.dbquery(sqlCommand, function () {
         
     }); 
+    res.send({mes : "done"});
 });
 
 module.exports = router;

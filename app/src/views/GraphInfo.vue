@@ -1,5 +1,5 @@
 <template>   
-    <v-row>
+    <v-row id="graphInfo">
         <div class="title">
             City Energy Info Visualizer
         </div>
@@ -126,8 +126,10 @@
 </template>
 
 <script>
+  import $ from 'jquery'
   import Chart from "@/components/Chart.vue"
   import Error from "@/views/Error.vue"
+  window.$ = $;
   export default {
     name: 'GraphInfo', 
     components: {
@@ -427,10 +429,13 @@
 
             if (!this.errors.city1 && !this.errors.city2 && !this.errors.plant) {
                 console.log("Querying geocoding");
-                var latsAndLongs = await chart.cityInfoGetter([this.city, this.city2]);
-                console.log(latsAndLongs);
-
-                var metrics = [];
+                var latsAndLongs;
+                if(this.secondCity)
+                    latsAndLongs = await chart.cityInfoGetter([this.city, this.city2]);
+                else
+                    latsAndLongs = await chart.cityInfoGetter([this.city]);
+              
+              var metrics = [];
 
                 if (chart.selectedData != null) {
                     metrics.push(chart.selectedData);

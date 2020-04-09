@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '@/views/Home'
 import GraphInfo from '@/views/GraphInfo'
+import Info from '@/views/Info'
 import News from '@/views/News'
 import ContactUs from '@/views/ContactUs'
 import Demo from '@/views/Demo'
@@ -16,14 +17,15 @@ const routes = [
     component: Home
   },
   {
-    path: '/demo',
-    name: 'Demo',
-    component: Demo
-  },
-  {
     path: '/graph',
     name: 'GraphInfo',
     component: GraphInfo
+  },
+  {
+  
+    path: '/info',
+    name: 'Info',
+    component: Info
   },
   {
     path: '/news',
@@ -40,12 +42,6 @@ const routes = [
     name: 'ThankYou',
     component: ThankYou
   }
-  // },
-  // {
-  //   path: '/trimet',
-  //   name: 'TriMet',
-  //   component: TriMet
-  // }
 ]
 
 const router = new VueRouter({

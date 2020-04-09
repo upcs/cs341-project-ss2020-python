@@ -1,8 +1,9 @@
 <template>
-  <v-container class="grey lighten-5" fluid>
+  <v-container id="news" class="grey lighten-5" fluid>
     <v-row no-gutters>
       <v-col cols="4">
         <v-card
+          id="newsCard1"
           class="mx-auto"
           max-width="400"
         >
@@ -23,6 +24,7 @@
           </v-card-text>
           <v-card-actions>
             <v-btn
+              id="trimet-btn"
               color="orange"
               text
               v-on:click="changeLink('https://news.trimet.org/2019/04/a-us-transit-industry-first-trimets-new-electric-buses-powered-entirely-by-wind/')"
@@ -34,6 +36,7 @@
       </v-col>
       <v-col cols="4">
         <v-card
+          id="newsCard2"
           class="mx-auto"
           max-width="400"
         >
@@ -65,6 +68,7 @@
       </v-col>
       <v-col cols="4">
         <v-card
+          id="newsCard3"
           class="mx-auto"
           max-width="400"
         >
@@ -98,6 +102,7 @@
     <v-row no-gutters>
       <v-col cols="4">
         <v-card
+          id="newsCard4"
           class="mx-auto"
           max-width="400"
         >
@@ -129,6 +134,7 @@
       </v-col>
       <v-col cols="4">
         <v-card
+          id="newsCard5"
           class="mx-auto"
           max-width="400"
         >
@@ -160,6 +166,7 @@
       </v-col>
       <v-col cols="4">
         <v-card
+          id="newsCard6"
           class="mx-auto"
           max-width="400"
         >
@@ -211,10 +218,6 @@
     methods: {
       changeLink: function(page) {
         window.open(page);
-      },
-      changeText: function(event) {
-        console.log(event);
-        document.getElementById("subtitle").innerHTML = "Wind energy gives American farmers a new crop to sell in tough times";
       }
     }
   }
