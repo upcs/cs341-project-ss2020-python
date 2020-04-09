@@ -205,8 +205,6 @@ element.style {
           last : this.LastName,
           email : this.email
         };
-        window.$.post(process.env.VUE_APP_ROOT_API + '/contactUsSQL', infoObj, function(){
-          //no need to respond
         var retVal = "notdone";
         window.$ = require('jquery');
         window.$.post(process.env.VUE_APP_ROOT_API + '/contactUsSQL', infoObj, function(){
@@ -214,9 +212,8 @@ element.style {
           retVal = "done";
         });
         return(retVal);
-        })
+        }
       }
-    }
   }
   
 </script>
