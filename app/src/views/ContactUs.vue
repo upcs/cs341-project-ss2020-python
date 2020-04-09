@@ -207,7 +207,7 @@ element.style {
         };
         var retVal = "notdone";
         window.$ = require('jquery');
-        window.$.post(process.env.VUE_APP_ROOT_API + '/contactUsSQL', infoObj, function(){
+        await window.$.post(process.env.VUE_APP_ROOT_API + '/contactUsSQL', infoObj, function(){
           console.log("sent the post in contact us");
           retVal = "done";
         });
