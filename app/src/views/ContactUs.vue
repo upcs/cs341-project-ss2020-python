@@ -1,6 +1,3 @@
-
-
-
 <template>
     <div class="v-content__wrap">
       <section class="container container--fluid" id="user-profile">
@@ -10,19 +7,15 @@
               <div class="v-card--material pa-3 v-card v-sheet theme--light v-card--material--has-heading">
                 <div class="d-flex grow flex-wrap">
                   <div class="text-start v-card--material__heading my-n9 mb-n1 v-sheet theme--dark elevation-6 blue pa-7" style="width:100%;">
-                    
                       <div id="ContactUs" class="font-weight-light" style="font-size: 30px;">Contact Us</div>
                       <div class="subtitle-1 font-weight-light">Fill Entries Below</div>
-                    
                   </div>
                 </div>
                 <div class="v-card__text">
                   <ValidationObserver ref="observer" v-slot="{ validate, reset }">
-                  <form id = "contact" novalidate="novalidate" class="v-form">
-                    
+                  <v-form id="contact" ref="form" v-model="valid" :lazy-validation="lazy">
                     <div class="container py-0">
                       <div class="layout wrap">
-                        
                         <div class="flex xs12 md4">
                           <div class="v-input purple-input v-text-field theme--light">
                             <div class="v-input__control">
@@ -31,7 +24,7 @@
                                   label="First Name" 
                                   v-model="FirstName"
                                   :counter="20"
-                                  :error-messages="errors"
+                                  :rules="nameRules"
                                   required>
                                 </v-text-field>
                               </ValidationProvider>
@@ -43,7 +36,6 @@
                             </div>
                           </div>
                         </div>
-
                         <div class="flex xs12 md4">
                           <div class="v-input purple-input v-text-field theme--light">
                             <div class="v-input__control">
@@ -52,7 +44,7 @@
                                   label="Last Name" 
                                   v-model="LastName"
                                   :counter="20"
-                                  :error-messages="errors"
+                                  :rules="nameRules"
                                   required>
                                 </v-text-field>
                               </ValidationProvider>
@@ -64,7 +56,6 @@
                             </div>
                           </div>
                         </div>
-
                         <div class="flex xs12 md4">
                           <div class="v-input purple-input v-text-field theme--light">
                             <div class="v-input__control">
@@ -72,7 +63,7 @@
                                 <v-text-field 
                                   label="Email Address" 
                                   v-model="email"
-                                  :error-messages="errors"
+                                  :rules="emailRules"
                                   required>
                                 </v-text-field>
                               </ValidationProvider>
@@ -84,7 +75,6 @@
                             </div>
                           </div>
                         </div>
-
                         <div class="flex xs12">
                           <div class="v-input purple-input v-textarea v-text-field theme--light">
                             <div class="v-input__control">
@@ -104,23 +94,20 @@
                               </div>
                             </div>
                           </div>
-
                         <div class="text-right col col-12">
-                          <button
-                            type="button" 
-                            @click="submit" 
-                            v-on:click="validateForm" 
-                            class="mr-0 v-btn v-btn--contained theme--dark v-size--default blue"
-                            >
-                            <span class="v-btn__content">
-                            Send Info</span>
-                                       
-                          </button>
+                          <v-btn
+                            :disabled="!valid" 
+                            rounded
+                            class="mr-0 v-btn v-btn--contained theme--light v-size--default dark">
+                              <router-link to="/thankyou">
+                                <span class="v-btn__content" v-on:click="submit">
+                                Send Info</span>
+                              </router-link>                   
+                          </v-btn>
                         </div>
-                        
                       </div>
                     </div>
-                  </form>
+                  </v-form>
                   </ValidationObserver>
                 </div>
               </div>
@@ -146,18 +133,6 @@ element.style {
   -webkit-box-sizing: inherit;
     /* box-sizing: inherit; */
 }
-/*
-.v-text-field>.v-input__control>.v-input__slot:after,
-.v-text-field>.v-input__control>.v-input__slot:before{
-  bottom: -1px;
-  content: "";
-  left: 0;
-  position: absolute;
-  transition: .3s
-    cubic-bezier(.25, .8, .5, 1);
-  width: 100%;
-}
-*/
 </style>
 
 <script>
@@ -177,7 +152,6 @@ element.style {
     ...email,
     message: 'Email must be valid',
   })
-  
 
   export default {
     name: 'ContactUs',
@@ -188,30 +162,31 @@ element.style {
     data () {
       return {
         valid: true,
-        FirstName: '', 
+        FirstName: '',
+        nameRules: [
+        v => !!v || 'Name is required',
+        v => (v && v.length <= 20) || 'Name must be less than 10 characters',
+        ], 
         LastName: '',
         email: '',
-        message: '',
-        route: '/about'
+        emailRules: [
+        v => !!v || 'E-mail is required',
+        v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
+        ],
+        message: ''
       }
     }, 
     methods: {
       async submit(){
-        const isValid = await this.$refs.observer.validate();
-        
-        //We only want to send to if its true. 
-        if(isValid){
-          this.databaseCall();
-          alert("Thank you! Your comment was submitted.")
-        }
-        else{
-          //do nothing
-          alert("Could not submit.")
-        }
-          
+        await this.$nextTick()
+        console.log('Has reached submit. ')
+        await this.databaseCall();
+      },
+      validate (){
+        this.$refs.form.validate()
       },
       reset () {
-        this.$$refs.form.reset()
+        this.$refs.form.reset()
       },
       resetValidation (){
         this.$refs.form.resetValidation()
@@ -222,25 +197,14 @@ element.style {
         this.email = ''
         this.$refs.observer.reset()
       },
-      //TODO: Use this method for conditions on the message part of the page. 
-      validateForm: function (){
-        //alert("Has reached validateForm")
-        //var text = document.getElementById('ContactUs');
-        //var text2 = JSON.stringify(text)
-        //var text3 = JSON.parse(text2)
-        //alert(text3)
-        //alert("did it work?")
-        // var mes = this.message;
-        // alert(mes) //And this works. 
-        },
       databaseCall: async function(){
+        console.log("Database was called. ")
         var infoObj = {
           mes : this.message,
           first : this.FirstName,
           last : this.LastName,
           email : this.email
         };
-        
         var retVal = "notdone";
         window.$ = require('jquery');
         await window.$.post(process.env.VUE_APP_ROOT_API + '/contactUsSQL', infoObj, function(){
@@ -248,7 +212,8 @@ element.style {
           retVal = "done";
         });
         return(retVal);
+        }
       }
   }
-}
+  
 </script>
