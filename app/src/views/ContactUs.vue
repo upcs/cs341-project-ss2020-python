@@ -1,6 +1,3 @@
-
-
-
 <template>
     <div class="v-content__wrap">
       <section class="container container--fluid" id="user-profile">
@@ -10,19 +7,15 @@
               <div class="v-card--material pa-3 v-card v-sheet theme--light v-card--material--has-heading">
                 <div class="d-flex grow flex-wrap">
                   <div class="text-start v-card--material__heading my-n9 mb-n1 v-sheet theme--dark elevation-6 blue pa-7" style="width:100%;">
-                    
                       <div id="ContactUs" class="font-weight-light" style="font-size: 30px;">Contact Us</div>
                       <div class="subtitle-1 font-weight-light">Fill Entries Below</div>
-                    
                   </div>
                 </div>
                 <div class="v-card__text">
                   <ValidationObserver ref="observer" v-slot="{ validate, reset }">
                   <v-form id="contact" ref="form" v-model="valid" :lazy-validation="lazy">
-                    
                     <div class="container py-0">
                       <div class="layout wrap">
-                        
                         <div class="flex xs12 md4">
                           <div class="v-input purple-input v-text-field theme--light">
                             <div class="v-input__control">
@@ -43,7 +36,6 @@
                             </div>
                           </div>
                         </div>
-
                         <div class="flex xs12 md4">
                           <div class="v-input purple-input v-text-field theme--light">
                             <div class="v-input__control">
@@ -64,7 +56,6 @@
                             </div>
                           </div>
                         </div>
-
                         <div class="flex xs12 md4">
                           <div class="v-input purple-input v-text-field theme--light">
                             <div class="v-input__control">
@@ -84,7 +75,6 @@
                             </div>
                           </div>
                         </div>
-
                         <div class="flex xs12">
                           <div class="v-input purple-input v-textarea v-text-field theme--light">
                             <div class="v-input__control">
@@ -115,7 +105,6 @@
                               </router-link>                   
                           </v-btn>
                         </div>
-                        
                       </div>
                     </div>
                   </v-form>
@@ -216,8 +205,6 @@ element.style {
           last : this.LastName,
           email : this.email
         };
-        
-    
         window.$.post(process.env.VUE_APP_ROOT_API + '/contactUsSQL', infoObj, function(){
           //no need to respond
         });
