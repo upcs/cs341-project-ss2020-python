@@ -24,6 +24,10 @@
               <router-link to="/contact">
                 <v-btn text id="header">Contact Us</v-btn>
               </router-link>
+
+              <router-link to="/test">
+                <v-btn text id="header">Test</v-btn>
+              </router-link>
               
             </v-col>
 
@@ -61,7 +65,14 @@
           value="The Woodman set to work at once, and so sharp was his axe that the tree was soon chopped nearly through."
         ></v-textarea>
         <br>
+        <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
          <div v-for="block in results" :key="block.name" class="rounded-lg bg-blue text-white p-4 m-4 flex text-left">
+           <div>test1</div>
           <div class="w-1/4">{{ block.name }}</div>
           <div class="ml-4 w-3/4">{{ block.description }}</div>
         </div>
@@ -84,7 +95,7 @@
 <script>
 import VueFuse from './components/VueFuse.vue'
 export default {
-  name: 'app',
+  name: 'Test',
   components: {
     VueFuse
   },
@@ -111,13 +122,19 @@ export default {
     }
   },
   methods: {
+    runSearch () {
+      this.$search(this.name, this.books, {keys: ['name'] }).then(result => {
+        this.results = result
+      })
+      }
+    },
     created () {
       this.$on('results', results => {
         this.results = results
       })
     }
   }
-}
+
 </script>
 <style scoped>
   .fuse{

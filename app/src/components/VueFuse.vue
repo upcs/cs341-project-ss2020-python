@@ -162,15 +162,6 @@ export default {
       }
     }
   },
-  /**
-  * Vue 1.x
-  */
-  ready () {
-    this.initFuse()
-  },
-  /**
-  * Vue 2.x
-  */
   mounted () {
     this.initFuse()
   }

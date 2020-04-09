@@ -5,6 +5,7 @@ import GraphInfo from '@/views/GraphInfo'
 import Info from '@/views/Info'
 import News from '@/views/News'
 import ContactUs from '@/views/ContactUs'
+import Test from '@/views/Test'
 
 Vue.use(VueRouter)
 
@@ -34,6 +35,11 @@ const routes = [
     path: '/contact',
     name: 'ContactUs',
     component: ContactUs
+  },
+  {
+    path: '/test',
+    name: 'Test',
+    component: Test
   }
 ]
 
