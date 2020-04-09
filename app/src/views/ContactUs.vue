@@ -209,12 +209,14 @@ element.style {
           //no need to respond
         var retVal = "notdone";
         window.$ = require('jquery');
-        await window.$.post(process.env.VUE_APP_ROOT_API + '/contactUsSQL', infoObj, function(){
+        window.$.post(process.env.VUE_APP_ROOT_API + '/contactUsSQL', infoObj, function(){
           console.log("sent the post in contact us");
           retVal = "done";
         });
         return(retVal);
+        })
       }
+    }
   }
-}
+  
 </script>

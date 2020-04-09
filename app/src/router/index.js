@@ -5,7 +5,6 @@ import GraphInfo from '@/views/GraphInfo'
 import Info from '@/views/Info'
 import News from '@/views/News'
 import ContactUs from '@/views/ContactUs'
-import Demo from '@/views/Demo'
 import ThankYou from '@/views/ThankYou'
 
 Vue.use(VueRouter)
