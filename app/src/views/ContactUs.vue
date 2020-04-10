@@ -155,6 +155,11 @@ element.style {
 
   export default {
     name: 'ContactUs',
+    watch: {
+      '$route' (to, from) {
+        document.title = to.meta.title || 'Your Website'
+      }
+    },
     components: {
       ValidationProvider,
       ValidationObserver,
