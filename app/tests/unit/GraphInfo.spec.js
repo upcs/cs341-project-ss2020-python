@@ -90,5 +90,9 @@ describe('GraphInfo', () => {
 
     await wrapper.vm.formPost() 
     //formPost should log finished chart_data local var
+    expect(wrapper.vm.chart_data.datasets[0].label).toBe("Portland-CO2 Emission Rate (lb/MWh)");
+    expect(wrapper.vm.chart_data.datasets[0].yAxisID).toBe("CO2 Emission Rate (lb/MWh)");
+    expect(wrapper.vm.chart_data.datasets[0].stack).toBe("0");
+    expect(wrapper.vm.chart_data.datasets[0].data).toStrictEqual([2484.322]);
   })
 })
