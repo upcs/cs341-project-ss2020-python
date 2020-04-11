@@ -18,11 +18,7 @@ const routes = [
   {
     path: '/graph',
     name: 'GraphInfo',
-    component: GraphInfo,
-    meta: {
-      auth: true, 
-      title: 'Graph Info'
-    }
+    component: GraphInfo
   },
   {
   
@@ -38,11 +34,7 @@ const routes = [
   {
     path: '/contact',
     name: 'ContactUs',
-    component: ContactUs,
-    meta: {
-      auth: true,
-      title: 'Contact Us'
-    }
+    component: ContactUs
   },
   {
     path: '/thankyou',
