@@ -88,9 +88,6 @@ dist/
 .out
 .storybook-out
 
-# database password
-passwords.json
-
 # vuepress build output
 .vuepress/dist
 
