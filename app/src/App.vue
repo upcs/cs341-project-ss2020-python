@@ -32,7 +32,7 @@
             </v-col>
 
             <v-col cols="2" class="pt-7">
-              <v-text-field
+              <!-- <v-text-field
                 label="Search"
                 prepend-inner-icon="mdi-magnify"
                 background-color="accent"
@@ -40,34 +40,41 @@
                 dense
                 v-model="query"
                 @click="drawer = !drawer"
-              ></v-text-field>
+              ></v-text-field> -->
+              <div 
+                class="side"
+                @click="drawer = !drawer"
+              >
+                <VueFuse
+                  placeholder="Search for info on Energy"
+                  :list="books"
+                  :keys="['name', 'description']"
+                  class="w-64 text-center h-8 border rounded-lg center"
+                  @fuseResultsUpdated=updateResults
+                  @inputChangeEventName=updateSearch
+                />
+              </div>
             </v-col>   
             <v-spacer></v-spacer>
           </v-row>
         </v-container>
       </v-app-bar>
       <v-navigation-drawer v-model="drawer" color="primary" right="right" app class="indigo">
-        <p class="title white--text">Results for: '<strong>{{ query }}</strong>'</p>
-        <v-textarea
+        <p class="title white--text">Results:</p>
+        <!-- <v-textarea
           outlined
           name="searchResults"
           auto-grow="autoGrow"
           background-color="white"
           value="The Woodman set to work at once, and so sharp was his axe that the tree was soon chopped nearly through."
-        ></v-textarea>
+        ></v-textarea> -->
         <div>
-          <div class="flex flex-col pt-8">
-            <VueFuse
-              placeholder="Search Books of the Bible"
-              :list="books"
-              :keys="['name', 'description']"
-              class="w-64 text-center h-8 border rounded-lg center"
-              @fuseResultsUpdated=updateResults
-            />
-          </div>
-          <div v-for="book in results" :key="book.name" class="rounded-lg bg-blue text-white p-4 m-4 flex text-left">
-            <div class="w-1/4">{{ book.name }}</div>
-            <div class="ml-4 w-3/4">{{ book.description }}</div>
+          
+          <div v-if="type" class="subtitle-2 white--text">
+            <div v-for="book in results" :key="book.name" class="rounded-lg bg-blue text-white p-4 m-4 flex text-left">
+              <div class="w-1/4">{{ book.name }}</div>
+              <div class="ml-4 w-3/4">{{ book.description }}</div>
+            </div>
           </div>
         </div>
       </v-navigation-drawer>
@@ -91,44 +98,39 @@ export default {
     return {
       query: '',
       drawer: false,
+      type: false,
       results: [],
       books: [
         {
-          name: 'Genisis',
-          description: 'Genesis answers two big questions: “How did God’s relationship with the world begin?” and “Where did the nation of Israel come from?”'
+          name: 'Energy',
+          description: "Per Capita Energy Consumption. Learn more on the 'Energy Info' page"
         }, {
-          name: 'Exodus',
-          description: 'God saves Israel from slavery in Egypt, and then enters into a special relationship with them.'
+          name: 'Consume',
+          description: "How Much Energy Does the World Consume? Learn more on the 'Energy Info' page"
         }, {
-          name: 'Leviticus',
-          description: 'God gives Israel instructions for how to worship Him.'
+          name: 'Global',
+          description: "Global Energy Consumption by Source. Learn more on the 'Energy Info' page"
         }, {
-          name: 'Numbers',
-          description: 'srael fails to trust and obey God, and wanders in the wilderness for 40 years.'
+          name: 'United',
+          description: "The United States uses a mix of energy sources. Learn more on the 'Energy Info' page"
         }, {
-          name: 'Deuteronomy',
-          description: 'Moses gives Israel instructions (in some ways, a recap of the laws in Exodus–Numbers) for how to love and obey God in the Promised Land.'
+          name: 'Portland',
+          description: "Learn about Portland's energy use on the 'Plant Graphs' page"
         }, {
-          name: 'Joshua',
-          description: 'Joshua (Israel’s new leader) leads Israel to conquer the Promised land, then parcels out territories to the twelve tribes of Israel.'
+          name: 'Seattle',
+          description: "Learn about Seattle's energy use on the 'Plant Graphs' page"
         }, {
-          name: 'Judges',
-          description: 'Israel enters a cycle of turning from God, falling captive to oppressive nations, calling out to God, and being rescued by leaders God sends their way (called “judges”).'
+          name: 'News',
+          description: "Read about the latest Portland Energy news on the 'News' page"
         }, {
-          name: 'Ruth',
-          description: 'The book of Ruth tells a touching story of the love and devotion of an ancestor of David and Jesus Christ.'
+          name: 'Contact',
+          description: "Provide us with your feedback on the 'Contact Us' Page!"
         }, {
-          name: '1 Samuel',
-          description: 'Israel demands a king, who turns out to be quite a disappointment.'
+          name: 'Message',
+          description: "Provide us with your feedback on the 'Contact Us' Page!"
         }, {
-          name: '2 Samuel',
-          description: 'David, a man after God’s own heart, becomes king of Israel.'
-        }, {
-          name: '1 Kings',
-          description: 'The kingdom of Israel has a time of peace and prosperity under King Solomon, but afterward splits, and the two lines of kings turn away from God.'
-        }, {
-          name: '2 Kings',
-          description: 'Both kingdoms ignore God and his prophets, until they both fall captive to other world empires.'
+          name: 'About',
+          description: "Learn more about us at the bottom of the home page"
         }
       ]
     }
@@ -136,6 +138,9 @@ export default {
   methods: {
     updateResults(r) {
       this.results = r;
+    },
+    updateSearch() {
+      this.type=true;
     }
   },
 }
@@ -158,5 +163,8 @@ export default {
     position: sticky;
     top: 18px;
     left: 70px;
+  }
+  .side{
+    background: white;
   }
 </style>
