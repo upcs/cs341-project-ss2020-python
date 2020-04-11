@@ -6,7 +6,7 @@
         <section>
             <div class="v-parallax" style="height: 500px;">
                 <div class="v-parrallax__image-container">
-                    <img src="@/assets/images/pollution2.jpg" alt class="img-positioning v-parallax__image" style="display: block; opacity: 1;">
+                    <img src="@/assets/images/pollution2.jpg" alt class="img-positioning" style="display: block; opacity: 1;">
                 </div>
                 <div class="v-parallax__content">
                     <div class="layout white--text column align-center justify-center">
