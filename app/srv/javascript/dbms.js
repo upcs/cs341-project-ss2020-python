@@ -12,6 +12,9 @@ exports.version = '0.0.1';
 var mysql = require('mysql'),
     async = require('async');
 
+var passwords = require('../../passwords.json');
+console.log(passwords.dbpass)
+
 var host = "35.230.25.247";    //from GCloud instance 
 var database = "PYTHON_DATA";  //database name
 var user = "root";         //username (change to match your db)
