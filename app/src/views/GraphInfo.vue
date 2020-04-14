@@ -12,7 +12,7 @@
 
                 <v-row class="optBorderTop">
                     <h1 class="optTitle"> Location: </h1>
-                    <v-row class="slideContainer">
+                    <v-row>
 
                         <v-col justify="left" class="mx-0 px-0">
                             <label style="float:left;margin-left: 10px;"> Distance (mi): </label>
@@ -33,7 +33,7 @@
                         </v-col>
                     </v-row>
 
-                    <v-row class="slideContainer">
+                    <v-row>
                         <v-text-field label="City 1"
                                       id="city1"
                                       placeholder="Portland"
@@ -46,7 +46,7 @@
                         </div>
                     </v-row>
 
-                    <v-row class="slideContainer">
+                    <v-row>
                         <v-checkbox
                             id="checkboxSC"
                             v-model="secondCity"
@@ -70,7 +70,7 @@
 
                 <v-row class="optBorderTop">
                     <h1 class="optTitle">Power Plants: </h1>
-                    <v-row class="slideContainer">
+                    <v-row>
                         <v-select id="plantType"
                                   :items="items"
                                   v-model="plant"
@@ -87,7 +87,7 @@
 
                 <v-row class="optBorderTop">
                     <h1 class="optTitle"> Metrics: </h1>
-                    <v-row class="slideContainer">
+                    <v-row>
                         <v-select id="dataParameter"
                                   :items="dataParameters"
                                   v-model="selectedData"
@@ -111,7 +111,7 @@
 
                 <v-row class="optBorderTop">
                     <h1 class="optTitle"> X Axis: </h1>
-                    <v-row class="slideContainer">
+                    <v-row>
                         <v-radio-group id="sortBy" v-model="sortBy" :mandatory="true">
                             <v-radio id="sortPlant" name="sortBy" label="Plant" value="plant"></v-radio>
                             <v-radio id="sortCity" label="City" value="city"></v-radio>
@@ -145,7 +145,7 @@
 
                 <v-row class="optBorderTop">
                     <h1 class="optTitle"> Location: </h1>
-                    <v-row class="slideContainer">
+                    <v-row>
 
                         <v-col justify="left" class="mx-0 px-0">
                             <label style="float:left;margin-left: 10px;"> Distance (mi): </label>
@@ -166,7 +166,7 @@
                         </v-col>
                     </v-row>
 
-                    <v-row class="slideContainer">
+                    <v-row>
                         <v-text-field label="City 1"
                                       id="city1"
                                       placeholder="Portland"
@@ -179,7 +179,7 @@
                         </div>
                     </v-row>
                     
-                    <v-row style="width: 100%;" class="slideContainer">
+                    <v-row style="width: 100%;">
                         <v-checkbox
                             id="checkboxSC"
                             v-model="secondCity"
@@ -203,7 +203,7 @@
 
                 <v-row class="optBorderTop">
                     <h1 class="optTitle">Power Plants: </h1>
-                    <v-row class="slideContainer">
+                    <v-row>
                         <v-select id="plantType"
                                   :items="items"
                                   v-model="plant"
@@ -220,7 +220,7 @@
 
                 <v-row class="optBorderTop">
                     <h1 class="optTitle"> Metrics: </h1>
-                    <v-row class="slideContainer">
+                    <v-row>
                         <v-select id="dataParameter"
                                   :items="dataParameters"
                                   v-model="selectedData"
@@ -244,7 +244,7 @@
 
                 <v-row class="optBorderTop">
                     <h1 class="optTitle"> X Axis: </h1>
-                    <v-row class="slideContainer">
+                    <v-row>
                         <v-radio-group id="sortBy" v-model="sortBy" :mandatory="true">
                             <v-radio id="sortPlant" name="sortBy" label="Plant" value="plant"></v-radio>
                             <v-radio id="sortCity" label="City" value="city"></v-radio>
