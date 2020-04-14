@@ -1,17 +1,15 @@
-import { mount, createLocalVue, shallowMount } from '@vue/test-utils'
+import { mount } from '@vue/test-utils'
 import ContactUs from '@/views/ContactUs'
 import vuetify from 'vuetify'
-import VueRouter from 'vue-router'
 import Vue from 'vue'
 
-//const main = require('../../src/main.js');
-const $ = require('jquery');
+
 const app = require('../../srv/index.js');
 
 describe('ContactUs', () => {
 
   let server;
-
+  
   beforeAll(() => {
       server = app.listen(3000);
   });
@@ -23,7 +21,9 @@ describe('ContactUs', () => {
   let wrapper;
   beforeEach(() => { 
       Vue.use(vuetify)
-      wrapper = mount(ContactUs);
+      wrapper = mount(ContactUs, {
+        stubs: ['router-link']
+      })
   });  
 
   it('testing the databaseCall function', async () => {

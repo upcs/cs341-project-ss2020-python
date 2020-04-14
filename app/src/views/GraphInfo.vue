@@ -35,8 +35,11 @@
                                       id="city1"
                                       placeholder="Portland"
                                       v-model="city"></v-text-field>
-                        <div v-if="errors.city1 === true">
+                        <div v-if="errors.city1Empty === true">
                             <error id="city1Err" message="Please Enter a City"> </error>
+                        </div>
+                        <div v-if="errors.city1NoResults === true">
+                            <error id="city1ErrNoResults" message="Invalid city. No results found."> </error>
                         </div>
                     </v-row>
 
@@ -50,8 +53,14 @@
                                       id="city2"
                                       placeholder="Seattle"
                                       v-model="city2"></v-text-field>
-                        <div v-if="errors.city2 === true">
+                        <div v-if="errors.city2Empty === true">
                             <error id="city2Err" message="Please Enter a City"> </error>
+                        </div>
+                        <div v-if="errors.city2NoResults === true">
+                            <error id="city2ErrNoResults" message="Invalid City; No Results Found"> </error>
+                        </div>
+                        <div v-if="errors.city2Duplicate === true">
+                            <error id="city2ErrDuplicate" message="Duplicate City"> </error>
                         </div>
                     </v-row>
                 </v-row>
@@ -89,6 +98,9 @@
                                   :items="dataParameters"
                                   v-model="selectedData2"
                                   label="Parameter 2"></v-select>
+                        <div v-if="errors.param2 === true">
+                            <error id="param2Err" message="Duplicate Metric"> </error>
+                        </div>
                     </v-row>
                 </v-row>
 
@@ -146,10 +158,14 @@
             city2: null,
             secondCity: false,
             errors: {
-                'city1': false,
-                'city2': false,
+                'city1Empty': false,
+                'city1NoResults': false,
+                'city2Empty': false,
+                'city2NoResults': false,
+                'city2Duplicate': false,
                 'plant': false,
-                'param1': false
+                'param1': false,
+                'param2': false
             },
             items: [
                 'Nuclear',
@@ -373,24 +389,60 @@
 
         cityInfoGetter: async function(cities) {
 
+                var chart = this;
+
                 var latsAndLongs = [];
 
-                if (cities.length == 0)
-                    return null;
+                for (let i = 0; i < cities.length; i++) {
+                    let city = cities[i];
 
-                for (var city of cities) {
+                    // check if this city is already included
+                    if (latsAndLongs.filter(c => c.name == city).length > 0) {
+                        if (i == 1) { chart.errors.city2Duplicate = true; }
+                        continue;
+                    } else {
+                        if (i == 1) { chart.errors.city2Duplicate = false; }
+                    }
+
                     if (city != null){
-                        var cityURL = 'https://nominatim.openstreetmap.org/search?q=' + city + '&format=json';
-                        console.log(cityURL);
+                        var cityURL = 'https://nominatim.openstreetmap.org/search?city=' + city + '&format=json&countrycodes=us';
 
                         await window.$.ajax({url: cityURL}).done(function(data) {
-                            var thisLat = data[0].lat;
-                            var thisLon = data[0].lon;
-                            latsAndLongs.push({
-                                lat: thisLat,
-                                lon: thisLon,
-                                name: city
-                            });
+
+                            if (data.length > 0) {
+                                // report valid city
+                                switch (i) {
+                                    case 0:
+                                        chart.errors.city1NoResults = false;
+                                        break;
+                                    case 1:
+                                        chart.errors.city2NoResults = false;
+                                        break;
+                                    default:
+                                        console.error("Unexpected input");
+                                }
+
+                                var thisLat = data[0].lat;
+                                var thisLon = data[0].lon;
+                                latsAndLongs.push({
+                                    lat: thisLat,
+                                    lon: thisLon,
+                                    name: city
+                                });
+                            } else {
+                                // report bad city
+                                console.log("Warning: '" + city + "' returned no geocoding data.")
+                                switch (i) {
+                                    case 0:
+                                        chart.errors.city1NoResults = true;
+                                        break;
+                                    case 1:
+                                        chart.errors.city2NoResults = true;
+                                        break;
+                                    default:
+                                        console.error("Unexpected input");
+                                }
+                            }
                         });
                     }
                 }
@@ -410,35 +462,30 @@
             var chart = this;
 
             // form validation
-            if(this.city == null || this.city == "")
-                this.errors.city1 = true;
-            else
-                this.errors.city1 = false;
-            if((this.city2 == null || this.city2 == "") && this.secondCity == true)
-                this.errors.city2 = true;
-            else
-                this.errors.city2 = false;
-            if(this.plant.length == 0) 
-                this.errors.plant = true;
-            else
-                this.errors.plant = false;
-            if(this.selectedData == null)
-                this.errors.param1 = true;
-            else
-                this.errors.param1 = false;
+            this.errors.city1Empty = (this.city == null || this.city == "") ? true : false;
+            this.errors.city2Empty = ((this.city2 == null || this.city2 == "") && this.secondCity == true) ? true : false;
+            this.errors.plant = (this.plant.length == 0) ? true : false;
+            this.errors.param1 = (this.selectedData == null) ? true : false;
+            this.errors.param2 = (this.selectedData == this.selectedData2) ? true : false;
 
-            if (!this.errors.city1 && !this.errors.city2 && !this.errors.plant) {
+            if (!this.errors.city1Empty && !this.errors.city2Empty && !this.errors.plant) {
                 console.log("Querying geocoding");
-                var latsAndLongs = await chart.cityInfoGetter([this.city, this.city2]);
-                console.log(latsAndLongs);
-
+                var latsAndLongs;
+                if(this.secondCity)
+                    latsAndLongs = await chart.cityInfoGetter([this.city, this.city2]);
+                else
+                    latsAndLongs = await chart.cityInfoGetter([this.city]);
+              
+                // do nothing on empty results
+                if (latsAndLongs.length < 1) { return; }
+                
                 var metrics = [];
 
                 if (chart.selectedData != null) {
                     metrics.push(chart.selectedData);
                 }
 
-                if (chart.selectedData2 != null) {
+                if (chart.selectedData2 != null && !metrics.includes(chart.selectedData2)) {
                     metrics.push(chart.selectedData2);
                 }
 

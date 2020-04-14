@@ -6,11 +6,11 @@
         <section>
             <div class="v-parallax" style="height: 500px;">
                 <div class="v-parrallax__image-container">
-                    <img src="@/assets/images/pollution1.jpg" alt class="v-parallax__image" style="display: block; opacity: 1; transform: translate(-50%, 400px);">
+                    <img src="@/assets/images/pollution2.jpg" alt class="img-positioning" style="display: block; opacity: 1;">
                 </div>
                 <div class="v-parallax__content">
                     <div class="layout white--text column align-center justify-center">
-                        <h1 class="white--text mb-2 display-4 text-center font-weight-bold">About Us</h1>
+                        <h1 class="text-positioning white--text mb-2 display-4 text-center font-weight-bold">About Us</h1>
                     </div>
                 </div>
             </div>
@@ -26,7 +26,7 @@
                 </div>
             </div>
             <img src="@/assets/images/cartoonEnergy.png" class="pl-12">
-            <img src="@/assets/images/future.jpg">
+            <img style="width: 100%;" src="@/assets/images/future.jpg">
         </v-row>
     </div>
     </main>
@@ -42,3 +42,22 @@
     name: 'AboutUs',
   }
 </script>
+
+<style scoped>
+
+.img-positioning {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 400px;
+}
+
+.text-positioning {
+    top: 0;
+    left: 0;
+    position: absolute;
+    margin-left: 40%;
+    margin-top: 150px;
+}
+</style>

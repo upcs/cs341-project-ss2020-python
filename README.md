@@ -1,5 +1,5 @@
 # Portland Python Pollution
-[![Build Status](https://travis-ci.org/upcs/cs341-project-ss2020-python.svg?branch=master)](https://travis-ci.org/upcs/cs341-project-ss2020-python)
+[![Build Status](https://api.travis-ci.com/upcs/cs341-project-ss2020-python.svg?branch=master)](https://travis-ci.com/upcs/cs341-project-ss2020-python)
 [![Codecov Coverage](https://img.shields.io/codecov/c/github/upcs/cs341-project-ss2020-python/master.svg?style=flat-square)](https://codecov.io/gh/upcs/cs341-project-ss2020-python/)
 
 
