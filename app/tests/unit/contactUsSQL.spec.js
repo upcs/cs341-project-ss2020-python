@@ -54,7 +54,8 @@ describe('contactUsSQL api call', () => {
         server.close();
     });
 
-    test('test contactUsSQL', () => {
-        return expect(getDefaultData()).resolves.toBe(1);
+    test('test contactUsSQL', async () => {
+        var result = await getDefaultData();
+        return expect(result).toBe(1);
     });
 });
