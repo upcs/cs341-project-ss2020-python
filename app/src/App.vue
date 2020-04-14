@@ -24,43 +24,37 @@
               <router-link to="/contact">
                 <v-btn text id="header">Contact Us</v-btn>
               </router-link>
-              
             </v-col>
 
             <v-col cols="2" class="pt-7">
-              <v-text-field
-                label="Search"
-                prepend-inner-icon="mdi-magnify"
-                background-color="accent"
-                rounded
-                dense
-                v-model="query"
+              <div 
+                class="side"
                 @click="drawer = !drawer"
-              ></v-text-field>
-              
+              >
+                <VueFuse
+                  placeholder="Search for info on Energy"
+                  :list="books"
+                  :keys="['name', 'description']"
+                  class="w-64 text-center h-8 border rounded-lg center"
+                  @fuseResultsUpdated=updateResults
+                />
+              </div>
             </v-col>   
             <v-spacer></v-spacer>
           </v-row>
         </v-container>
       </v-app-bar>
       <v-navigation-drawer v-model="drawer" color="primary" right="right" app class="indigo">
-        <p class="title white--text">Results for: '<strong>{{ query }}</strong>'</p>
-        <!-- <v-textarea 
-          v-model="textarea"
-          background-color="white" 
-          auto-grow="autoGrow" 
-          name="searchResults"
-          label="Search" 
-          value="The Woodman set to work at once, and so sharp was his axe that the tree was soon chopped nearly through."
-          outlined="outlined"
-        ></v-textarea> -->
-        <v-textarea
-          outlined
-          name="searchResults"
-          auto-grow="autoGrow"
-          background-color="white"
-          value="The Woodman set to work at once, and so sharp was his axe that the tree was soon chopped nearly through."
-        ></v-textarea>
+        <p class="title white--text">Results:</p>
+        <div>
+          
+          <div class="subtitle-2 white--text">
+            <div v-for="book in results" :key="book.name" class="rounded-lg bg-blue text-white p-4 m-4 flex text-left">
+              <div class="w-1/4">{{ book.name }}</div>
+              <div class="ml-4 w-3/4">{{ book.description }}</div>
+            </div>
+          </div>
+        </div>
       </v-navigation-drawer>
 
       <v-content>
@@ -71,40 +65,81 @@
     </v-app>
 </template>
 
-<style>
-  #header{
-    color: white;
-  }
-</style>
-
 <script>
+import VueFuse from '@/components/VueFuse.vue'
 export default {
+  name: 'Test',
+  components: {
+    VueFuse
+  },
   data() {
     return {
       query: '',
       drawer: false,
+      searchRes: false,
+      results: [],
+      books: [
+        {
+          name: 'Energy',
+          description: "Per Capita Energy Consumption. Learn more on the 'Energy Info' page"
+        }, {
+          name: 'Consume',
+          description: "How Much Energy Does the World Consume? Learn more on the 'Energy Info' page"
+        }, {
+          name: 'Global',
+          description: "Global Energy Consumption by Source. Learn more on the 'Energy Info' page"
+        }, {
+          name: 'United',
+          description: "The United States uses a mix of energy sources. Learn more on the 'Energy Info' page"
+        }, {
+          name: 'Portland',
+          description: "Learn about Portland's energy use on the 'Plant Graphs' page"
+        }, {
+          name: 'Seattle',
+          description: "Learn about Seattle's energy use on the 'Plant Graphs' page"
+        }, {
+          name: 'News',
+          description: "Read about the latest Portland Energy news on the 'News' page"
+        }, {
+          name: 'Contact',
+          description: "Provide us with your feedback on the 'Contact Us' Page!"
+        }, {
+          name: 'Message',
+          description: "Provide us with your feedback on the 'Contact Us' Page!"
+        }, {
+          name: 'About',
+          description: "Learn more about us at the bottom of the home page"
+        }
+      ]
     }
-  }
-  // let options = {
-  //   shouldSort: true,
-  //   threshold: 0.6,
-  //   location: 0,
-  //   distance: 100,
-  //   minMatchCharLength: 1,
-  //   keys: [
-  //     "title",
-  //     "author.firstName"
-  //   ]
-  // };
-
-  // var info = [{
-  //   title: "Old Man's War Fiction",
-  //   author: 'John X',
-  //   tags: ['war']
-  // }, {
-  //   title: 'Right Ho Jeeves',
-  //   author: 'P.D. Mans',
-  //   tags: ['fiction', 'war']
-  // }]
+  },
+  methods: {
+    updateResults(r) {
+      this.results = r;
+    }
+  },
 }
+
 </script>
+<style scoped>
+  #header{
+      color: white;
+    }
+  .center {
+    margin: auto;
+    text-align: center;
+  }
+  svg {
+    position: sticky;
+    top: 15px;
+    left: 15px;
+  }
+  .fuse {
+    position: sticky;
+    top: 18px;
+    left: 70px;
+  }
+  .side{
+    background: white;
+  }
+</style>
