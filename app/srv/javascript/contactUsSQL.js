@@ -17,7 +17,6 @@ router.post('/', async function (req, res) {
     // console.log(req.body.mes);
     
     var _secretKey = keyObj.dbKey;
-    console.log(_secretKey);
     
     //New crypto algorithm,
     var CryptoJS = require("crypto-js");
