@@ -1,9 +1,12 @@
 <template>   
     <v-row id="graphInfo">
-        <div class="title">
+        <div v-if="!mobile" class="title">
             City Energy Info Visualizer
         </div>
-        <v-col cols="3" class="options">
+
+        
+
+        <v-col v-if="!mobile" cols="3" class="options">
             <form ref="theForm">
                 <div class="optTitle">Visualization Options</div>
 
@@ -123,16 +126,147 @@
             <v-row class="optBorderTop py-8" justify="center">
                 <v-btn type="submit" v-on:click="formPost">Create Graph</v-btn>
             </v-row>
-
         </v-col>
-        
-        <v-col cols="9" class="main">
+        <v-col v-if="!mobile" cols="9" class="main">
             <div class="main">
                 <Chart 
                     v-if="loadChart"
                     :chartData="chart_data"
                     :options="chartOptions"/>
             </div>
+        </v-col>
+
+        <v-col v-if="mobile"  class="optionsMobile">
+            <div class="titleMobile">
+                 City Energy Info Visualizer
+             </div>
+            <form ref="theForm">
+                <div class="optTitle">Visualization Options</div>
+
+                <v-row class="optBorderTop">
+                    <h1 class="optTitle"> Location: </h1>
+                    <v-row class="slideContainer">
+
+                        <v-col justify="left" class="mx-0 px-0">
+                            <label style="float:left;margin-left: 10px;"> Distance (mi): </label>
+                            <v-slider v-model="slider"
+                                    class="align-center"
+                                    :max="max"
+                                    :min="min"
+                                    hide-details>
+                                <template v-slot:append>
+                                    <v-text-field v-model="slider"
+                                                class="mt-0 pt-0"
+                                                hide-details
+                                                single-line
+                                                type="number"
+                                                style="width: 55px;margin-right: 30px;"></v-text-field>
+                                </template>
+                            </v-slider>
+                        </v-col>
+                    </v-row>
+
+                    <v-row class="slideContainer">
+                        <v-text-field label="City 1"
+                                      id="city1"
+                                      placeholder="Portland"
+                                      v-model="city"></v-text-field>
+                        <div v-if="errors.city1Empty === true">
+                            <error id="city1Err" message="Please Enter a City"> </error>
+                        </div>
+                        <div v-if="errors.city1NoResults === true">
+                            <error id="city1ErrNoResults" message="Invalid city. No results found."> </error>
+                        </div>
+                    </v-row>
+                    
+                    <v-row style="width: 100%;" class="slideContainer">
+                        <v-checkbox
+                            id="checkboxSC"
+                            v-model="secondCity"
+                            label="Check for second city"
+                            ></v-checkbox>
+                        <v-text-field v-if="secondCity" label="City 2"
+                                      id="city2"
+                                      placeholder="Seattle"
+                                      v-model="city2"></v-text-field>
+                        <div v-if="errors.city2Empty === true">
+                            <error id="city2Err" message="Please Enter a City"> </error>
+                        </div>
+                        <div v-if="errors.city2NoResults === true">
+                            <error id="city2ErrNoResults" message="Invalid City; No Results Found"> </error>
+                        </div>
+                        <div v-if="errors.city2Duplicate === true">
+                            <error id="city2ErrDuplicate" message="Duplicate City"> </error>
+                        </div>
+                    </v-row>
+                </v-row>
+
+                <v-row class="optBorderTop">
+                    <h1 class="optTitle">Power Plants: </h1>
+                    <v-row class="slideContainer">
+                        <v-select id="plantType"
+                                  :items="items"
+                                  v-model="plant"
+                                  label="Plant Type"
+                                  :multiple="true"></v-select>
+                        <div v-if="errors.plant === true">
+                            <error id="plantErr" message="Please Select at least 1 Plant Type"> </error>
+                        </div>
+
+                    </v-row>
+                </v-row>
+
+                <br>
+
+                <v-row class="optBorderTop">
+                    <h1 class="optTitle"> Metrics: </h1>
+                    <v-row class="slideContainer">
+                        <v-select id="dataParameter"
+                                  :items="dataParameters"
+                                  v-model="selectedData"
+                                  label="Parameter 1"></v-select>
+                        <div v-if="errors.param1 === true">
+                            <error id="param1Err" message="Please Select at least 1 Metric"> </error>
+                        </div>
+                    </v-row>
+                    <v-row v-if="selectedData != null">
+                        <v-select id="dataParameter2"
+                                  :items="dataParameters"
+                                  v-model="selectedData2"
+                                  label="Parameter 2"></v-select>
+                        <div v-if="errors.param2 === true">
+                            <error id="param2Err" message="Duplicate Metric"> </error>
+                        </div>
+                    </v-row>
+                </v-row>
+
+                <br>
+
+                <v-row class="optBorderTop">
+                    <h1 class="optTitle"> X Axis: </h1>
+                    <v-row class="slideContainer">
+                        <v-radio-group id="sortBy" v-model="sortBy" :mandatory="true">
+                            <v-radio id="sortPlant" name="sortBy" label="Plant" value="plant"></v-radio>
+                            <v-radio id="sortCity" label="City" value="city"></v-radio>
+                        </v-radio-group>
+                    </v-row>
+                </v-row>
+
+                <br>
+
+            </form>
+
+            <v-row class="optBorderTop py-8" justify="center">
+                <v-btn type="submit" v-on:click="formPost">Create Graph</v-btn>
+            </v-row>
+            <v-row cols="9">
+                <div>
+                    <Chart 
+                        v-if="true"
+                        :chartData="chart_data"
+                        :options="chartOptions"/>
+                </div>
+            </v-row>
         </v-col>
     </v-row>
 </template>
@@ -148,8 +282,16 @@
         Chart,
         Error
     },
+    created() {
+        window.addEventListener("resize", this.resizeHandler);
+        this.resizeHandler();
+    },
+    destroyed() {
+        window.removeEventListener("resize", this.resizeHandler);
+    },
     data () {
         return {
+            mobile: false,
             min: 0,
             max: 1000,
             slider: 100,
@@ -514,6 +656,13 @@
             }
             
         },
+        resizeHandler() {
+            var w = window.innerWidth;
+            if(w < 1100)
+              this.mobile = true;
+            else
+              this.mobile = false;
+        }
     }
   }
 
@@ -529,8 +678,14 @@
     border-bottom: 2px solid black;
 }
 
+.titleMobile {
+    text-align: center;
+    font-size: 36px;
+    padding: 20px;
+    border-bottom: 2px solid black;
+}
+
 .options {
-    height: 86.3vh;
     width: 25%;
     float: left;
     border-right: 2px solid black;
@@ -538,23 +693,31 @@
 }
 
 .options div {
+    float: left;
     padding-left: 15px;
     width: 100%;
 }
 
 .main {
-    height: 86.3vh;
     width: 100%;
     float: right;
 }
 
-optTitle {
+.optionsMobile {
+    position: absolute;
+    float: left;
+    margin-left: 15px;
+    width: 100%;
+}
+
+.optTitle {
+    font-size: 20px;
     text-align: left;
     margin-left: 5px;
     width: 100%;
 }
 
-sliderContainer {
+.sliderContainer {
     padding-left: 5px;
 }
 
