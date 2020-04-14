@@ -24,23 +24,9 @@
               <router-link to="/contact">
                 <v-btn text id="header">Contact Us</v-btn>
               </router-link>
-
-              <router-link to="/test">
-                <v-btn text id="header">Test</v-btn>
-              </router-link>
-              
             </v-col>
 
             <v-col cols="2" class="pt-7">
-              <!-- <v-text-field
-                label="Search"
-                prepend-inner-icon="mdi-magnify"
-                background-color="accent"
-                rounded
-                dense
-                v-model="query"
-                @click="drawer = !drawer"
-              ></v-text-field> -->
               <div 
                 class="side"
                 @click="drawer = !drawer"
@@ -51,7 +37,6 @@
                   :keys="['name', 'description']"
                   class="w-64 text-center h-8 border rounded-lg center"
                   @fuseResultsUpdated=updateResults
-                  @inputChangeEventName=updateSearch
                 />
               </div>
             </v-col>   
@@ -61,16 +46,9 @@
       </v-app-bar>
       <v-navigation-drawer v-model="drawer" color="primary" right="right" app class="indigo">
         <p class="title white--text">Results:</p>
-        <!-- <v-textarea
-          outlined
-          name="searchResults"
-          auto-grow="autoGrow"
-          background-color="white"
-          value="The Woodman set to work at once, and so sharp was his axe that the tree was soon chopped nearly through."
-        ></v-textarea> -->
         <div>
           
-          <div v-if="type" class="subtitle-2 white--text">
+          <div class="subtitle-2 white--text">
             <div v-for="book in results" :key="book.name" class="rounded-lg bg-blue text-white p-4 m-4 flex text-left">
               <div class="w-1/4">{{ book.name }}</div>
               <div class="ml-4 w-3/4">{{ book.description }}</div>
@@ -98,7 +76,7 @@ export default {
     return {
       query: '',
       drawer: false,
-      type: false,
+      searchRes: false,
       results: [],
       books: [
         {
@@ -138,9 +116,6 @@ export default {
   methods: {
     updateResults(r) {
       this.results = r;
-    },
-    updateSearch() {
-      this.type=true;
     }
   },
 }
