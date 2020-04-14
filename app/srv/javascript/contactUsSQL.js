@@ -2,6 +2,7 @@
 var express = require('express');
 var router = express.Router();
 var dbms = require('./dbms');
+var keyObj = require('../../passwords.json');
 
 //req is the infoObj
 router.post('/', async function (req, res) {
@@ -15,7 +16,8 @@ router.post('/', async function (req, res) {
     // console.log(req.body.email);
     // console.log(req.body.mes);
     
-    var _secretKey = "test key chicken";
+    var _secretKey = keyObj.dbKey;
+    console.log(_secretKey);
     
     //New crypto algorithm,
     var CryptoJS = require("crypto-js");
