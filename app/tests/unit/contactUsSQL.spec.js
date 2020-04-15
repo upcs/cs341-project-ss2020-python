@@ -15,7 +15,7 @@ async function getDefaultData() {
             console.log("init total in testing is ");
             console.log(response.res[0].total);
             initTotal = response.res[0].total;
-        });
+        }).promise();
 
         await $.post(process.env.VUE_APP_ROOT_API + '/contactUsSQL', {
         
@@ -27,13 +27,13 @@ async function getDefaultData() {
         }, function(response) {
             console.log("done adding test value");
             console.log(response.mes);
-        });
+        }).promise();
         var finalTotal;
         await $.post(process.env.VUE_APP_ROOT_API + '/dbmsPostCatcher', {string: 'select count(*) as total from ContactUsData;'}, function(response) {
             console.log("post total in testing is ");
             console.log(response.res[0].total);
             finalTotal = response.res[0].total;
-        });
+        }).promise();
 
         var diff = finalTotal - initTotal;
         resolve(diff);
@@ -55,6 +55,7 @@ describe('contactUsSQL api call', () => {
     });
 
     test('test contactUsSQL', () => {
+        expect.assertions(1)
         return expect(getDefaultData()).resolves.toBe(1);
     });
 });
