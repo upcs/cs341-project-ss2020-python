@@ -31,17 +31,12 @@ async function getDefaultData() {
         });
         
         var finalTotal;
-        
-        await dbms.dbquery('select count(*) as total from ContactUsData;', function (error, result) {
-            console.log("database got queried");
-            resolve(result[0].totoal);
-        }).then(data => finalTotal = data);
-        
-        // await $.post(process.env.VUE_APP_ROOT_API + '/dbmsPostCatcher', {string: 'select count(*) as total from ContactUsData;'}, function(response) {
-        //     console.log("post total in testing is ");
-        //     console.log(response.res[0].total);
-        //     finalTotal = response.res[0].total;
-        // }).promise();
+
+        await $.post(process.env.VUE_APP_ROOT_API + '/dbmsPostCatcher', {string: 'select count(*) as total from ContactUsData;'}, function(response) {
+            console.log("post total in testing is ");
+            console.log(response.res[0].total);
+            finalTotal = response.res[0].total;
+        });
 
         var diff = finalTotal - initTotal;
         resolve(diff);
@@ -62,8 +57,9 @@ describe('contactUsSQL api call', () => {
         server.close();
     });
 
-    test('test contactUsSQL', () => {
-        expect.assertions(1)
-        return expect(getDefaultData()).resolves.toBe(1);
+    test('test contactUsSQL', async () => {
+        const result = await getDefaultData();
+        expect.assertions(1);
+        return expect(result).toBe(1);
     });
 });
