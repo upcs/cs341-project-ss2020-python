@@ -77,8 +77,7 @@ describe('GraphInfo', () => {
           city2: 'Seattle',
           secondCity: true,
           sortBy: 'plant',
-          selectedData: 'CO2 Emission Rate (lb/MWh)',
-          selectedData2: 'Annual Net Power (MWh)'
+          selectedData: ['CO2 Emission Rate (lb/MWh)', 'Annual Net Power (MWh)']
         }
       },
       created() {
@@ -118,8 +117,7 @@ describe('GraphInfo', () => {
           plant: ['Coal'],
           city: 'Portland',
           city2: 'Seattle',
-          selectedData: 'CO2 Emission Rate (lb/MWh)',
-          selectedData2: 'Annual Net Power (MWh)',
+          selectedData: ['CO2 Emission Rate (lb/MWh)', 'Annual Net Power (MWh)'],
           sortBy: 'city',
           secondCity: true,
         }
@@ -154,7 +152,7 @@ describe('GraphInfo', () => {
           plant: ['Coal'],
           city: 'InvalidCity',
           city2: 'AlsoInvalid',
-          selectedData: 'CO2 Emission Rate (lb/MWh)',
+          selectedData: ['CO2 Emission Rate (lb/MWh)'],
           secondCity: true
         }
       },
@@ -183,7 +181,7 @@ describe('GraphInfo', () => {
           city: 'Portland',
           city2: 'Portland',
           secondCity: true,
-          selectedData: 'CO2 Emission Rate (lb/MWh)',
+          selectedData: ['CO2 Emission Rate (lb/MWh)'],
         }
       },
       created() {
@@ -201,15 +199,14 @@ describe('GraphInfo', () => {
     expect(wrapper.vm.chart_data.datasets.length).toBe(1);
   })
 
-  it ('tests formPost error handling (duplicate paramemter)', async () => {
+  it ('tests formPost no results handing', async () => {
     wrapper = mount(GraphInfo, {
       data() {
         return {
-          slider: 100,
-          plant: ['Coal'],
-          city: 'Portland',
-          selectedData: 'CO2 Emission Rate (lb/MWh)',
-          selectedData2: 'CO2 Emission Rate (lb/MWh)'
+          slider: 10,
+          plant: ['Nuclear'],
+          city: 'Bend',
+          selectedData: ['CO2 Emission Rate (lb/MWh)'],
         }
       },
       created() {
@@ -221,9 +218,10 @@ describe('GraphInfo', () => {
       }
     });
 
-    await wrapper.vm.formPost() 
+    await wrapper.vm.formPost();
 
-    expect(wrapper.find('#param2Err').exists()).toBe(true);
-    expect(wrapper.vm.chart_data.datasets.length).toBe(1);
+    expect(wrapper.find('#missingResults').exists()).toBe(true);
+    expect(wrapper.vm.noDataMessage[0]).toStrictEqual(["Bend", "Nuclear", "CO2 Emission Rate (lb/MWh)"]);
   })
+
 })
