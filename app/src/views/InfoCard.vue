@@ -1,5 +1,5 @@
 <template>
-    <v-col cols="6">
+  <div>
         <div
           class="mx-auto div-container"
         >
@@ -14,7 +14,7 @@
               {{ mainText }}
           </div>
         </div>
-      </v-col>
+  </div>
 </template>
 <script>
 export default {
