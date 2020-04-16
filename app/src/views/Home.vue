@@ -6,22 +6,54 @@
       <img id="logo" src="@/assets/images/logo.png"/>
       <div class="aboutUs ">
         <div style="height: 93.4vh">
-          <div class="row">
-            <div class="col-md-4 col-12">
-              <div class="py-12 px-4 v-card v-card--flat v-sheet theme--light grey lighten-5">
-                <div class="v-card__title justify-center font-weight-black text-uppercase">
-                  Vibrant Community
-                </div>
-                <div class="v-card__text subtitle-1">
-                  This is about some bullshit that i will tlak about later. 
+          
+          <main class="v-content" style="padding: 315px 200px 0px;" 
+            data-booted="true">
+            <div class="v-content__wrap">
+            <section id="features" class="blue lighten-2">
+              <div class="py-3"></div>
+              <div class="container text-center">
+                <h2 class ="display-2 font-weight-bold mb-3">
+                  Portland Python Pollution Features
+                </h2>
+                <div class="row">
+                  <div class="col-md-4 col-12">
+                    <div class="py-12 px-4 v-card v-card--flat v-sheet theme--light blue lighten-4">
+                      <div class="v-card__title justify-center font-weight-black text-uppercase">
+                        Plant Graphs
+                      </div>
+                      <div class="v-card__text subtitle-1">
+                        This is about some bullshit that i will tlak about later. 
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-12">
+                    <div class="py-12 px-4 v-card v-card--flat v-sheet theme--light blue lighten-4">
+                      <div class="v-card__title justify-center font-weight-black text-uppercase">
+                        News
+                      </div>
+                      <div class="v-card__text subtitle-1">
+                        This is about some bullshit that i will tlak about later. 
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-12">
+                    <div class="py-12 px-4 v-card v-card--flat v-sheet theme--light blue lighten-4">
+                      <div class="v-card__title justify-center font-weight-black text-uppercase">
+                        Energy Info
+                      </div>
+                      <div class="v-card__text subtitle-1">
+                        This is about some bullshit that i will tlak about later. 
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
+              <div class="py-3"></div>
+            </section>
             </div>
-            <div class="col-md-4 col-12">
-            </div>
-            <div class="col-md-4 col-12">
-            </div>
-          </div>
+          </main>
+          
         </div>
         <AboutUs> </AboutUs>
       </div>
