@@ -6,6 +6,7 @@ const $ = require('jquery');
 const app = require('../../srv/index.js');
 const contactUsSQL = require('../../srv/javascript/contactUsSQL.js');
 const dbmsPostCatcher = require('../../srv/javascript/dbmsPostCatcher.js');
+var dbms = require('../../srv/javascript/dbms');
 
 async function getDefaultData() {
     return new Promise(async(resolve, reject) => {
@@ -28,7 +29,9 @@ async function getDefaultData() {
             console.log("done adding test value");
             console.log(response.mes);
         });
+        
         var finalTotal;
+
         await $.post(process.env.VUE_APP_ROOT_API + '/dbmsPostCatcher', {string: 'select count(*) as total from ContactUsData;'}, function(response) {
             console.log("post total in testing is ");
             console.log(response.res[0].total);
@@ -54,7 +57,9 @@ describe('contactUsSQL api call', () => {
         server.close();
     });
 
-    test('test contactUsSQL', () => {
-        return expect(getDefaultData()).resolves.toBe(1);
+    test('test contactUsSQL', async () => {
+        const result = await getDefaultData();
+        expect.assertions(1);
+        return expect(result).toBe(1);
     });
 });
