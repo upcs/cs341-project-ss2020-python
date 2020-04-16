@@ -19,7 +19,7 @@ before_deploy:
   -d
 - npm run build
 deploy:
-  cleanup: false
+  skip_cleanup: true
   provider: gae
   keyfile: python-portland-pollution-fdbfcd931162.json
   project: python-portland-pollution
