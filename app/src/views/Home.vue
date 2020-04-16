@@ -3,18 +3,20 @@
     <div class="topnav"></div>
      <div class="container">
       <img id="bg" src="@/assets/images/background.jpeg"/>
-      <img id="logo" src="@/assets/images/logo.png"/>
+      <v-row align="center" justify="center">
+      <v-img id="logo" src="@/assets/images/logo.png"/>
+      </v-row>
       <div class="aboutUs ">
         <div style="height: 93.4vh">
           
-          <main class="v-content" style="padding: 315px 200px 0px;" 
+          <main class="v-content" style="padding: 275px 375px 0px;" 
             data-booted="true">
             <div class="v-content__wrap">
             <section id="features" class="blue lighten-2">
               <div class="py-3"></div>
               <div class="container text-center">
                 <h2 class ="display-2 font-weight-bold mb-3">
-                  Portland Python Pollution Features
+                  Features
                 </h2>
                 <div class="row">
                   <div class="col-md-4 col-12">
@@ -49,7 +51,7 @@
                   </div>
                 </div>
               </div>
-              <div class="py-3"></div>
+              <div class="py-6"></div>
             </section>
             </div>
           </main>
