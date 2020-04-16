@@ -27,9 +27,18 @@ describe('News', () => {
       expect(wrapper.find('#infoCard3').exists()).toBe(true)
       expect(wrapper.find('#pieChart').exists()).toBe(true)
   });
-
-//   test('', () => {
-
+//   it('testing resize handler', () => {
+   
 //   });
+
+  test('testing resize handler', () => {
+    global.innerWidth = 500;
+    wrapper.vm.resizeHandler();
+    expect(wrapper.vm.smallWidth).toBe(true);
+    global.innerWidth = 1500;
+    wrapper.vm.resizeHandler();
+    expect(wrapper.vm.smallWidth).toBe(false);
+    wrapper.destroy();
+  });
 
 });

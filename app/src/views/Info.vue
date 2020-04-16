@@ -108,7 +108,9 @@
 </template>
 
 <script>
+import $ from 'jquery'
 import InfoCard from "@/views/InfoCard.vue"
+window.$ = $;
 //External Citation to the above code. 
 //https://github.com/vuetifyjs/parallax-starter
   export default {
