@@ -9,26 +9,16 @@
 
                 <v-row class="optBorderTop">
                     <h1 class="optTitle"> Location: </h1>
-                    <v-row class="slideContainer">
-
-                        <v-col justify="left" class="mx-0 px-0">
-                            <label style="float:left;margin-left: 10px;"> Distance (mi): </label>
-                            <v-slider v-model="slider"
-                                    class="align-center"
-                                    :max="max"
-                                    :min="min"
-                                    hide-details>
-                                <template v-slot:append>
-                                    <v-text-field v-model="slider"
-                                                class="mt-0 pt-0"
-                                                hide-details
-                                                single-line
-                                                type="number"
-                                                style="width: 75px;"></v-text-field>
-                                </template>
-                            </v-slider>
-                        </v-col>
-                    </v-row>
+                    <v-tooltip right max-width=500>
+                        <template v-slot:activator="{ on }">
+                            <v-icon class="pl-5" :dense=true v-on="on">mdi-information-outline</v-icon>
+                        </template>
+                        <span>
+                            Enter a city's name to set an origin for the filter.
+                            Then, specify a radius around the city to get a valid collection of
+                            power plants.
+                        </span>
+                    </v-tooltip>
 
                     <v-row class="slideContainer">
                         <v-text-field label="City 1"
@@ -63,10 +53,39 @@
                             <error id="city2ErrDuplicate" message="Duplicate City"> </error>
                         </div>
                     </v-row>
+
+                    <v-row class="slideContainer">
+
+                        <v-col justify="left" class="mx-0 px-0">
+                            <label style="float:left;margin-left: 10px;"> Distance (mi): </label>
+                            <v-slider v-model="slider"
+                                    class="align-center"
+                                    :max="max"
+                                    :min="min"
+                                    hide-details>
+                                <template v-slot:append>
+                                    <v-text-field v-model="slider"
+                                                class="mt-0 pt-0"
+                                                hide-details
+                                                single-line
+                                                type="number"
+                                                style="width: 75px;"></v-text-field>
+                                </template>
+                            </v-slider>
+                        </v-col>
+                    </v-row>
                 </v-row>
 
                 <v-row class="optBorderTop">
                     <h1 class="optTitle">Power Plants: </h1>
+                    <v-tooltip right max-width=500>
+                        <template v-slot:activator="{ on }">
+                            <v-icon class="pl-5" :dense=true v-on="on">mdi-information-outline</v-icon>
+                        </template>
+                        <span>
+                            Select which types of power plants to display in the graph.
+                        </span>
+                    </v-tooltip>
                     <v-row class="slideContainer">
                         <v-select id="plantType"
                                   :items="items"
@@ -84,22 +103,23 @@
 
                 <v-row class="optBorderTop">
                     <h1 class="optTitle"> Metrics: </h1>
+                    <v-tooltip right max-width=500>
+                        <template v-slot:activator="{ on }">
+                            <v-icon class="pl-5" :dense=true v-on="on">mdi-information-outline</v-icon>
+                        </template>
+                        <span>
+                            Choose which measurements to display on the graph. This is the y-axis.
+                        </span>
+                    </v-tooltip>
+
                     <v-row class="slideContainer">
                         <v-select id="dataParameter"
                                   :items="dataParameters"
                                   v-model="selectedData"
-                                  label="Parameter 1"></v-select>
-                        <div v-if="errors.param1 === true">
+                                  label="Parameters"
+                                  :multiple="true"></v-select>
+                        <div v-if="errors.params === true">
                             <error id="param1Err" message="Please Select at least 1 Metric"> </error>
-                        </div>
-                    </v-row>
-                    <v-row v-if="selectedData != null">
-                        <v-select id="dataParameter2"
-                                  :items="dataParameters"
-                                  v-model="selectedData2"
-                                  label="Parameter 2"></v-select>
-                        <div v-if="errors.param2 === true">
-                            <error id="param2Err" message="Duplicate Metric"> </error>
                         </div>
                     </v-row>
                 </v-row>
@@ -108,6 +128,15 @@
 
                 <v-row class="optBorderTop">
                     <h1 class="optTitle"> X Axis: </h1>
+                    <v-tooltip right max-width=500>
+                        <template v-slot:activator="{ on }">
+                            <v-icon class="pl-5" :dense=true v-on="on">mdi-information-outline</v-icon>
+                        </template>
+                        <span>
+                            Sort the x-axis by plant type or by city. When sorting by plant type, each bar will represent
+                            a type of power plant, while each bar will represent a city when sorting by city.
+                        </span>
+                    </v-tooltip>
                     <v-row class="slideContainer">
                         <v-radio-group id="sortBy" v-model="sortBy" :mandatory="true">
                             <v-radio id="sortPlant" name="sortBy" label="Plant" value="plant"></v-radio>
@@ -134,6 +163,51 @@
                     :options="chartOptions"/>
             </div>
         </v-col>
+
+        <v-dialog
+            v-model="noDataDialog"
+            max-width="500"
+        >
+            <v-card id="missingResults">
+                <v-card-title class="headline">Missing Results</v-card-title>
+
+                <v-card-text>
+                    The following search parameters returned no data with the given filter.
+                    Either the power plant doesn't record a selected metric or no power plants
+                    of a chosen type are within the filter.
+                    <v-simple-table>
+                        <template v-slot:default>
+                            <thead>
+                                <tr>
+                                    <th class="text-left">City</th>
+                                    <th class="text-left">Plant Type</th>
+                                    <th class="text-left">Metric</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="message in noDataMessage" v-bind:key="message">
+                                    <th v-for="word in message" v-bind:key="word">
+                                        {{ word }}
+                                    </th>
+                                </tr>
+                            </tbody>
+                        </template>
+                    </v-simple-table>
+                </v-card-text>
+
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+
+                    <v-btn
+                        color="green darken-1"
+                        text
+                        @click="noDataDialog = false"
+                    >
+                        Ok
+                    </v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
     </v-row>
 </template>
 
@@ -164,8 +238,7 @@
                 'city2NoResults': false,
                 'city2Duplicate': false,
                 'plant': false,
-                'param1': false,
-                'param2': false
+                'params': false,
             },
             items: [
                 'Nuclear',
@@ -178,8 +251,7 @@
                 'CO2 Emission Rate (lb/MWh)',
                 'Annual Net Power (MWh)'
             ],
-            selectedData: null,
-            selectedData2: null,
+            selectedData: [],
             sortBy: 'radio-1',
             loadChart: false,
             chart_data: null,
@@ -192,6 +264,8 @@
                 }
             },
             colors: ["#00b3ff", "#20b2aa", "#f0a122", "#8638ba", "#fff000", "#b40049"],
+            noDataDialog: false,
+            noDataMessage: []
         }
     },
     methods: {
@@ -510,8 +584,7 @@
             this.errors.city1Empty = (this.city == null || this.city == "") ? true : false;
             this.errors.city2Empty = ((this.city2 == null || this.city2 == "") && this.secondCity == true) ? true : false;
             this.errors.plant = (this.plant.length == 0) ? true : false;
-            this.errors.param1 = (this.selectedData == null) ? true : false;
-            this.errors.param2 = (this.selectedData == this.selectedData2) ? true : false;
+            this.errors.params = (this.selectedData.length == 0) ? true : false;
 
             if (!this.errors.city1Empty && !this.errors.city2Empty && !this.errors.plant) {
                 console.log("Querying geocoding");
@@ -523,20 +596,30 @@
               
                 // do nothing on empty results
                 if (latsAndLongs.length < 1) { return; }
-                
-                var metrics = [];
-
-                if (chart.selectedData != null) {
-                    metrics.push(chart.selectedData);
-                }
-
-                if (chart.selectedData2 != null && !metrics.includes(chart.selectedData2)) {
-                    metrics.push(chart.selectedData2);
-                }
 
                 console.log("Querying power plant database")
-                var queriedData = await chart.sqlMidwareCall(latsAndLongs, metrics);
+                var queriedData = await chart.sqlMidwareCall(latsAndLongs, chart.selectedData);
                 console.log(queriedData);
+
+                // check for missing data
+                chart.noDataMessage = [];
+                for (let c in queriedData.cities) {
+                    let myCity = queriedData.cities[c];
+                    console.log(myCity);
+                    for (let m = 0; m < queriedData.metrics.length; m++) {
+                        for (let i = 0; i < queriedData.labels.length; i++) {                            
+                            if (myCity[queriedData.metrics[m]][i] == null) {
+                                chart.noDataMessage.push([myCity.name, queriedData.labels[i], queriedData.metrics[m]]);
+                            }
+                        }
+                    }
+                }
+
+                if (chart.noDataMessage != "") {
+                    chart.noDataDialog = true;
+                    console.log("Missing Data Alert:")
+                    console.log(chart.noDataMessage);
+                }
 
                 console.log("Configurationg Y-Axis")
                 chart.configureYAxis(queriedData);
