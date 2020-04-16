@@ -17,12 +17,15 @@
     </div>
     <v-row no-gutters>
       <v-row>
-        <InfoCard title = "Per Capita Energy Consumption"
+        <InfoCard 
+                  id = "infoCard1"
+                  title = "Per Capita Energy Consumption"
                   mainText = "Here we see trends in per capita energy use from 1960-2014; this is inclusive of all dimensions of energy (electricity plus transport and heating), not exclusively electricity (with energy normalised kilowatt-hour equivalents per year). There are several important points to note. Firstly, global average per capita energy consumption has been consistently increasing; between 1970-2014, average consumption has increased by approximately 45 percent."
                   imgSrc = "https://ourworldindata.org/exports/energy-use-per-capita_v6_850x600.svg">
         </InfoCard>
 
         <InfoCard v-if="!smallWidth"
+                  id = "infoCard2"
                   title = "How Much Energy Does the World Consume?"
                   mainText = "Let’s first take a look at how global energy production- both in terms of quantity and source- have changed over the long-term. In the visualisation we have plotted global energy consumption from 1800 through to 2018. Note that you can use the absolute/relative toggle on the chart to view these in absolute numbers or as the percentage of the global total."
                   imgSrc = "https://ourworldindata.org/exports/global-primary-energy_v9_850x600.svg">
@@ -31,6 +34,7 @@
 
       <v-row>
         <InfoCard 
+                  id = "infoCard3"
                   title = "Global Energy Consumption by Source"
                   mainText = "Primary energy consumption is often called the ‘direct method’ as it shows energy statistics exactly in their raw form: how much coal, oil and gas energy are consumed as inputs to the energy system.
                                 But, this approach does not account for the inefficiencies that fossil fuels incur when converted into final energy. We therefore show values corrected by what is termed the ‘substitution method’ – this gives a better approximation of final energy demand, and is often viewed as a more appropriate way to compare the shares of different energy sources."
@@ -42,6 +46,7 @@
             class="mx-auto div-container"
           >
           <v-img
+            id="pieChart"
             height="400px"
             width="600px"
             src="@/assets/images/chart.png"
@@ -64,7 +69,8 @@
       </v-row>
       
       <v-row v-if="smallWidth">
-          <InfoCard title = "How Much Energy Does the World Consume?"
+          <InfoCard 
+                  title = "How Much Energy Does the World Consume?"
                   mainText = "Let’s first take a look at how global energy production- both in terms of quantity and source- have changed over the long-term. In the visualisation we have plotted global energy consumption from 1800 through to 2018. Note that you can use the absolute/relative toggle on the chart to view these in absolute numbers or as the percentage of the global total."
                   imgSrc = "https://ourworldindata.org/exports/global-primary-energy_v9_850x600.svg">
         </InfoCard>

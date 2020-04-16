@@ -21,7 +21,11 @@ describe('News', () => {
     });  
 
   it('check if information renders', () => {
-
+      expect(wrapper.find('#info').exists()).toBe(true)
+      expect(wrapper.find('#infoCard1').exists()).toBe(true)
+      expect(wrapper.find('#infoCard2').exists()).toBe(true)
+      expect(wrapper.find('#infoCard3').exists()).toBe(true)
+      expect(wrapper.find('#pieChart').exists()).toBe(true)
   });
 
 //   test('', () => {
