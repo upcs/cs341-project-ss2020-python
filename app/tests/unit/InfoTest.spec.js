@@ -20,12 +20,18 @@ describe('News', () => {
         });
     });  
 
-  it('check if information renders', () => {
-
-  });
-
-//   test('', () => {
-
+//   it('testing resize handler', () => {
+   
 //   });
+
+  test('testing resize handler', () => {
+    global.innerWidth = 500;
+    wrapper.vm.resizeHandler();
+    expect(wrapper.vm.smallWidth).toBe(true);
+    global.innerWidth = 1500;
+    wrapper.vm.resizeHandler();
+    expect(wrapper.vm.smallWidth).toBe(false);
+    wrapper.destroy();
+  });
 
 });

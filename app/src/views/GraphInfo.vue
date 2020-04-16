@@ -537,8 +537,8 @@
                                     case 1:
                                         chart.errors.city2NoResults = false;
                                         break;
-                                    default:
-                                        console.error("Unexpected input");
+                                    // default:
+                                    //     console.error("Unexpected input");
                                 }
 
                                 var thisLat = data[0].lat;
@@ -558,8 +558,8 @@
                                     case 1:
                                         chart.errors.city2NoResults = true;
                                         break;
-                                    default:
-                                        console.error("Unexpected input");
+                                    // default:
+                                    //     console.error("Unexpected input");
                                 }
                             }
                         });
@@ -634,8 +634,8 @@
                     chart.formatChartDataByPlant(queriedData);
                     break;
                 
-                default:
-                    console.log("Unexpected sorting case")
+                // default:
+                //     console.log("Unexpected sorting case")
                 }
 
                 console.log(this.chart_data);
