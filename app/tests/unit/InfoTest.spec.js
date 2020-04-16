@@ -5,7 +5,7 @@ import Vue from 'vue'
 
 
 
-describe('News', () => {
+describe('Info', () => {
     let wrapper;
     beforeEach(() => { 
         Vue.use(vuetify)
