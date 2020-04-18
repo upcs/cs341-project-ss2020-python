@@ -644,8 +644,6 @@
         },
     }
   }
-
-    
 </script>
 
 <style scoped> 
@@ -658,7 +656,7 @@
 }
 
 .options {
-    height: 86.3vh;
+    min-width: 200px;
     width: 25%;
     float: left;
     border-right: 2px solid black;
@@ -671,19 +669,8 @@
 }
 
 .main {
-    height: 86.3vh;
     width: 100%;
     float: right;
-}
-
-optTitle {
-    text-align: left;
-    margin-left: 5px;
-    width: 100%;
-}
-
-sliderContainer {
-    padding-left: 5px;
 }
 
 .optBorderTop {
