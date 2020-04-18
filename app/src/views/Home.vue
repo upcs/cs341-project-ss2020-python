@@ -48,6 +48,9 @@
                     </div>
                   </div>
                 </div>
+                <h2 class ="display-1 font-weight-bold mb-3">
+                  Read Our About Us Below!
+                </h2>
               </div>
               <div class="py-6"></div>
             </section>

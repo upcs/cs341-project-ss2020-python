@@ -21,7 +21,7 @@
                       <v-btn text id="header" v-on="on">Plant Graphs</v-btn>
                     </router-link>
                   </template>
-                  <span>Learn about your cities energy use!</span>
+                  <span>Learn about your cities energy use</span>
                 </v-tooltip>  
                <v-tooltip bottom>
                 <template v-slot:activator="{ on }">
