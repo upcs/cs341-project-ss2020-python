@@ -31,7 +31,7 @@ module.exports = {
   collectCoverageFrom: ['**/*.{vue,js}', '!**/node_modules/**', '!<rootDir>/dist/**',
   '!<rootDir>/src/plugins/**', '!<rootDir>/tests/unit/**', '!**/*.config.js', '!<rootDir>/coverage/**',
   '!<rootDir>/dist/**', '!<rootDir>/srv/public/**', '!<rootDir>/src/main.js', '!<rootDir>/srv/index.js',
-  '!<rootDir>/src/router/index.js', '!<rootDir>/src/App.vue',
+  '!<rootDir>/src/router/index.js',
   ],
   coverageReporters: ['lcov', 'text-summary'],
 }
