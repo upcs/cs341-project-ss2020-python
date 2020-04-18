@@ -26,7 +26,7 @@
               </router-link>
             </v-col>
 
-            <v-col cols="2" class="pt-7">
+            <v-col cols="auto" class="pt-7">
               <div 
                 class="side"
                 @click="drawer = !drawer"
@@ -45,16 +45,26 @@
         </v-container>
       </v-app-bar>
       <v-navigation-drawer v-model="drawer" color="primary" right="right" app class="indigo">
-        <p class="title white--text">Results:</p>
-        <div>
-          
-          <div class="subtitle-2 white--text">
-            <div v-for="book in results" :key="book.name" class="rounded-lg bg-blue text-white p-4 m-4 flex text-left">
-              <div class="w-1/4">{{ book.name }}</div>
-              <div class="ml-4 w-3/4">{{ book.description }}</div>
+        <v-container>
+          <v-row class>
+            <v-col cols=auto class="justify-start"><p class="title white--text">Results:</p></v-col>
+            <v-spacer></v-spacer>
+            <v-col cols=auto class="justify-end">
+              <v-btn icon @click="drawer = !drawer">
+                <v-icon color="white">mdi-close-circle-outline</v-icon>
+              </v-btn>
+            </v-col>
+          </v-row>
+          <div>
+            
+            <div class="subtitle-2 white--text">
+              <div v-for="book in results" :key="book.name" class="rounded-lg bg-blue text-white p-4 m-4 flex text-left">
+                <div class="w-1/4">{{ book.name }}</div>
+                <div class="ml-4 w-3/4">{{ book.description }}</div>
+              </div>
             </div>
           </div>
-        </div>
+        </v-container>
       </v-navigation-drawer>
 
       <v-content>
