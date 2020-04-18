@@ -4,9 +4,14 @@
         <v-container fluid>
           <v-row justify="center" align="center">
             <v-col cols="2">
-              <router-link to="/">
-                <v-img src="@/assets/images/logo_button.jpeg" max-width="250" max-height="50"></v-img>
-              </router-link>
+              <v-tooltip bottom>
+                <template v-slot:activator="{ on }">
+                  <router-link to="/">
+                    <v-img src="@/assets/images/logo_button.jpeg" max-width="250" max-height="50"  v-on="on"></v-img>
+                  </router-link>
+                </template>
+                <span>Home</span>
+              </v-tooltip> 
             </v-col>
             <v-col cols="7">
               <div class="text-center d-flex align-center">
@@ -18,18 +23,30 @@
                   </template>
                   <span>Learn about your cities energy use!</span>
                 </v-tooltip>  
-
-              <router-link to="/news">
-                <v-btn text id="header">News</v-btn>
-              </router-link>
-
-              <router-link to="/info">
-                <v-btn text id="header">Energy Info</v-btn>
-              </router-link>
-
-              <router-link to="/contact">
-                <v-btn text id="header">Contact Us</v-btn>
-              </router-link>
+               <v-tooltip bottom>
+                <template v-slot:activator="{ on }">
+                  <router-link to="/news">
+                    <v-btn text id="header" v-on="on">News</v-btn>
+                  </router-link>
+                </template>
+                <span>Read about the latest Portland energy news</span>
+              </v-tooltip> 
+              <v-tooltip bottom>
+                <template v-slot:activator="{ on }">
+                  <router-link to="/info">
+                    <v-btn text id="header" v-on="on">Energy Info</v-btn>
+                  </router-link>
+                </template>
+                <span>Understand the World's Energy Use</span>
+              </v-tooltip>  
+              <v-tooltip bottom>
+                <template v-slot:activator="{ on }">
+                  <router-link to="/contact">
+                    <v-btn text id="header" v-on="on">Contact Us</v-btn>
+                  </router-link>
+                </template>
+                <span>Leave us a message here</span>
+              </v-tooltip> 
               </div>
             </v-col>
 
