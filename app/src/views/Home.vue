@@ -9,11 +9,11 @@
           
           <main class="v-content" style="padding: 275px 375px 0px;" 
             data-booted="true">
-            <div class="v-content__wrap">
+            <div class="features-border v-content__wrap">
             <section id="features" class="blue lighten-2">
               <div class="py-3"></div>
               <div class="container text-center">
-                <h2 class ="display-2 font-weight-bold mb-3">
+                <h2 class ="display-2 white--text font-weight-bold mb-3">
                   Features
                 </h2>
                 <div class="row">
@@ -23,31 +23,34 @@
                         Plant Graphs
                       </div>
                       <div class="v-card__text subtitle-1">
-                        This is about some bullshit that i will tlak about later. 
+                        Analyze different nuclear, coal, hydroelectric, natural gas, and coal usage by major cities across America 
                       </div>
                     </div>
                   </div>
                   <div class="col-md-4 col-12">
                     <div class="py-12 px-4 v-card v-card--flat v-sheet theme--light blue lighten-4">
-                      <div class="v-card__title justify-center font-weight-black text-uppercase">
+                      <div class="v-card__title white--text justify-center font-weight-black text-uppercase">
                         News
                       </div>
                       <div class="v-card__text subtitle-1">
-                        This is about some bullshit that i will tlak about later. 
+                        Learn about the latest updates to Portland's energy use through local article publications
                       </div>
                     </div>
                   </div>
                   <div class="col-md-4 col-12">
                     <div class="py-12 px-4 v-card v-card--flat v-sheet theme--light blue lighten-4">
-                      <div class="v-card__title justify-center font-weight-black text-uppercase">
+                      <div class="v-card__title white--text justify-center font-weight-black text-uppercase">
                         Energy Info
                       </div>
                       <div class="v-card__text subtitle-1">
-                        This is about some bullshit that i will tlak about later. 
+                        Read about the world's energy use in comparison to understand the importance of renewable energy
                       </div>
                     </div>
                   </div>
                 </div>
+                <h2 class ="display-1 white--text font-weight-bold mb-3">
+                  Read Our About Us Below!
+                </h2>
               </div>
               <div class="py-6"></div>
             </section>
@@ -115,5 +118,11 @@ body {
    width: 100%;
    left: 0;
   top: 0;
+ }
+
+ .features-border {
+   border: solid black 2px;
+   box-shadow: -5px 5px #8888;
+   border-radius: 3px;
  }
 </style>
