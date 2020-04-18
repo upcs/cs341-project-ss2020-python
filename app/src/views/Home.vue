@@ -13,7 +13,7 @@
             <section id="features" class="blue lighten-2">
               <div class="py-3"></div>
               <div class="container text-center">
-                <h2 class ="display-2 white--text font-weight-bold mb-3">
+                <h2 class ="display-2 font-weight-bold mb-3">
                   Features
                 </h2>
                 <div class="row">
@@ -29,7 +29,7 @@
                   </div>
                   <div class="col-md-4 col-12">
                     <div class="py-12 px-4 v-card v-card--flat v-sheet theme--light blue lighten-4">
-                      <div class="v-card__title white--text justify-center font-weight-black text-uppercase">
+                      <div class="v-card__title justify-center font-weight-black text-uppercase">
                         News
                       </div>
                       <div class="v-card__text subtitle-1">
@@ -39,7 +39,7 @@
                   </div>
                   <div class="col-md-4 col-12">
                     <div class="py-12 px-4 v-card v-card--flat v-sheet theme--light blue lighten-4">
-                      <div class="v-card__title white--text justify-center font-weight-black text-uppercase">
+                      <div class="v-card__title justify-center font-weight-black text-uppercase">
                         Energy Info
                       </div>
                       <div class="v-card__text subtitle-1">

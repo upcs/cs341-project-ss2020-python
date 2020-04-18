@@ -15,6 +15,7 @@
                             <div id="ContactUs" class="font-weight-light" style="font-size: 30px;">Thank you!</div>
                             <div class="subtitle-1 font-weight-light">Your form has been submitted.</div>
                             
+                
                           
                         </div>
                       </div>
@@ -25,11 +26,11 @@
             </section>
             <section class="container" id="subscribe" style="padding: 0px 200px 0px;">
               <div class="pa-3 v-card v-card--flat v-sheet v-sheet--title theme--light"
-                style="background-color: rgba(203, 170, 92, .95); border-color: rgba(203, 170, 92, .95);">
+                style="background-color: rgba(7, 150, 245, 1.0); border-color: white;">
                 <div class="container grid-list-x1 pa-0">
                   <div class="layout wrap">
                     <div class="flex xs12 md6 offset-md1">
-                      <h2 class="subheading text-uppercase font-weight-medium mb-3">
+                      <h2 class="subheading white--text text-uppercase font-weight-medium mb-3">
                         Contact
                       </h2>
                       <div role="list" class="v-list transparent theme--light">
@@ -39,13 +40,13 @@
                               <div class="v-avatar primary" style="height: 40px;
                               width: 40px;">
                                 <i aria-hidden="true" class="v-icon elevation-4
-                                mdi mdi-email-outline theme--dark">
+                                mdi mdi-email-outline theme--light">
                                   
                                 </i>
                               </div>
                             </div>
-                            <div class="v-list__tile__title">EMAIL</div>
-                            <div class="v-list__tile__sub-title">
+                            <div class="v-list__tile__title white--text">EMAIL</div>
+                            <div class="v-list__tile__sub-title white--text">
                               PortlandPythonPollution@gmail.com</div>
 
                           </div>
@@ -56,13 +57,13 @@
                               <div class="v-avatar primary" style="height: 40px;
                               width: 40px;">
                                 <i aria-hidden="true" class="v-icon elevation-4
-                                mdi mdi-map-marker theme--dark">
+                                mdi mdi-map-marker theme--light">
                                   
                                 </i>
                               </div>
                             </div>
-                            <div class="v-list__tile__title">ADDRESS</div>
-                            <div class="v-list__tile__sub-title">
+                            <div class="v-list__tile__title white--text">ADDRESS</div>
+                            <div class="v-list__tile__sub-title white--text">
                               ISLAND OF NUNYA</div>
 
                           </div>
@@ -73,12 +74,12 @@
                               <div class="v-avatar primary" style="height: 40px;
                               width: 40px;">
                                 <i aria-hidden="true" class="v-icon elevation-4
-                                mdi mdi-phone theme--dark">
+                                mdi mdi-phone theme--light">
                                 </i>
                               </div>
                             </div>
-                            <div class="v-list__tile__title">PHONE</div>
-                            <div class="v-list__tile__sub-title">
+                            <div class="v-list__tile__title white--text">PHONE</div>
+                            <div class="v-list__tile__sub-title white--text">
                               (123) 456-7890</div>
 
                           </div>
