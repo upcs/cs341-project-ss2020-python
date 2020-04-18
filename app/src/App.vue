@@ -2,7 +2,7 @@
     <v-app>
       <v-app-bar app color="primary">
         <v-container fluid>
-          <v-row justify="center" align="center">
+          <v-row id="titleBar" justify="center" align="center">
             <v-col cols="2">
               <router-link to="/">
                 <v-img src="@/assets/images/logo_button.jpeg" max-width="250" max-height="50"></v-img>
@@ -29,6 +29,7 @@
             <v-col cols="auto" class="pt-7">
               <div 
                 class="side"
+                id="fuseBox"
                 @click="drawer = !drawer"
               >
                 <VueFuse
@@ -44,13 +45,13 @@
           </v-row>
         </v-container>
       </v-app-bar>
-      <v-navigation-drawer v-model="drawer" color="primary" right="right" app class="indigo">
+      <v-navigation-drawer id="searchDrawer" v-model="drawer" color="primary" right="right" app class="indigo">
         <v-container>
           <v-row class>
             <v-col cols=auto class="justify-start"><p class="title white--text">Results:</p></v-col>
             <v-spacer></v-spacer>
             <v-col cols=auto class="justify-end">
-              <v-btn icon @click="drawer = !drawer">
+              <v-btn id="searchCloseBtn" icon @click="drawer = !drawer">
                 <v-icon color="white">mdi-close-circle-outline</v-icon>
               </v-btn>
             </v-col>
@@ -78,7 +79,7 @@
 <script>
 import VueFuse from '@/components/VueFuse.vue'
 export default {
-  name: 'Test',
+  name: 'App',
   components: {
     VueFuse
   },
