@@ -3,9 +3,7 @@
     <div class="topnav"></div>
      <div class="container">
       <img id="bg" src="@/assets/images/background.jpeg"/>
-      <v-row align="center" justify="center">
-      <v-img id="logo" src="@/assets/images/logo.png"/>
-      </v-row>
+      <img id="logo" src="@/assets/images/logo.png"/>
       <div class="aboutUs ">
         <div style="height: 93.4vh">
           
