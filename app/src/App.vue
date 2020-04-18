@@ -4,40 +4,71 @@
         <v-container fluid>
           <v-row justify="center" align="center">
             <v-col cols="2">
-              <router-link to="/">
-                <v-img src="@/assets/images/logo_button.jpeg" max-width="250" max-height="50"></v-img>
-              </router-link>
+              <v-tooltip bottom>
+                <template v-slot:activator="{ on }">
+                  <router-link to="/">
+                    <v-img src="@/assets/images/logo_button.jpeg" max-width="250" max-height="50"  v-on="on"></v-img>
+                  </router-link>
+                </template>
+                <span>Home</span>
+              </v-tooltip> 
             </v-col>
             <v-col cols="7">
-              <router-link to="/graph">
-                <v-btn text id="header">Plant Graphs</v-btn>
-              </router-link>
-
-              <router-link to="/news">
-                <v-btn text id="header">News</v-btn>
-              </router-link>
-
-              <router-link to="/info">
-                <v-btn text id="header">Energy Info</v-btn>
-              </router-link>
-
-              <router-link to="/contact">
-                <v-btn text id="header">Contact Us</v-btn>
-              </router-link>
+              <div class="text-center d-flex align-center">
+                <v-tooltip bottom>
+                  <template v-slot:activator="{ on }">
+                    <router-link to="/graph">
+                      <v-btn text id="header" v-on="on">Plant Graphs</v-btn>
+                    </router-link>
+                  </template>
+                  <span>Learn about your cities energy use!</span>
+                </v-tooltip>  
+               <v-tooltip bottom>
+                <template v-slot:activator="{ on }">
+                  <router-link to="/news">
+                    <v-btn text id="header" v-on="on">News</v-btn>
+                  </router-link>
+                </template>
+                <span>Read about the latest Portland energy news</span>
+              </v-tooltip> 
+              <v-tooltip bottom>
+                <template v-slot:activator="{ on }">
+                  <router-link to="/info">
+                    <v-btn text id="header" v-on="on">Energy Info</v-btn>
+                  </router-link>
+                </template>
+                <span>Understand the World's Energy Use</span>
+              </v-tooltip>  
+              <v-tooltip bottom>
+                <template v-slot:activator="{ on }">
+                  <router-link to="/contact">
+                    <v-btn text id="header" v-on="on">Contact Us</v-btn>
+                  </router-link>
+                </template>
+                <span>Leave us a message here</span>
+              </v-tooltip> 
+              </div>
             </v-col>
 
             <v-col cols="2" class="pt-7">
               <div 
-                class="side"
+                class="side text-center d-flex align-center"
                 @click="drawer = !drawer"
               >
-                <VueFuse
-                  placeholder="Search for info on Energy"
-                  :list="books"
-                  :keys="['name', 'description']"
-                  class="w-64 text-center h-8 border rounded-lg center"
-                  @fuseResultsUpdated=updateResults
-                />
+                <v-tooltip bottom>
+                  <template v-slot:activator="{ on }">
+                    <div v-on="on">
+                    <VueFuse
+                      placeholder="Search for info on Energy"
+                      :list="books"
+                      :keys="['name', 'description']"
+                      class="w-64 text-center h-8 border rounded-lg center"
+                      @fuseResultsUpdated=updateResults
+                    />
+                    </div>
+                  </template>
+                  <span>Click to Toggle Search Results</span>
+                </v-tooltip>
               </div>
             </v-col>   
             <v-spacer></v-spacer>
