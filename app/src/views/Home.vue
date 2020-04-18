@@ -9,7 +9,7 @@
           
           <main class="v-content" style="padding: 275px 375px 0px;" 
             data-booted="true">
-            <div class="v-content__wrap">
+            <div class="features-border v-content__wrap">
             <section id="features" class="blue lighten-2">
               <div class="py-3"></div>
               <div class="container text-center">
@@ -118,5 +118,11 @@ body {
    width: 100%;
    left: 0;
   top: 0;
+ }
+
+ .features-border {
+   border: solid black 2px;
+   box-shadow: -5px 5px #8888;
+   border-radius: 3px;
  }
 </style>
