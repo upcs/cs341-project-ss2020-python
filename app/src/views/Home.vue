@@ -23,7 +23,7 @@
                         Plant Graphs
                       </div>
                       <div class="v-card__text subtitle-1">
-                        This is about some bullshit that i will tlak about later. 
+                        Analyze different nuclear, coal, hydroelectric, natural gas, and coal usage by major cities across America 
                       </div>
                     </div>
                   </div>
@@ -33,7 +33,7 @@
                         News
                       </div>
                       <div class="v-card__text subtitle-1">
-                        This is about some bullshit that i will tlak about later. 
+                        Learn about the latest updates to Portland's energy use through local article publications
                       </div>
                     </div>
                   </div>
@@ -43,7 +43,7 @@
                         Energy Info
                       </div>
                       <div class="v-card__text subtitle-1">
-                        This is about some bullshit that i will tlak about later. 
+                        Read about the world's energy use in comparison to understand the importance of renewable energy
                       </div>
                     </div>
                   </div>
