@@ -36,6 +36,29 @@
 - Travis-CI automatically deploys to Google Cloud on a sucessful master branch build.
 
 
+## Sprint 5
+
+### Runtime
+
+### Performance Across Web Browsers
+- In our last sprint, it was noted that our application does not display correctly on all browsers. Most notably was its non-functional performance on mobile browsers. Since performance on mobile browsers is not a high priority for our project, we addressed this issue by forcing the website to have a specified size, allowing all the website's components to be visible and available for interaction. The downside is that buttons and text are small, but zooming in makes everything usable.
+
+### Test Coverage
+
+### Quality Attributes
+
+### Security
+- Our website requires security for the protection of our database credentials and the encryption of user-submitted information. To protect database credentials, we placed our password in an encrypted JSON on our repository, which the deployment server decrypts while building using secret environment variables. To encrypt user-submitted information, we use a JS library that encrypts the user's information before sending it to the database. The key used for encryption is also saved in our encrypted passwords JSON.
+
+### Fixes
+
+#### 73: Graph input is unintuitive
+- There wasn't sufficient guidance to effectively navigate the 'plant graphs' page's inputs, which we addressed in this sprint by adding tool tips next to the inputs which explain their effect.
+
+#### 70: 'Contact Us' form submission
+- The 'Contact Us' page kept all the input fields filled with user information after a form was submitted, making it less obvious that a form had been submitted and making it more laborious to submit a new form. This was addressed by having the page display a confirmation card in place of the filled form after submission.
+
+
 ## Sprint 4
 
 ### Story Acceptance Tests
