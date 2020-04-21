@@ -1,4 +1,8 @@
 <template>
+  <div class="background">
+    <div class="topnav"></div>
+    <div class="container">
+    <img id="bg" src="@/assets/images/background.jpeg"/>
     <div class="v-content__wrap">
       <section class="container container--fluid" id="user-profile">
         <div class="container fill-height fluid grid-list-x1">
@@ -115,7 +119,10 @@
           </div>
         </div>
       </section>
+    
     </div>
+    </div>
+  </div>
 </template>
 
 <style scoped>

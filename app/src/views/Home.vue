@@ -6,6 +6,60 @@
       <img id="logo" src="@/assets/images/logo.png"/>
       <div class="aboutUs ">
         <div style="height: 93.4vh">
+          
+          <main class="v-content" style="padding: 275px 375px 0px;" 
+            data-booted="true">
+            <div class="features-border v-content__wrap">
+            <section id="features" class="blue lighten-2">
+              <div class="py-3"></div>
+              <div class="container text-center">
+                <h2 class ="display-2 font-weight-bold mb-3">
+                  Features
+                </h2>
+                <div class="row">
+                  <div class="col-md-4 col-12">
+                    <div class="py-12 px-4 v-card v-card--flat v-sheet theme--light blue lighten-4">
+                      <img src="@/assets/images/bar.png" contain height="50px" width="50px"/>
+                      <div class="v-card__title justify-center font-weight-black text-uppercase">
+                        Plant Graphs
+                      </div>
+                      <div class="v-card__text subtitle-1">
+                        Analyze different nuclear, coal, hydroelectric, natural gas, and coal usage by major cities across America 
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-12">
+                    <div class="py-12 px-4 v-card v-card--flat v-sheet theme--light blue lighten-4">
+                      <img src="@/assets/images/news4.png" contain height="50px" width="50px"/>
+                      <div class="v-card__title justify-center font-weight-black text-uppercase">
+                        News
+                      </div>
+                      <div class="v-card__text subtitle-1">
+                        Learn about the latest updates to Portland's energy use through local article publications
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-12">
+                    <div class="py-12 px-4 v-card v-card--flat v-sheet theme--light blue lighten-4">
+                      <img src="@/assets/images/energy.png" contain height="50px" width="50px"/>
+                      <div class="v-card__title justify-center font-weight-black text-uppercase">
+                        Energy Info
+                      </div>
+                      <div class="v-card__text subtitle-1">
+                        Read about the world's energy use in comparison to understand the importance of renewable energy
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <h2 class ="display-1 white--text font-weight-bold mb-3">
+                  Read Our About Us Below!
+                </h2>
+              </div>
+              <div class="py-6"></div>
+            </section>
+            </div>
+          </main>
+          
         </div>
         <AboutUs> </AboutUs>
       </div>
@@ -67,5 +121,11 @@ body {
    width: 100%;
    left: 0;
   top: 0;
+ }
+
+ .features-border {
+   border: solid black 2px;
+   box-shadow: -5px 5px #8888;
+   border-radius: 3px;
  }
 </style>
