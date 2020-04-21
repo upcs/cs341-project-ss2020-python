@@ -52,12 +52,17 @@
 
 ### Fixes
 
-#### 73: Graph input is unintuitive
-- There wasn't sufficient guidance to effectively navigate the 'plant graphs' page's inputs, which we addressed in this sprint by adding tool tips next to the inputs which explain their effect.
+#### 60: Can't see 'Plant Graphs' tab on mobile
+- Due to bad scaling, the 'Plant Graphs' tab was not accessible from any page other than the home page, reducing the navigability of our website on mobile browsers. This was addressed by forcing a page size onto mobile browsers, which made all the site's components accessible with the tradeoff that they were smaller.
+
+#### 61: Same color bars on bar graph
+- With certain parameters, the bar graph displayed on the 'Plant Graphs' page would have ambiguity due to repeated colors across bars. This was addressed by darkening any bars that would otherwise receive an ambiguously repeated color.
 
 #### 70: 'Contact Us' form submission
 - The 'Contact Us' page kept all the input fields filled with user information after a form was submitted, making it less obvious that a form had been submitted and making it more laborious to submit a new form. This was addressed by having the page display a confirmation card in place of the filled form after submission.
 
+#### 73: Graph input is unintuitive
+- There wasn't sufficient guidance to effectively navigate the 'plant graphs' page's inputs, which we addressed in this sprint by adding tool tips next to the inputs which explain their effect.
 
 ## Sprint 4
 
