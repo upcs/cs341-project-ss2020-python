@@ -150,7 +150,7 @@
             </form>
 
             <v-row class="optBorderTop py-8" justify="center">
-                <v-btn type="submit" v-on:click="formPost">Create Graph</v-btn>
+                <v-btn type="submit" v-on:click="formPost" :loading="isLoading">Create Graph</v-btn>
             </v-row>
 
         </v-col>
@@ -265,7 +265,8 @@
             },
             colors: ["#00b3ff", "#20b2aa", "#f0a122", "#8638ba", "#fff000", "#b40049"],
             noDataDialog: false,
-            noDataMessage: []
+            noDataMessage: [],
+            isLoading: false
         }
     },
     methods: {
@@ -580,6 +581,8 @@
 
             var chart = this;
 
+            chart.isLoading = true;
+
             // form validation
             this.errors.city1Empty = (this.city == null || this.city == "") ? true : false;
             this.errors.city2Empty = ((this.city2 == null || this.city2 == "") && this.secondCity == true) ? true : false;
@@ -595,7 +598,10 @@
                     latsAndLongs = await chart.cityInfoGetter([this.city]);
               
                 // do nothing on empty results
-                if (latsAndLongs.length < 1) { return; }
+                if (latsAndLongs.length < 1) { 
+                    chart.isLoading = false;
+                    return;
+                }
 
                 console.log("Querying power plant database")
                 var queriedData = await chart.sqlMidwareCall(latsAndLongs, chart.selectedData);
@@ -640,7 +646,7 @@
 
                 console.log(this.chart_data);
             }
-            
+            chart.isLoading = false;
         },
     }
   }
