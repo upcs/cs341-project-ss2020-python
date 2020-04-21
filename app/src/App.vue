@@ -25,39 +25,40 @@
                 <v-btn text id="header">Contact Us</v-btn>
               </router-link>
             </v-col>
-
-            <v-col cols="auto" class="pt-7">
-              <div 
-                class="side"
+            <v-spacer></v-spacer>
+            <v-col cols="auto" class="justify-end">
+              <v-btn
                 id="fuseBox"
+                icon
+                color="white"
                 @click="drawer = !drawer"
-              >
-                <VueFuse
-                  placeholder="Search for info on Energy"
-                  :list="books"
-                  :keys="['name', 'description']"
-                  class="w-64 text-center h-8 border rounded-lg center"
-                  @fuseResultsUpdated=updateResults
-                />
-              </div>
+              ><v-icon>mdi-magnify</v-icon></v-btn>
             </v-col>   
             <v-spacer></v-spacer>
           </v-row>
         </v-container>
       </v-app-bar>
-      <v-navigation-drawer id="searchDrawer" v-model="drawer" color="primary" right="right" app class="indigo">
+      <v-navigation-drawer id="searchDrawer" v-model="drawer" color="primary" right="right" app class="indigo" temporary>
         <v-container>
-          <v-row class>
-            <v-col cols=auto class="justify-start"><p class="title white--text">Results:</p></v-col>
+          <v-row class="align-center">
+            <v-col cols=9 class="justify-start">
+              <VueFuse
+                placeholder="Search for energy info"
+                :list="books"
+                :keys="['name', 'description']"
+                class="pl-2 w-64 text-left h-8 border rounded-lg center side"
+                @fuseResultsUpdated=updateResults
+              />
+            </v-col>
             <v-spacer></v-spacer>
-            <v-col cols=auto class="justify-end">
+            <v-col cols=2 class="justify-end mr-2">
               <v-btn id="searchCloseBtn" icon @click="drawer = !drawer">
                 <v-icon color="white">mdi-close-circle-outline</v-icon>
               </v-btn>
             </v-col>
           </v-row>
           <div>
-            
+            <p class="title white--text">Results:</p>
             <div class="subtitle-2 white--text">
               <div v-for="book in results" :key="book.name" class="rounded-lg bg-blue text-white p-4 m-4 flex text-left">
                 <div class="w-1/4">{{ book.name }}</div>

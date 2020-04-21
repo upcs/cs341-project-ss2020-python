@@ -34,4 +34,5 @@ module.exports = {
   '!<rootDir>/src/router/index.js',
   ],
   coverageReporters: ['lcov', 'text-summary'],
+  testTimeout: 30000,
 }
