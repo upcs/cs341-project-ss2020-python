@@ -19,6 +19,7 @@
                 <div class="row">
                   <div class="col-md-4 col-12">
                     <div class="py-12 px-4 v-card v-card--flat v-sheet theme--light blue lighten-4">
+                      <img src="@/assets/images/bar.png" contain height="50px" width="50px"/>
                       <div class="v-card__title justify-center font-weight-black text-uppercase">
                         Plant Graphs
                       </div>
@@ -29,6 +30,7 @@
                   </div>
                   <div class="col-md-4 col-12">
                     <div class="py-12 px-4 v-card v-card--flat v-sheet theme--light blue lighten-4">
+                      <img src="@/assets/images/news4.png" contain height="50px" width="50px"/>
                       <div class="v-card__title justify-center font-weight-black text-uppercase">
                         News
                       </div>
@@ -39,6 +41,7 @@
                   </div>
                   <div class="col-md-4 col-12">
                     <div class="py-12 px-4 v-card v-card--flat v-sheet theme--light blue lighten-4">
+                      <img src="@/assets/images/energy.png" contain height="50px" width="50px"/>
                       <div class="v-card__title justify-center font-weight-black text-uppercase">
                         Energy Info
                       </div>
