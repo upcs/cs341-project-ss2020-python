@@ -6,6 +6,13 @@ import Vue from 'vue'
 
 const app = require('../../srv/index.js');
 
+async function getDefaultData(wrapper) {
+  return new Promise(async(resolve, reject) => {
+      var resutlt = await wrapper.vm.databaseCall();
+      resolve(resutlt);
+  });
+}
+
 describe('ContactUs', () => {
 
   let server;
@@ -31,7 +38,7 @@ describe('ContactUs', () => {
     wrapper.vm.FirstName = "George"
     wrapper.vm.LastName = "Clooney"
     wrapper.vm.email = "georgie@cloon.com"
-    var result = await wrapper.vm.databaseCall();
+    var result = await getDefaultData(wrapper);
     expect(result).toBe("done");  
   })
 })
