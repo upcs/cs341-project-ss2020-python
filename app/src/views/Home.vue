@@ -5,9 +5,9 @@
       <img id="bg" src="@/assets/images/background.jpeg"/>
       <img id="logo" src="@/assets/images/logo.png"/>
       <div class="aboutUs ">
-        <div style="height: 93.4vh">
+        <div style="top: 300px; min-width: 500px;">
           
-          <main class="v-content" style="padding: 275px 375px 0px;" 
+          <main class="v-content" style="padding: 0;" 
             data-booted="true">
             <div class="features-border v-content__wrap">
             <section id="features" class="blue lighten-2">
@@ -126,7 +126,7 @@ body {
    height: 93vh;
    width: 100%;
    left: 0;
-  top: 0;
+   top: 0;
  }
   .router-link{
     text-decoration: none;
@@ -134,8 +134,10 @@ body {
   }
 
  .features-border {
-   border: solid black 2px;
-   box-shadow: -5px 5px #8888;
    border-radius: 3px;
+   width: 100%;
+   padding-left: 10%;
+   padding-right: 10%;
+   padding-top: 20%;
  }
 </style>
