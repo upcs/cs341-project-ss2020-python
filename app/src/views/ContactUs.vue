@@ -85,7 +85,7 @@
                               <div class="v-input__slot">
                                 <div class="v-text-field__slot">
                                   <label for="input-222" class="v-label v-label--active theme--light" style="left: 0px; right: auto; position: absolute; font-size: 22px;">Message</label>
-                                  <v-textarea v-model="message" aria-label="About Me">
+                                  <v-textarea v-model="message" aria-label="About Me" rows="3">
                                   </v-textarea>
                                 </div>
                               </div>
