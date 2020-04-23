@@ -201,12 +201,6 @@ element.style {
       resetValidation (){
         this.$refs.form.resetValidation()
       },
-      clear () {
-        this.FirstName = ''
-        this.LastName = ''
-        this.email = ''
-        this.$refs.observer.reset()
-      },
       databaseCall: async function(){
         console.log("Database was called. ")
         var infoObj = {
