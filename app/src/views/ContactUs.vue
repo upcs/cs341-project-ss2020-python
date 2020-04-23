@@ -85,8 +85,8 @@
                               <div class="v-input__slot">
                                 <div class="v-text-field__slot">
                                   <label for="input-222" class="v-label v-label--active theme--light" style="left: 0px; right: auto; position: absolute; font-size: 22px;">Message</label>
-                                  <textarea v-model="message" aria-label="About Me" rows="5" style="margin-top: 0px; margin-bottom: 0px; height: 76px;">
-                                  </textarea>
+                                  <v-textarea v-model="message" aria-label="About Me">
+                                  </v-textarea>
                                 </div>
                               </div>
                                 <div class="v-text-field__details">
@@ -191,21 +191,6 @@ element.style {
         await this.databaseCall();
         this.$router.push("/thankyou")
         this.isLoading = false;
-      },
-      validate (){
-        this.$refs.form.validate()
-      },
-      reset () {
-        this.$refs.form.reset()
-      },
-      resetValidation (){
-        this.$refs.form.resetValidation()
-      },
-      clear () {
-        this.FirstName = ''
-        this.LastName = ''
-        this.email = ''
-        this.$refs.observer.reset()
       },
       databaseCall: async function(){
         console.log("Database was called. ")
