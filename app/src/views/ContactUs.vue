@@ -100,13 +100,12 @@
                           </div>
                         <div class="text-right col col-12">
                           <v-btn
+                            :loading="isLoading"
                             :disabled="!valid" 
                             rounded
                             class="mr-0 v-btn v-btn--contained theme--light v-size--default dark">
-                              <router-link to="/thankyou">
-                                <span class="v-btn__content" v-on:click="submit">
-                                Send Info</span>
-                              </router-link>                   
+                            <span class="v-btn__content" v-on:click="submit">
+                            Send Info</span>               
                           </v-btn>
                         </div>
                       </div>
@@ -180,14 +179,18 @@ element.style {
         v => !!v || 'E-mail is required',
         v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
         ],
-        message: ''
+        message: '',
+        isLoading: false,
       }
     }, 
     methods: {
       async submit(){
+        this.isLoading = true;
         await this.$nextTick()
         console.log('Has reached submit. ')
         await this.databaseCall();
+        this.$router.push("/thankyou")
+        this.isLoading = false;
       },
       validate (){
         this.$refs.form.validate()
