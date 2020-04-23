@@ -42,11 +42,12 @@ describe('GraphInfo', () => {
 
   it('click submit with empty data creating error messages', () => {
         let btn = wrapper.find('button')
+        wrapper.vm.secondCity = true
         btn.trigger('click')
         console.log("Clicked submit button with empty inputs")
         expect(wrapper.find('#city1Err').exists()).toBe(true)
         console.log("City 1 parameter error created")
-
+        expect(wrapper.find('#city2Err').exists()).toBe(true)
         expect(wrapper.find('#plantErr').exists()).toBe(true)
         console.log("Plant type parameter error created")
 
