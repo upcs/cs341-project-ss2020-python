@@ -24,7 +24,8 @@
                           <div class="v-input purple-input v-text-field theme--light">
                             <div class="v-input__control">
                               <ValidationProvider v-slot="{ errors }" name="Name" rules="required|max:20">
-                                <v-text-field 
+                                <v-text-field
+                                  id="firstName"
                                   label="First Name" 
                                   v-model="FirstName"
                                   :counter="20"
@@ -45,6 +46,7 @@
                             <div class="v-input__control">
                               <ValidationProvider v-slot="{ errors }" name="Last" rules="required|max:20">
                                 <v-text-field 
+                                  id="lastName"
                                   label="Last Name" 
                                   v-model="LastName"
                                   :counter="20"
@@ -65,6 +67,7 @@
                             <div class="v-input__control">
                               <ValidationProvider v-slot="{ errors }" name="email" rules="required|email">
                                 <v-text-field 
+                                  id="emailAddress"
                                   label="Email Address" 
                                   v-model="email"
                                   :rules="emailRules"
@@ -85,7 +88,7 @@
                               <div class="v-input__slot">
                                 <div class="v-text-field__slot">
                                   <label for="input-222" class="v-label v-label--active theme--light" style="left: 0px; right: auto; position: absolute; font-size: 22px;">Message</label>
-                                  <v-textarea v-model="message" aria-label="About Me" rows="3">
+                                  <v-textarea id="messageField" v-model="message" aria-label="About Me" rows="3">
                                   </v-textarea>
                                 </div>
                               </div>
@@ -103,8 +106,10 @@
                             :loading="isLoading"
                             :disabled="!valid" 
                             rounded
+                            id="submitButton"
+                            @click="submit"
                             class="mr-0 v-btn v-btn--contained theme--light v-size--default dark">
-                            <span class="v-btn__content" v-on:click="submit">
+                            <span class="v-btn__content">
                             Send Info</span>               
                           </v-btn>
                         </div>
