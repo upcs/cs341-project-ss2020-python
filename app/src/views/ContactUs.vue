@@ -24,7 +24,8 @@
                           <div class="v-input purple-input v-text-field theme--light">
                             <div class="v-input__control">
                               <ValidationProvider v-slot="{ errors }" name="Name" rules="required|max:20">
-                                <v-text-field 
+                                <v-text-field
+                                  id="firstName"
                                   label="First Name" 
                                   v-model="FirstName"
                                   :counter="20"
@@ -45,6 +46,7 @@
                             <div class="v-input__control">
                               <ValidationProvider v-slot="{ errors }" name="Last" rules="required|max:20">
                                 <v-text-field 
+                                  id="lastName"
                                   label="Last Name" 
                                   v-model="LastName"
                                   :counter="20"
@@ -65,6 +67,7 @@
                             <div class="v-input__control">
                               <ValidationProvider v-slot="{ errors }" name="email" rules="required|email">
                                 <v-text-field 
+                                  id="emailAddress"
                                   label="Email Address" 
                                   v-model="email"
                                   :rules="emailRules"
@@ -85,8 +88,8 @@
                               <div class="v-input__slot">
                                 <div class="v-text-field__slot">
                                   <label for="input-222" class="v-label v-label--active theme--light" style="left: 0px; right: auto; position: absolute; font-size: 22px;">Message</label>
-                                  <textarea v-model="message" aria-label="About Me" rows="5" style="margin-top: 0px; margin-bottom: 0px; height: 76px;">
-                                  </textarea>
+                                  <v-textarea id="messageField" v-model="message" aria-label="About Me" rows="3">
+                                  </v-textarea>
                                 </div>
                               </div>
                                 <div class="v-text-field__details">
@@ -100,13 +103,14 @@
                           </div>
                         <div class="text-right col col-12">
                           <v-btn
+                            :loading="isLoading"
                             :disabled="!valid" 
                             rounded
+                            id="submitButton"
+                            @click="submit"
                             class="mr-0 v-btn v-btn--contained theme--light v-size--default dark">
-                              <router-link to="/thankyou">
-                                <span class="v-btn__content" v-on:click="submit">
-                                Send Info</span>
-                              </router-link>                   
+                            <span class="v-btn__content">
+                            Send Info</span>               
                           </v-btn>
                         </div>
                       </div>
@@ -180,29 +184,18 @@ element.style {
         v => !!v || 'E-mail is required',
         v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
         ],
-        message: ''
+        message: '',
+        isLoading: false,
       }
     }, 
     methods: {
       async submit(){
+        this.isLoading = true;
         await this.$nextTick()
         console.log('Has reached submit. ')
         await this.databaseCall();
-      },
-      validate (){
-        this.$refs.form.validate()
-      },
-      reset () {
-        this.$refs.form.reset()
-      },
-      resetValidation (){
-        this.$refs.form.resetValidation()
-      },
-      clear () {
-        this.FirstName = ''
-        this.LastName = ''
-        this.email = ''
-        this.$refs.observer.reset()
+        this.$router.push("/thankyou")
+        this.isLoading = false;
       },
       databaseCall: async function(){
         console.log("Database was called. ")
