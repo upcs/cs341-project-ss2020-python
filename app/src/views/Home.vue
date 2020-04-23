@@ -18,37 +18,43 @@
                 </h2>
                 <div class="row">
                   <div class="col-md-4 col-12">
-                    <div class="py-12 px-4 v-card v-card--flat v-sheet theme--light blue lighten-4">
-                      <img src="@/assets/images/bar.png" contain height="50px" width="50px"/>
-                      <div class="v-card__title justify-center font-weight-black text-uppercase">
-                        Plant Graphs
+                    <a style="text-decoration:none" href="/graph">
+                      <div class="py-12 px-4 v-card v-card--flat v-sheet theme--light blue lighten-4">
+                        <img src="@/assets/images/bar.png" contain height="50px" width="50px"/>
+                        <div class="v-card__title justify-center font-weight-black text-uppercase text-decoration:none">
+                          Plant Graphs
+                        </div>
+                        <div class="v-card__text subtitle-1">
+                          Analyze different nuclear, coal, hydroelectric, natural gas, and coal usage by major cities across America 
+                        </div>
                       </div>
-                      <div class="v-card__text subtitle-1">
-                        Analyze different nuclear, coal, hydroelectric, natural gas, and coal usage by major cities across America 
-                      </div>
-                    </div>
+                    </a>
                   </div>
                   <div class="col-md-4 col-12">
-                    <div class="py-12 px-4 v-card v-card--flat v-sheet theme--light blue lighten-4">
-                      <img src="@/assets/images/news4.png" contain height="50px" width="50px"/>
-                      <div class="v-card__title justify-center font-weight-black text-uppercase">
-                        News
+                    <a style="text-decoration:none" href="/news">
+                      <div class="py-12 px-4 v-card v-card--flat v-sheet theme--light blue lighten-4">
+                        <img src="@/assets/images/news4.png" contain height="50px" width="50px"/>
+                        <div class="v-card__title justify-center font-weight-black text-uppercase">
+                          News
+                        </div>
+                        <div class="v-card__text subtitle-1">
+                          Learn about the latest updates to Portland's energy use through local article publications
+                        </div>
                       </div>
-                      <div class="v-card__text subtitle-1">
-                        Learn about the latest updates to Portland's energy use through local article publications
-                      </div>
-                    </div>
+                    </a>
                   </div>
                   <div class="col-md-4 col-12">
-                    <div class="py-12 px-4 v-card v-card--flat v-sheet theme--light blue lighten-4">
-                      <img src="@/assets/images/energy.png" contain height="50px" width="50px"/>
-                      <div class="v-card__title justify-center font-weight-black text-uppercase">
-                        Energy Info
+                    <a style="text-decoration:none" href="/info">
+                      <div class="py-12 px-4 v-card v-card--flat v-sheet theme--light blue lighten-4">
+                        <img src="@/assets/images/energy.png" contain height="50px" width="50px"/>
+                        <div class="v-card__title justify-center font-weight-black text-uppercase">
+                          Energy Info
+                        </div>
+                        <div class="v-card__text subtitle-1">
+                          Read about the world's energy use in comparison to understand the importance of renewable energy
+                        </div>
                       </div>
-                      <div class="v-card__text subtitle-1">
-                        Read about the world's energy use in comparison to understand the importance of renewable energy
-                      </div>
-                    </div>
+                    </a>
                   </div>
                 </div>
                 <h2 class ="display-1 white--text font-weight-bold mb-3">
@@ -122,6 +128,10 @@ body {
    left: 0;
    top: 0;
  }
+  .router-link{
+    text-decoration: none;
+    border-style: none;
+  }
 
  .features-border {
    border-radius: 3px;
