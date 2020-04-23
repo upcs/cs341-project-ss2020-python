@@ -22,6 +22,9 @@
 - Once the graph is created, the value of each bar can be viewed by moving the cursor over it.
 - Without chaging the side interface, data-sets can be removed from the graph by clicking on their name in the graph's key.
 - A second request in the interface can be entered to update the graph.
+- When a user enters an invalid city, an error will show.
+- When a query returns no data for a given search, the user will be alerted
+- Next to each input category, a tooltip will display a helpful message to explain the category, when the user hovers their mouse over it.
 
 ### News
 - When a user clicks on an article in the News tab, the browser will open a new tab to the source of the article.
@@ -31,6 +34,7 @@
 
 ### Contact Us
 - We have successfully connected the Contact Us page with our database and will encrypt and store the information provided from the user. Additionally, we have implemented unit testing to check our connection to the database and we have added field error checking so that information only gets sent if the proper field requirements are met: length of names and proper email address. 
+- A privacy policy is presented next to the submission button.
 
 ### Other
 - Travis-CI automatically deploys to Google Cloud on a sucessful master branch build.
@@ -43,6 +47,18 @@
 
 ### Performance Across Web Browsers
 - In our last sprint, it was noted that our application does not display correctly on all browsers. Most notably was its non-functional performance on mobile browsers. Since performance on mobile browsers is not a high priority for our project, we addressed this issue by forcing the website to have a specified size, allowing all the website's components to be visible and available for interaction. The downside is that buttons and text are small, but zooming in makes everything usable.
+
+#### Chrome
+- Passed
+
+#### Safari
+- Passed
+
+#### Internet Explorer
+- Passed
+
+#### Chrome (Mobile)
+- Passed
 
 ### Quality Attributes
 
@@ -64,6 +80,17 @@
 
 #### 73: Graph input is unintuitive
 - There wasn't sufficient guidance to effectively navigate the 'plant graphs' page's inputs, which we addressed in this sprint by adding tool tips next to the inputs which explain their effect.
+
+### Code Coverage
+- Our code coverage jumped from 58% to 96% from last sprint to the this one. This can be attributed to three items. First, by looking at the file breakdown report, we saw our main graph visualization tests were excluded from the coverage. This was fixed by making the call asynchronous. Secondly, the coverage's file breakdown report showed that some untestable files were included, like our main.js file for Vue and index.js for Express. The coverage increased when these files were removed. Finally, the breakdown report also revealed uncovered functions and branches that were missed by our tests. Additional tests were added to account for these uncovered features.
+- The missing 4% coverage can be mainly attributed to a database error handling branch. While the rest of our database connection file is in use and tested, we decided to leave the error handling branch uncovered because the database is expected to be reacted at all times. It is outside the scope of this project to handle a bad connection to the database.
+
+### Code Coverage Estimates for Story Acceptance Tests
+- Story Acceptance Test 1: 15%
+- Story Acceptance Test 2: 5%
+- Story Acceptance Test 3: 20%
+- Story Acceptance Test 4: 20%
+- Story Acceptance Test 5: 5%
 
 ## Sprint 4
 
