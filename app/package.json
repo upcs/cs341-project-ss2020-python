@@ -12,7 +12,7 @@
     "deploy": "gcloud app deploy"
   },
   "dependencies": {
-    "async": "^3.2.0",
+    "async": "^3.2.2",
     "chart.js": "^2.9.3",
     "core-js": "^2.6.5",
     "crypto-js": "^4.0.0",
